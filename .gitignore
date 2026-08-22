@@ -1,0 +1,14 @@
+Plaintext
+
+#Dependencies
+
+#Environment variables / Secerts
+**/ .env
+.env.local
+
+#Production builds
+**/dist/
+**/build/
+
+#System files
+.DS_Store

@@ -1,0 +1,397 @@
+/* ==========================================================================
+          GUILD NAV ACCORDION - CORE BASE RESET
+   ========================================================================== */
+
+.guild-nav-accordion {
+    margin-bottom: 1rem;
+    font-family: 'Cinzel', serif;
+}
+
+.guild-nav-accordion .accordion-item,
+.guild-nav-accordion .accordion-collapse,
+.guild-nav-accordion .accordion-body,
+.guild-nav-accordion .list-group {
+  background-color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.guild-nav-accordion .list-group-item-action:hover,
+.guild-nav-accordion .list-group-item-action:focus,
+.guild-nav-accordion .list-group-item-action:active {
+  background-color: transparent;
+  color: inherit;
+}
+
+.guild-nav-accordion .header-iron-bracket,
+.guild-nav-accordion .side-post {
+    display: none !important;
+}
+
+/* ==========================================================================
+   THE KNOWLEDGE FOUNDRY THEME (.theme-bestiary)
+   ========================================================================== */
+
+.theme-bestiary .accordion-button {
+  background: linear-gradient(180deg, #4a3e23 0%, #2b2313 50%, #17130a 100%) !important;
+  color: #ffd700 !important;
+  border: 3px solid #b8860b !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 223, 0, 0.6),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+    0 6px 12px rgba(0, 0, 0, 0.9) !important;
+  text-shadow: 1px 1px 3px #000, 0 0 8px rgba(0, 212, 255, 0.5);
+  letter-spacing: 2px;
+  position: relative;
+}
+
+.theme-bestiary .list-group-item::before {
+  content: '•';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b6b23;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 0 #000;
+  opacity: 0.85;
+}
+
+.theme-bestiary .list-group-item::after {
+  content: '•';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b6b23;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 0 #000;
+  opacity: 0.85;
+}
+
+
+.theme-bestiary .accordion-body {
+  background: linear-gradient(180deg, #181c20 0%, #0e1012 100%) !important;
+  border: 3px solid #5c4a1e !important;
+  border-top: none !important;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.9) !important;
+  padding: 4px !important;
+}
+
+.theme-bestiary .list-group-item {
+  background: linear-gradient(180deg, 
+    #252a30 0%, 
+    #161a1e 100%
+  );
+  color: #c0c9d4 !important;
+  border: 1px solid #3a424b !important;
+  margin-bottom: 2px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  text-shadow: 1px 1px 2px #000;
+}
+
+.theme-bestiary .list-group-item::before {
+  content: '•';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8b6b23;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 0 #000;
+  opacity: 0.7;
+}
+
+.theme-bestiary .list-group-item span {
+  padding-left: 12px;
+}
+
+.theme-bestiary .list-group-item:hover,
+.theme-bestiary .list-group-item:focus {
+  background: linear-gradient(180deg, 
+        #323942 0%, 
+        #1f242a 100%
+    );
+  color: #ffffff !important;
+  border-color: #00d4ff !important;
+  box-shadow: inset 0 0 8px rgba(0, 212, 255, 0.3) !important;
+  padding-left: 1.5rem !important;
+}
+
+.theme-bestiary .list-group-item.active {
+  background: linear-gradient(180deg, 
+        #7a5e1c 0%, 
+        #47360e 100%
+    );
+  color: #ffffff !important;
+  border: 2px solid #ffd700 !important;
+  border-left: 6px solid #00d4ff !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 0 12px rgba(0, 212, 255, 0.5) !important;
+  font-weight: bold;
+}
+
+.theme-bestiary .list-group-item.active::before {
+  color: #ffd700;
+  text-shadow: 0 0 5px #ffd700;
+}
+
+.theme-bestiary .list-group-item small {
+  color: #8fa1b3 !important;
+}
+
+.theme-bestiary .list-group-item.active small {
+  color: #00d4ff !important;
+  text-shadow: 0 0 6px rgba(0, 212, 255, 0.8);
+}
+
+/* ==========================================================================
+   THE MAIN HALL THEME (.theme-mainhall)
+   ========================================================================== */
+
+.theme-mainhall .accordion-header,
+.theme-mainhall .accordion-item {
+  overflow: visible !important;
+}
+
+.theme-mainhall {
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(255, 102, 0, 0.25) !important
+  ;
+  border-radius: 4px;
+  position: relative;
+}
+
+.theme-mainhall .accordion-button {
+  background: linear-gradient(
+    180deg, 
+    #3d291c 0%, 
+    #241710 50%, 
+    #170e0a 100%
+  ) !important;
+  color: #f5e6cc !important;
+  border: 3px solid #b8860b !important;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 215, 0, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.8),
+    0 4px 10px rgba(0, 0, 0, 0.9)
+  ;
+  text-shadow: 1px 1px 3px #000;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: visible;
+  padding-left: 32px;
+}
+
+.theme-mainhall .accordion-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 14;
+  background: 
+    radial-gradient(circle at 25% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    radial-gradient(circle at 75% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    linear-gradient(90deg, #383838 0%, #1a1a1a 100%)
+  ;
+  border: 1px solid #0d0d0d;
+  border-radius: 3px 0 0 3px;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2), 
+    0 2px 4px rgba(0,0,0,0.8)
+  ;
+  z-index: 5;
+}
+
+.theme-mainhall .accordion-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 14px;
+  background: 
+    radial-gradient(circle at 25% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    radial-gradient(circle at 75% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    linear-gradient(90deg, #383838 0%, #1a1a1a 100%)
+  ;
+  border: 1px solid #0d0d0d;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2), 
+    0 2px 4px rgba(0,0,0,0.8)
+  ;
+  z-index: 5;
+}
+
+.theme-mainhall .accordion-body {
+  background:
+    radial-gradient(circle at 50% 25%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    radial-gradient(circle at 50% 75%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    linear-gradient(180deg, #383838 0%, #1a1a1a 100%)
+  ;
+  border: 3px solid #7a5c29;
+  border-top: none;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.95);
+  padding: 4px;
+}
+
+.theme-mainhall .list-group-item {
+  position: relative;
+  background: linear-gradient(
+    180deg, 
+    #362418 0%, 
+    #21150e 100%
+  );
+  color: #e6d7c3 ;
+  border: 1px solid #4a3322;
+  border-bottom: 1px solid rgba(184, 134, 11, 0.3);
+  margin-bottom: 2px;
+  padding-left: 48px;
+  padding-right: 48px;
+  text-shadow: 1px 1px 2px #000;
+  overflow: visible
+}
+
+.theme-mainhall .list-group-item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 14px;
+  background: 
+    radial-gradient(circle at 25% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    radial-gradient(circle at 75% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    linear-gradient(90deg, #383838 0%, #1a1a1a 100%)
+  ;
+  border: 1px solid #0d0d0d;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2), 
+    0 1px 3px rgba(0, 0, 0, 0.8)
+  ;
+  z-index: 4;
+}
+
+.theme-mainhall .list-group-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 14px;
+  background: 
+    radial-gradient(circle at 25% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    radial-gradient(circle at 75% 50%, #888 0%, #888 1.5px, #111 2.5px, transparent 3.5px),
+    linear-gradient(90deg, #383838 0%, #1a1a1a 100%)
+  ;
+  border: 1px solid #0d0d0d;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.2), 
+    0 1px 3px rgba(0, 0, 0, 0.8)
+  ;
+  z-index: 4;
+}
+
+.theme-mainhall .list-group-item:hover,
+.theme-mainhall .list-group-item:focus {
+  background: linear-gradient(
+    180deg,
+    #4d3322 0%,
+    #301f14 100%
+  );
+  color: #ffffff;
+  border-color: #ffaa00;
+  box-shadow: inset 0 0 10px rgba(255, 136, 0, 0.3);
+}
+
+.theme-mainhall .list-group-item.active {
+  background: linear-gradient(
+    180deg, 
+    #8a2be2 0%, 
+    #a83232 0%, 
+    #5e1107 100%
+  );
+  background: linear-gradient(
+    180deg, 
+    #8c2e0b 0%, 
+    #521804 100%
+  ); 
+  color: #ffffff;
+  border: 2px solid #ffd700;
+  border-left: 6px solid #ff6600;
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 200, 100, 0.4),
+    0 0 15px rgba(255, 102, 0, 0.5)
+  ;
+  font-weight: bold;
+  text-shadow: 0 0 6px rgba(255, 150, 0, 0.8), 1px 1px 2px #000;
+}
+
+.theme-mainhall .list-group-item small {
+  color: #b3a28d;
+}
+
+.theme-mainhall .list-group-item.active small {
+  color: #ffcc99;
+  text-shadow: 0 0 5px rgba(255, 102, 0, 0.6);
+}
+
+.theme-mainhall .header-iron-bracket {
+  display: none;
+}
+
+.theme-mainhall .bracket-left { left: -3px; border-radius: 3px 0 0 3px; }
+.theme-mainhall .bracket-right { right: 42px; }
+
+.theme-mainhall .header-iron-bracket::before,
+.theme-mainhall .header-iron-bracket::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle at 30% 30%, #777 0%, #111 100%);
+  border-radius: 50%;
+  box-shadow: 0 1px 1px #000;
+}
+
+.theme-mainhall .side-post {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  background: linear-gradient(
+    90deg,
+    #2b1d14 0%,
+    #1c120c 50%,
+    #100a07 100%
+  );
+  border: 1px solid #0d0805;
+  box-shadow: inset 0 0 5px #000;
+  z-index: 2;
+  display: block;
+}
+
+.theme-mainhall .post-left {
+  left: 0;
+  border-right: 2px solid #b8860b;
+}
+
+.theme-mainhall .post-right {
+  right: 0;
+  border-left: 2px solid #b8860b;
+}
+
+.theme-mainhall .nav-rows-wrapper {
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}

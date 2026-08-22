@@ -1,0 +1,75 @@
+/* =====================================================================
+     DM Sanctum Weapon
+   ===================================================================== */
+
+.dm-sanctum-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    pointer-events: auto;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform-style: preserve-3d;
+    perspective: 600px;
+}
+
+.prop-scroll-3d {
+    width: 24px;
+    height: 36px;
+    background: linear-gradient(
+        90deg,
+        #d4b26f 0%,
+        #f7e3b5 30%,
+        #e6ca8e 70%,
+        #9e7b3b 100%
+    );
+    border-radius: 3px;
+    box-shadow: -3px 6px 8px rgba(0, 0, 0, 0.85);
+}
+
+.prop-scroll-3d::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: #5c3e1e;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.prop-inkwell-3d {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(
+        circle at 35% 35%,
+        #3a4a58 0%,
+        #1a232a 60%, 
+        #0a0f13 100%
+    );
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+}
+
+.prop-quill-3d {
+    position: absolute;
+    top: -14px;
+    right: -2px;
+    font-size: 1.2rem;
+}
+
+.dm-sanctum-btn:hover .prop-scroll-3d {
+    transform: rotateX(-40deg) rotateY(-15deg) rotateZ(-10deg) translateZ(25px) scale(1.1);
+    filter: drop-shadow(0 0 10px #ffaa00);
+}
+
+.dm-sanctum-btn:hover .prop-inkwell-3d {
+    transform: rotateX(-35deg) translateZ(25px) scale(1.1);
+    filter: drop-shadow(0 0 10px #ffaa00);
+}
+

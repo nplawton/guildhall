@@ -1,0 +1,188 @@
+.cathedral-ceiling-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+}
+
+.ridge-beam {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(
+        180deg,
+        #1f140c 0%,
+        #3d2a1d 50%,
+        #100905 100%
+    );
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+}
+
+.beam-structure {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.beam {
+    position: absolute;
+    top: 0;
+    width: 20px;
+    height: 26vh;
+    background: linear-gradient(
+        90deg,
+        #1c120a 0%,
+        #3d2a1d 50%,
+        #120b06 100%
+    );
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.85);
+    z-index: 2;
+}
+
+.rafter-left {
+    left: 20%;
+    transform: rotate(34deg);
+    transform-origin: top left;
+}
+
+.rafter-right {
+    right: 20%;
+    transform: rotate(-34deg);
+    transform-origin: top right;
+}
+
+.collar-beam {
+    position: absolute;
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 78%;
+    height: 28px;
+    background: linear-gradient(
+        180deg, 
+        #3d2a1d 0%,
+        #1f140c 100%
+    );
+    border-top: 2px solid #100905;
+    border-bottom: 3px solid #0a0503;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
+    z-index: 3;
+}
+
+.iron-apex-plate {
+    position: absolute;
+    top: 20px;
+    width: 38px;
+    height: 26px;
+    background: linear-gradient(
+        135deg,
+        #3a3835 0%,
+        #1c1a18 50%,
+        #0e0d0c 100%
+    );
+    border: 1.5px solid #050505;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+    z-index: 5;
+}
+
+.apex-left {
+    left: 19%;
+    transform: rotate(-55deg);
+    transform-origin: top left;
+}
+
+.apex-right {
+    right: 19%;
+    transform: rotate(55deg);
+    transform-origin: top right;
+}
+
+.collar-joint-left,
+.collar-joint-right {
+    position: absolute;
+    top: 8vh;
+    width: 46px;
+    height: 34px;
+    background: linear-gradient(
+        135deg,
+        #3a3835 0%,
+        #1c1a18 50%,
+        #0e0d0c 100%
+    );
+    border: 2px solid #050505;
+    border-radius: 2px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+    z-index: 5;
+}
+
+.collar-joint-left { left: 12%; margin-left: -4px; }
+.collar-joint-right { right: 12%; margin-right: -4px; }
+
+.iron-mount {
+    position: absolute;
+    top: 8vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 34px;
+    background: linear-gradient(
+        135deg,
+        #3a3835 0%,
+        #1c1a18 50%,
+        #0e0d0c 100%
+    );
+    border: 2px solid #050505;
+    border-radius: 2px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+    z-index: 5;
+}
+
+.iron-bolt {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: linear-gradient(135deg, #6e6a65 0%, #2a2826 100%);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.bolt-tl { top: 3px; left: 4px; }
+.bolt-tr { top: 3px; right: 4px; }
+.bolt-bl { bottom: 3px; left: 4px; }
+.bolt-br { bottom: 3px; right: 4px; }
+
+.chandelier-anchor {
+    position: absolute;
+    top: 25vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+}
+
+.iron-knee-plate {
+    position: absolute;
+    top: 20vh;
+    width: 36px;
+    height: 24px;
+    background: linear-gradient(
+        135deg,
+        #3a3835 0%,
+        #1c1a18 50%,
+        #0e0d0c 100%
+    );
+    border: 2px solid #050505;
+    border-radius: 2px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.9);
+    z-index: 5;
+}
+
+.knee-left { left: 12.5%; transform: rotate(-55deg); }
+.knee-right { right: 12.5%; transform: rotate(55deg); }
