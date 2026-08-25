@@ -1,75 +1,425 @@
 /* =====================================================================
-     DM Sanctum Weapon
+     Shared Rules for all Prop Weapon Btns
    ===================================================================== */
 
-.dm-sanctum-btn {
+.weapon-btn {
     background: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
+    margin: 0;
     pointer-events: auto;
     outline: none;
     display: flex;
     align-items: center;
-    gap: 8px;
+}
+
+/* =====================================================================
+     DM Sanctum Weapon
+   ===================================================================== */
+
+.dm-props-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 125px;
+    height: 85px;
+    transform: rotate(90deg) rotateX(25deg);
+    transform-origin: center center;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.prop-svg {
+    width: 66px;
+    height: 80px;
+    overflow: visible;
+    filter: drop-shadow(-3px 8px 6px rgba(0, 0, 0, 0.95));
+}
+
+.scroll-svg {
+    transform: rotate(-10deg) translate(4px, 4px);
+}
+
+.inkwell-svg {
+    transform: rotate(90deg) rotateX(-30deg) translate(-8px, 18px);
+    transform-origin: center center;
+    filter: drop-shadow(-4px 10px 6px rgba(0, 0, 0, 0.95));
+}
+
+.dm-sanctum-btn:hover .dm-props-wrapper {
+    transform: rotate(90deg) rotateX(25deg) translateY(-10px) scale(1.12);
+}
+
+.dm-sanctum-btn:hover .prop-svg {
+    filter: drop-shadow(-6px 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 12px #ffaa00);
+}
+
+/* =====================================================================
+     Star-lit Grotto Shards
+   ===================================================================== */
+
+.grotto-props-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 120px;
+    transform: rotateZ(93deg) rotateY(38deg) rotateX(-55deg) scaleY(3.5) translateY(60px);
+    transform-origin: 90px 150px;
     transform-style: preserve-3d;
-    perspective: 600px;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.prop-scroll-3d {
-    width: 24px;
-    height: 36px;
-    background: linear-gradient(
-        90deg,
-        #d4b26f 0%,
-        #f7e3b5 30%,
-        #e6ca8e 70%,
-        #9e7b3b 100%
-    );
-    border-radius: 3px;
-    box-shadow: -3px 6px 8px rgba(0, 0, 0, 0.85);
+.obelisks-svg {
+    width: 100px;
+    height: 120px;
+    overflow: visible;
+    transform: none;
+    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.65));
 }
 
-.prop-scroll-3d::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: #5c3e1e;
-    border-radius: 50%;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+.starlit-grotto-btn:hover .grotto-props-wrapper {
+   transform: rotateZ(93deg) rotateY(38deg) rotateX(-55deg) scaleY(3.5) translateY(40px);
 }
 
-.prop-inkwell-3d {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(
-        circle at 35% 35%,
-        #3a4a58 0%,
-        #1a232a 60%, 
-        #0a0f13 100%
-    );
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+.crystal-fire {
+    cursor: pointer;
+    transition: filter 0.3s ease;
 }
 
-.prop-quill-3d {
-    position: absolute;
-    top: -14px;
-    right: -2px;
-    font-size: 1.2rem;
+.crystal-fire:hover {
+    animation: magmaPulseHover 1.6s ease-in-out infinite;
 }
 
-.dm-sanctum-btn:hover .prop-scroll-3d {
-    transform: rotateX(-40deg) rotateY(-15deg) rotateZ(-10deg) translateZ(25px) scale(1.1);
-    filter: drop-shadow(0 0 10px #ffaa00);
+.crystal-violet {
+    cursor: pointer;
 }
 
-.dm-sanctum-btn:hover .prop-inkwell-3d {
-    transform: rotateX(-35deg) translateZ(25px) scale(1.1);
-    filter: drop-shadow(0 0 10px #ffaa00);
+.lightning-arc {
+    opacity: 0;
+    transition: opacity 0.15s ease;
 }
 
+.crystal-violet:hover {
+    animation: violetLightningHover 0.8s steps(2) infinite;
+}
+
+.crystal-violet:hover .arc-1 {
+    animation: arcFlicker1 0.6s steps(2) infinite;
+}
+
+.crystal-violet:hover .arc-2 {
+    animation: arcFlicker2 0.7s steps(2) infinite 0.15s;
+}
+
+.crystal-air {
+    cursor: pointer;
+}
+
+.frost-crack {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.crystal-air:hover {
+    animation: airBreatheHover 1.2s ease-in-out infinite;
+}
+
+.crystal-air:hover .crack-1 {
+    animation: frostSprout1 0.7s steps(2) infinite;
+}
+
+.crystal-air:hover .crack-2 {
+    animation: frostSprout2 0.85s steps(2) infinite 0.1s;
+}
+
+.crystal-earth {
+    cursor: pointer;
+}
+
+.earth-left-shard,
+.earth-right-shard,
+.earth-top-cap {
+    transform-origin: 68px 114px;
+}
+
+.crystal-earth:hover {
+    animation: earthGlowPulse 1.2s ease-in-out infinite;
+}
+
+.crystal-earth:hover .earth-core-glow {
+    opacity: 1;
+}
+
+.crystal-earth:hover .earth-left-shard {
+    animation: leftHardShatter 0.4s steps(2) infinite;
+}
+
+.crystal-earth:hover .earth-right-shard {
+    animation: rightShardShatter 0.4s steps(2) infinite;
+}
+
+.crystal-earth:hover .earth-top-cap {
+    animation: topCapPop 0.6s ease-in-out infinite;
+}
+
+.earth-core-glow {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.crystal-water {
+    cursor: pointer;
+}
+
+.crystal-water:hover {
+    animation: waterShimmerHover 1.4s ease-in-out infinite;
+}
+
+.water-facet,
+.water-crash-burst {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.water-crash-burst {
+    transform-origin: 32px 80px;
+}
+
+.crystal-water:hover .water-up-facet {
+    animation: waterFlowup 1s ease-in-out infinite;
+}
+
+.crystal-water:hover .water-down-facet {
+    animation: waterFlowDown 1s ease-in-out infinite;
+}
+
+.crystal-water:hover .water-crash-burst {
+    animation: waterCrashPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes magmaPulseHover {
+    0% {
+        filter: drop-shadow(0px 18px 8px rgba(0, 0, 0, 0.65)) 
+                brightness(1) 
+                drop-shadow(0 0 6px rgba(255, 85, 0, 0.6));
+    }
+    25% {
+        filter: drop-shadow(0px 18px 8px rgba(0, 0, 0, 0.65)) 
+                brightness(1.35) 
+                drop-shadow(0 0 16px #ff7700) 
+                drop-shadow(0 0 26px #ffeeaa);
+    }
+    50% {
+        filter: drop-shadow(0px 18px 8px rgba(0, 0, 0, 0.65)) 
+                brightness(0.9) 
+                drop-shadow(0 0 8px #cc2200);
+    }
+    75% {
+        filter: drop-shadow(0px 18px 8px rgba(0, 0, 0, 0.65)) 
+                brightness(1.4) 
+                drop-shadow(0 0 20px #ff9900) 
+                drop-shadow(0 0 30px #ff3300);
+    }
+    100% {
+        filter: drop-shadow(0px 18px 8px rgba(0, 0, 0, 0.65)) 
+                brightness(1) 
+                drop-shadow(0 0 6px rgba(255, 85, 0, 0.6));
+    }
+}
+
+@keyframes arcFlicker1 {
+    0%, 100% { opacity: 0; }
+    15% { opacity: 1; filter: drop-shadow(0 0 4px #ffffff); }
+    30% { opacity: 0.2; }
+    55% { opacity: 0.9; filter: drop-shadow(0 0 6px #e099ff); }
+    75% { opacity: 0; }
+}
+
+@keyframes arcFlicker2 {
+    0%, 100% { opacity: 0; }
+    40% { opacity: 1; filter: drop-shadow(0 0 5px #ffffff); }
+    60% { opacity: 0; }
+    85% { opacity: 0.8; filter: drop-shadow(0 0 4px #8a00e6); }
+}
+
+@keyframes violetLightningHover {
+    0%, 100% { filter: drop-shadow(0 0 4px #8a00e6) brightness(1); }
+    25% { filter: drop-shadow(0 0 16px #f5ccff) drop-shadow(0 0 24px #8a00e6) brightness(1.5); }
+    50% { filter: drop-shadow(0 0 6px #440066) brightness(0.9); }
+    75% { filter: drop-shadow(0 0 20px #ffffff) drop-shadow(0 0 28px #8a00e6) brightness(1.8); }
+}
+
+@keyframes frostSprout1 {
+    0%, 100% { opacity: 0; }
+    20% { opacity: 1; filter: drop-shadow(0 0 4px #ffffff); }
+    45% { opacity: 0.3; }
+    70% { opacity: 0.95; filter: drop-shadow(0 0 6px #e0ffff); }
+}
+
+@keyframes frostSprout2 {
+    0%, 100% { opacity: 0; }
+    35% { opacity: 0.85; filter: drop-shadow(0 0 4px #ffffff); }
+    60% { opacity: 0.1; }
+    85% { opacity: 1; filter: drop-shadow(0 0 5px #70c7d2); }
+}
+
+@keyframes airBreatheHover {
+    0%, 100% {
+        filter: drop-shadow(0 0 4px #70c7d2) brightness(1);
+    }
+    30% {
+        filter: drop-shadow(0 0 14px #e0ffff) drop-shadow(0 0 22px #ffffff) brightness(1.4);
+    }
+    60% {
+        filter: drop-shadow(0 0 6px #3a506b) brightness(0.95);
+    }
+    85% {
+        filter: drop-shadow(0 0 18px #ffffff) drop-shadow(0 0 28px #70c7d2) brightness(1.6);
+    }
+}
+
+@keyframes leftShardShatter {
+    0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    15% { transform: translateX(-6px) translateY(2px) rotate(-6deg); }
+    30% { transform: translateX(-2px) translateY(-1px) rotate(-2deg); }
+    45% { transform: translateX(-8px) translateY(3px) rotate(-8deg); }
+    70% { transform: translateX(-4px) translateY(1px) rotate(-4deg); }
+    85% { transform: translateX(-7px) translateY(2px) rotate(-7deg); }
+}
+
+@keyframes rightShardShatter {
+    0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    15% { transform: translateX(6px) translateY(-2px) rotate(6deg); }
+    30% { transform: translateX(2px) translateY(1px) rotate(2deg); }
+    45% { transform: translateX(8px) translateY(-3px) rotate(8deg); }
+    70% { transform: translateX(4px) translateY(-1px) rotate(4deg); }
+    85% { transform: translateX(7px) translateY(-2px) rotate(7deg); }
+}
+
+@keyframes topCapPop {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(4deg); }
+    50% { transform: translateY(-4px) rotate(-3deg); }
+    75% { transform: translateY(-12px) rotate(5deg); }
+}
+
+@keyframes earthGlowPulse {
+    0%, 100% { filter: drop-shadow(0 0 4px #1b6e32) brightness(1); }
+    50% { filter: drop-shadow(0 0 20px #a8ff70) drop-shadow(0 0 30px #3cd070) brightness(1.4); }
+}
+
+@keyframes waterShimmerHover {
+    0%, 100% {
+        filter: drop-shadow(0 0 4px #007799) brightness(1);
+    }
+    50% {
+        filter: drop-shadow(0 0 18px #7ce8ff) drop-shadow(0 0 26px #005580) brightness(1.35);
+    }
+}
+
+@keyframes waterFlowUp {
+    0% {
+        clip-path: inset(100% 0 0 0);
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0.1;
+    }
+}
+
+@keyframes waterFlowDown {
+    0% {
+        clip-path: inset(0 0 100% 0);
+        opacity: 0.1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+        opacity: 0.2;
+    }
+}
+
+@keyframes waterCrashPulse {
+    0%, 100% {
+        transform: scale(0.6);
+        opacity: 0.2;
+        filter: drop-shadow(0 0 2px #ffffff);
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+        filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 18px #7ce8ff);
+    }
+}
+
+/* =====================================================================
+     Whispering Casket Crossed-Dagers
+   ===================================================================== */
+
+.casket-props-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 120px;
+    transform: rotateZ(13deg) rotateY(-14deg) rotateX(-50deg) scaleY(2.2) translateY(0px);
+    transform-origin: 250px 190px;
+    transform-style: preserve-3d;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.daggers-svg {
+    width: 100px;
+    height: 120px;
+    overflow: visible;
+    transform: none;
+    filter: drop-shadow(0px 12px 6px rgba(0, 0, 0, 0.75));
+}
+
+.glint-path {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.casket-btn:hover .casket-props-wrapper {
+    transform: rotateZ(13deg) rotateY(-14deg) rotateX(-50deg) scaleY(2.2) translateY(-10px);
+    cursor: pointer;
+}
+
+.casket-btn:hover .glint-blade-1 {
+    animation: glintBladeLeft 1.4s ease-in-out infinite;
+}
+
+.casket-btn:hover .glint-blade-2 {
+    animation: glintBladeRight 1.4s ease-in-out infinite 0.3s;
+}
+
+.casket-btn:hover .glint-gem-spark {
+    transform-origin: 50px 60px;
+    animation: glintGemSparkle 1.4s ease-in-out infinite 0.7s;
+}
+
+@keyframes glintBladeLeft {
+    0%, 100% { opacity: 0; stroke-dasharray: 0 40; }
+    20% { opacity: 1; stroke-dasharray: 40 0; }
+    40% { opacity: 0; }
+}
+
+@keyframes glintBladeRight {
+    0%, 100% { opacity: 0; stroke-dasharray: 0 40; }
+    35% { opacity: 1; stroke-dasharray: 40 0; }
+    55% { opacity: 0; }
+}
+
+@keyframes glintGemSparkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    60% { opacity: 1; transform: scale(1.3); }
+    75% { opacity: 0; transform: scale(0.8); }
+}
