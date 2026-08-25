@@ -2,9 +2,13 @@ import React from "react";
 import '../styles/RoundTable.css'
 import { TABLE_STATIONS } from "../../../components/Navigation/roomsConfig";
 import DMSanctumWeapon from "../../../components/Navigation/weapons/DmSanctumWeapon";
+import StarLitGrottoWeapon from "../../../components/Navigation/weapons/StarLitGrottoWeapon";
+import WhisperingCasketWeapon from "../../../components/Navigation/weapons/WhisperingCasketWeapon";
 
 const WEAPON_COMPONENTS = {
     sanctum: DMSanctumWeapon,
+    range: StarLitGrottoWeapon,
+    casket: WhisperingCasketWeapon,
 }
 
 export default function RoundTable({ onSelectRoom }) {
