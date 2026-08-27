@@ -12,6 +12,7 @@ Dynamic and thematic navigation is critical for party members as they traverse t
 ![Foundry Nav Dispaly](guildhall-start/src/assets/images/bestiary/foundry_nav_display.png)
 
 * **🍻 The Main Hall (The Party):** Warm dark oak paneling, forged wrought-iron brackets, and amber firelight shadows. Represented by a foaming tavern tankard (`🍻`).
+
 ![Main Hall Nav Display](guildhall-start/src/assets/images/mainhall/main_hall_nav_display.png)
 
 * **🕰️ The Clockwork Cabaret (The Bard):** A 45-degree angled switchboard, glowing neon nixie tubes, and brass toggles. Represented by the clockwork mechanism (`🕰️`).
@@ -41,8 +42,8 @@ While the data is being fetched the Bestiary Loading screen flashes as seed data
 ### Main Creature Card
 Upon entering the Bestiary, the main creature card adopts a layout inspired by conventional D&D creature stat blocks:
  * **Header:** Displays the creature's name, size, type, and alignment. 
- * **Middle Section** Spilt between core stats, vitals, and rewards on the left with the creature's portrait on the right. 
- * **Bottom Section** Spilt between the primary attacks and special attributes. 
+ * **Middle Section** Split between core stats, vitals, and rewards on the left with the creature's portrait on the right. 
+ * **Bottom Section** Split between the primary attacks and special attributes. 
 
 ![Main Monster Card](guildhall-start/src/assets/images/bestiary/main_monster_card.png)
 
@@ -55,14 +56,18 @@ Designed specifically to help onboard new Dungeon Masters (DM) who may be unfami
 #### Creature Information (Bottom Half)
 Helps new DMs quickly understand what a creature's type implies, what their alignment ethos signifies, along with a detailed creature analysis and lore breakdown.
 
-![Control Panel Creature Information](guildhall-start/src/assets/images/bestiary/control_panel_creature_info.png)
+<p align="center">
+    <img src="guguildhall-start/src/assets/images/bestiary/control_panel_creature_info.png" alt="Control Panel Creature Information" />
+</p>
 
 #### Dynamic Actions & Filtering (Top Half)
 
 * **Live Search:**
 A dynamic search bar at the top instantly filters out creatures from the main cog mechanism as you type.
 
-![Control Panel Top Half](guildhall-start/src/assets/images/bestiary/control_panel_actions.png)
+<p align="center">
+    <img src="guildhall-start/src/assets/images/bestiary/control_panel_actions.png" alt="Control Panel Top Half" />
+</p>
 
 * **Felt Drop-Down Drawer:**
 Allow the DMs to search by monster type. For example, if a DM wants to build an undead army. Select the cog on the drawer and in the drop-down drawer select the lightbulb next to "Undead". The main lower cog will filter out all non-undead creatures. 
@@ -85,7 +90,9 @@ Empowers the DM to dynamically modify and upgrade a creature's base stats for cu
 
 ### Creature Forge & Field Workshop
 
-![Floating Detail Window](guildhall-start/src/assets/images/bestiary/floating_detail_window.png)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/floating_detail_window.png" alt="Floating Detail Window" />
+</p>
 
 The Creature Forge is where the DM can create a one of kind variant. As the DM modifies a field the border will highlight the edges gold.
 
@@ -97,7 +104,7 @@ The top half of the Forge has a mystical ruby gem infused into a brass ring allo
 ![Forge Top Half](guildhall-start/src/assets/images/bestiary/floating_detail_window_top_half.png)
 
 * **Creature Identity:**
-Allows the DM to change the creature's name, it's type classification, and it's alignment ethos.
+Allows the DM to change the creature's name, its type classification, and it's alignment ethos.
 
 #### Creature Forge (Second Section)
 * **Vitals and Speed:**
@@ -114,7 +121,9 @@ As the DM builds their variant they can improve on their core attributes using d
 
 Don't have a physical d20? The Forge has you covered with a steampunk-inspired, pneumatic nixie-tube green light dice counter. Just press the gear and let the tube roll the dice!
 
-![Forge Dice Close](guildhall-start/src/assets/images/bestiary/forge_stats_dice.gif)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/forge_stats_dice.gif" alt="Forge Dice Close" />
+</p>
 
 #### Creature Forge Bottom Section
 
@@ -132,7 +141,9 @@ If the DM determines the variant isn't worth saving, they can purge the variant 
 * **Save Variant To Field Report:**
 Saves the creature variant directly to their campaign report for retrieval elsewhere in the Guild Hall.
 
-![Forge Action Buttons Interactive](guildhall-start/src/assets/images/bestiary/forge_action-btns_video.gif)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/forge_action-btns_video.gif" alt="Forge Action Buttons Interactive" />
+</p>
 
 ---
 
@@ -148,21 +159,31 @@ The Archmage’s Knowledge Foundry is where all ancient lore and creature knowle
 * **The Foundry's Engine Stacks:**
 The Archmage imbued the canisters to handle transitions between the various tomes on the cog, venting excess magic energy. When normal magic energy is released, it appears as a simple blue mist while the gauge needle rises in acknowledgement.
 
-![Foundry Engine Canister](guildhall-start/src/assets/images/bestiary/foundry_engine_canister.gif)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/foundry_engine_canister.gif" alt="Foundry Engine Canister" />
+</p>
 
-Each canister controls the cog and it's tome rotation in one of two directions. The cog to the left handles the tradtional previous button.
+Each canister controls the cog and its tome rotation in one of two directions. The cog to the left handles the tradtional previous button.
 
-![Foundry Engine Prev](guildhall-start/src/assets/images/bestiary/engine_canister_prev.gif)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/engine_canister_prev.gif" alt="Foundry Engine Prev" />
+</p>
 
 The cog to the right handles the tradtional next button.
 
-![Foundry Engine Next](guildhall-start/src/assets/images/bestiary/engine_canister_next.gif)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/engine_canister_next.gif" alt="Foundry Engine Next" />
+</p>
 
 * **The Foundry's Wild Magic Container:**
 The Archmage borrowed Fate's ability to predict what the DM is looking for by infusing the marbled plate underneath the cog with special magic. 
 
-![Foundry Marble Plate](guildhall-start/src/assets/images/bestiary/foundry_marble_plate_static.png)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/foundry_marble_plate_static.png" alt="Foundry Marble Plate" />
+</p>
 
 The magic randomly spins the cog to select a creature. However, the wild magic is so unpredictable that it over pressurizes all the key components maintaining the cog. The engine canister's vent stack must work overtime to vent the excess magic quickly!
 
-![Foundry Lever Pull](guildhall-start/src/assets/images/bestiary/foundry_lever_demo.gif)
+<p align="center">
+  <img src="guildhall-start/src/assets/images/bestiary/foundry_lever_demo.gif" alt="Foundry Lever Pull" />
+</p>
