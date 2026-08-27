@@ -12,6 +12,7 @@ Dynamic and thematic navigation is critical for party members as they traverse t
 ![Foundry Nav Dispaly](guildhall-start/src/assets/images/bestiary/foundry_nav_display.png)
 
 * **🍻 The Main Hall (The Party):** Warm dark oak paneling, forged wrought-iron brackets, and amber firelight shadows. Represented by a foaming tavern tankard (`🍻`).
+![Main Hall Nav Display](guildhall-start/src/assets/images/mainhall/main_hall_nav_display.png)
 
 * **🕰️ The Clockwork Cabaret (The Bard):** A 45-degree angled switchboard, glowing neon nixie tubes, and brass toggles. Represented by the clockwork mechanism (`🕰️`).
 
