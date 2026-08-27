@@ -57,7 +57,7 @@ Designed specifically to help onboard new Dungeon Masters (DM) who may be unfami
 Helps new DMs quickly understand what a creature's type implies, what their alignment ethos signifies, along with a detailed creature analysis and lore breakdown.
 
 <p align="center">
-    <img src="guguildhall-start/src/assets/images/bestiary/control_panel_creature_info.png" alt="Control Panel Creature Information" />
+  <img src="guildhall-start/src/assets/images/bestiary/control_panel_creature_info.png" alt="Control Panel Creature Information" />
 </p>
 
 #### Dynamic Actions & Filtering (Top Half)
