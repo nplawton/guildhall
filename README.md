@@ -7,21 +7,21 @@ The Guild Hall is a *Dungeons & Dragons* (D&D) inspired website using Knex/Postg
 
 Dynamic and thematic navigation is critical for party members as they traverse the Guild Hall. Rather than generic web links, the global navigation menu automatically adapts its aesthetics, materials, and conduits to mirror the room currently being explored.
 
-* **⚙️ The Knowledge Foundry (The Archmage):** Riveted dark iron plates framed with polished brass bevels and a subtle cyan conduit glow. Represented by the ancient mechanical cog (`⚙️`).
-
-![Foundry Nav Dispaly](guildhall-start/src/assets/images/bestiary/foundry_nav_display.png)
-
 * **🍻 The Main Hall (The Party):** Warm dark oak paneling, forged wrought-iron brackets, and amber firelight shadows. Represented by a foaming tavern tankard (`🍻`).
 
 ![Main Hall Nav Display](guildhall-start/src/assets/images/mainhall/main_hall_nav_display.png)
 
-* **🕰️ The Clockwork Cabaret (The Bard):** A 45-degree angled switchboard, glowing neon nixie tubes, and brass toggles. Represented by the clockwork mechanism (`🕰️`).
+* **📜 The DM Sanctum (The Dungeon Master):** Gold-leaf stamped cursive, wax-draped parchment edges, and a scholar's dark mahogany trim. Represented by the rolled campaign scroll (`📜`).
 
 * **🔮 The Star-Lit Grotto (The Sorcerer):** Deep purple velvet textures with pulsing, floating arcane sigils and glowing particle borders. Represented by the crystal orb (`🔮`).
 
 * **🎲 The Whispering Casket (The Rogue):** Scarred mahogany wood grain, brass coin accents, leather binding straps, and subtle lantern glow. Represented by the gaming die (`🎲`).
 
-* **📜 The DM Sanctum (The Dungeon Master):** Gold-leaf stamped cursive, wax-draped parchment edges, and a scholar's dark mahogany trim. Represented by the rolled campaign scroll (`📜`).
+* **🕰️ The Clockwork Cabaret (The Bard):** A 45-degree angled switchboard, glowing neon nixie tubes, and brass toggles. Represented by the clockwork mechanism (`🕰️`).
+
+* **⚙️ The Knowledge Foundry (The Archmage):** Riveted dark iron plates framed with polished brass bevels and a subtle cyan conduit glow. Represented by the ancient mechanical cog (`⚙️`).
+
+![Foundry Nav Dispaly](guildhall-start/src/assets/images/bestiary/foundry_nav_display.png)
 
 ---
 
