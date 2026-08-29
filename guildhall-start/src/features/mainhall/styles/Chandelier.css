@@ -4,13 +4,14 @@
     height: 220px;
     margin: 0 auto;
     transform-style: preserve-3d;
+    z-index: 6;
 }
 
 .chandelier-chain {
     position: absolute;
-    top: -100px;
+    top: -60px;
     width: 2px;
-    height: 220px;
+    height: 190px;
     background: linear-gradient(180deg, 
         #111 0%, 
         #444 50%, 
@@ -21,13 +22,13 @@
 }
 
 .chain-left {
-    left: 120px;
-    transform: rotate(18deg);
+    left: 122px;
+    transform: rotate(22deg);
 }
 
 .chain-right {
-    right: 120px;
-    transform: rotate(-18deg);
+    right: 122px;
+    transform: rotate(-22deg);
 }
 
 .chandelier-ring {

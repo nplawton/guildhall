@@ -2,8 +2,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 60vh;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: 4;
     overflow: hidden;
@@ -61,11 +61,11 @@
 
 .collar-beam {
     position: absolute;
-    top: 8vh;
+    top: 4%;
     left: 50%;
     transform: translateX(-50%);
-    width: 78%;
-    height: 28px;
+    width: 82%;
+    height: 35px;
     background: linear-gradient(
         180deg, 
         #3d2a1d 0%,
@@ -74,7 +74,7 @@
     border-top: 2px solid #100905;
     border-bottom: 3px solid #0a0503;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
-    z-index: 3;
+    z-index: 5;
 }
 
 .iron-apex-plate {
@@ -109,7 +109,7 @@
 .collar-joint-left,
 .collar-joint-right {
     position: absolute;
-    top: 8vh;
+    top: 4vh;
     width: 46px;
     height: 34px;
     background: linear-gradient(
@@ -129,20 +129,20 @@
 
 .iron-mount {
     position: absolute;
-    top: 8vh;
+    top: 4%;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
-    height: 34px;
+    width: 60px;
+    height: 35px;
     background: linear-gradient(
         135deg,
         #3a3835 0%,
         #1c1a18 50%,
         #0e0d0c 100%
     );
-    border: 2px solid #050505;
+    border: 1px solid #050505;
     border-radius: 2px;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
     z-index: 5;
 }
 
@@ -161,10 +161,11 @@
 
 .chandelier-anchor {
     position: absolute;
-    top: 25vh;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 6;
+    pointer-events: none;
 }
 
 .iron-knee-plate {

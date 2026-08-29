@@ -25,6 +25,74 @@ Dynamic and thematic navigation is critical for party members as they traverse t
 
 ---
 
+# The Guild Hall: Main Hall
+
+Welcome to the Guild Hall! The Campaign Party’s main meeting spot to learn about their next adventure and share a tankard or two with fellow party members next to a roaring fire. 
+
+![Main Hall Room Layout](guildhall-start/src/assets/images/mainhall/main_hall_room_layout.png)
+
+The inspiration for the Guild Hall was rooted in both D&D gameplay and medieval architecture. The structure was developed with the thought of grand mead halls, incorporating iron plates, tie-and-kneel plates, and squared-off timbers to reflect a hall where legendary tales were forged. 
+
+While playing D&D, the party always gathers around the DM to spin a tale of adventure, mystery, and sometimes betrayal. To capture that same immersion, the DM's station is set at True North—designated by the fireplace directly behind them. The station weapons for each room were crafted to reflect both the character class and the distinct personality of each space.
+
+
+### Pull up a chair, sit around the party’s table, and decide who you will play as:
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/mainhall/main_hall_table_display.png" alt="Table Display" />
+</p>
+
+#### The DM
+
+Will you take the seat of the DM and build epic tales filled with amazing monsters and cunning traps at the **DM's Sanctum**? At the DM’s seat, you will find your campaign scroll and an inkwell with a quill, ready for logging new lore.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/mainhall/dm_seat.gif" alt="DM Seat" />
+</p>
+
+#### The Sorcerer
+
+Will you step up as the Sorcerer and master the secrets of the elements and cosmos at the **Star-Lit Grotto**? Resting at your seat are five elemental shards:
+* **Fire Shard (Back Left):** Glows with the might of the fiercest volcano when held.
+* **Lightning Shard (Back Center):** Crackles and surges with thunderous electrical energy.
+* **Air Shard (Back Right):** Traps the freezing breath of the West Wind, showing icy fractures fighting to break free.
+* **Water Shard (Front Left):** Holds the clearest grotto waters, surging like the ocean's deepest tides.
+* **Earth Shard (Front Right):** Harnesses violent seismic energy, causing the shard itself to fracture.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/mainhall/sorcerer_seat.gif" alt="Sorcerer Seat" />
+</p>
+
+#### The Rogue
+
+Will you play as the devious Rogue and try your hand at a game of chance at the **Whispering Casket**? The ill-gotten loot from swindling unsuspecting marks rests in your worn leather pouch, while your custom twin Kris daggers wait at your side to unleash chaos. 
+* **The Left Kris:** Features your signature skeletal hand grasping a crimson d8 ruby.
+* **The Right Kris:** Displays your signature skeletal hand holding a deep green d12 emerald.
+* Both obsidian hilts are embedded with a golden trick coin ready for a slick flip.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/mainhall/rogue_seat.gif" alt="Rogue Seat" />
+</p>
+
+#### The Bard
+
+Will you step up as the charismatic Bard and play a hypnotic tune on your Lute at the **Clockwork Cabaret**? Inspired by classic instruments and modified with mechanical precision, this lute features an etched clockface soundhole and internal cogwork. Grab the antique grandfather clock key and enter a world of rhythm that will keep the hall dancing for hours.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/mainhall/bard_seat.gif" alt="Bard Seat" />
+</p>
+
+#### The Archmage
+
+Will you play as the ancient and wise Archmage and test your intelligence at the **Knowledge Foundry**? Your steampunk wizard staff is ready to harness raw arcana and scientific experimentation. Feel the power surging through the blue arc-reactor core gem—but keep a close eye on the pressure gauge so you don't exceed your skill limit!
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/mainhall/archmage_seat.gif" alt="Archmage Seat" />
+</p>
+
+
+---
+
 # The Guild Hall: Knowledge Foundry
 The Guild Hall's Bestiary & Creature Repository, belongs to the Archmage and was inspired by my love of steampunk aesthetics, classic fantasy, and wild mechanical gadgets.
 

@@ -22,9 +22,9 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 125px;
-    height: 85px;
-    transform: rotate(90deg) rotateX(25deg);
+    width: 230px;
+    height: 110px;
+    transform: translateY(5px) translateX(10px) rotateZ(-15deg);
     transform-origin: center center;
     transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -37,21 +37,24 @@
 }
 
 .scroll-svg {
-    transform: rotate(-10deg) translate(4px, 4px);
+    transform: translate(15px, -12px) rotate(5deg);
+    z-index: 2;
 }
 
 .inkwell-svg {
-    transform: rotate(90deg) rotateX(-30deg) translate(-8px, 18px);
+    transform: rotate(95deg) translate(-10px, 18px);
     transform-origin: center center;
     filter: drop-shadow(-4px 10px 6px rgba(0, 0, 0, 0.95));
+    z-index: 1;
 }
 
 .dm-sanctum-btn:hover .dm-props-wrapper {
-    transform: rotate(90deg) rotateX(25deg) translateY(-10px) scale(1.12);
+    transform:translateY(-15px) translateX(-20px) rotateZ(-15deg) scale(1.08);
+    cursor: pointer;
 }
 
 .dm-sanctum-btn:hover .prop-svg {
-    filter: drop-shadow(-6px 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 12px #ffaa00);
+    filter: drop-shadow(-6px 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 14px #ffaa00);
 }
 
 /* =====================================================================
@@ -62,24 +65,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 120px;
-    transform: rotateZ(93deg) rotateY(38deg) rotateX(-55deg) scaleY(3.5) translateY(60px);
+    width: 95px;
+    height: 500px;
+    transform: translateY(-270px) translateX(290px) rotateZ(45deg) scaleY(2.5);
     transform-origin: 90px 150px;
-    transform-style: preserve-3d;
     transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .obelisks-svg {
-    width: 100px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     overflow: visible;
     transform: none;
     filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.65));
 }
 
 .starlit-grotto-btn:hover .grotto-props-wrapper {
-   transform: rotateZ(93deg) rotateY(38deg) rotateX(-55deg) scaleY(3.5) translateY(40px);
+   transform: translateY(-265px) translateX(300px) rotateZ(45deg) scaleY(3);
 }
 
 .crystal-fire {
@@ -360,40 +362,273 @@
 }
 
 /* =====================================================================
-     Whispering Casket Crossed-Dagers
+     Whispering Casket Crossed-Daggers
    ===================================================================== */
 
-.casket-btn {
-    position: absolute;
-    bottom: 21%;
-    right: 16%;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    z-index: 5;
-}
-
-.casket-props-wrapper {
+.casket-station-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 105px;
-    height: 80px;
-    transform: rotateZ(-18deg) rotateY(-8deg) rotateX(-28deg) scaleY(1.35) translateY(0px);
-    transform-origin: 50% 100%;
-    transform-style: preserve-3d;
+    width: 180px;
+    height: 200px;
+    transform: translateY(-75px) translateX(-30px) rotateZ(-45deg);
+    transform-origin: center bottom;
     transition: transform 0.25s ease-out;
 }
 
-.casket-pouch-svg {
-    width: 105px;
-    height: 80px;
+.casket-master-svg {
+    width: 100%;
+    height: 100%;
     overflow: visible;
-    filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.75));
+    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.85));
 }
 
-.casket-btn:hover .casket-props-wrapper {
-    transform: rotateZ(-18deg) rotateY(-8deg) rotateX(-28deg) scaleY(1.35) translateY(-6px);
+.casket-pouch-prop {
+    transform: scaleY(1.55) scaleX(0.55);
+    transform-origin: 90px 100px;
+}
+
+.kris-left {
+    transform: rotate(5deg) translateY(20px) translateX(5px) scaleY(1.5) scaleX(1.15);
+    transform-origin: 40px 105px;
+    transition: transform 0.25s ease-out;
+}
+
+.kris-right {
+    transform: rotate(-18deg) translateY(55px) translateX(-20px) scaleY(1.5) scaleX(1.15);
+    transform-origin: 172px 155px;
+    transition: transform 0.25s ease-out;
+}
+
+.mendak-ruby-d8 {
+    transition: filter 0.3s ease;
+    transform-origin: 86px 44px;
+}
+
+.mendak-emerald-d12 {
+    transition: filter 0.3s ease;
+    transform-origin: 115px 44px;
+}
+
+.hilt-coin-group {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), filter 0.3s ease;
+}
+
+.left-coin-group {
+    transform-origin: 87px 16px;
+}
+
+.right-coin-group {
+    transform-origin: 113px 16px;
+}
+
+.casket-btn:hover .casket-station-container {
+    transform: translateY(-75px) translateX(-30px) rotateZ(-45deg) scale(1.05);
     cursor: pointer;
+}
+
+.casket-btn:hover .kris-left {
+    transform: rotate(-2deg) translateY(12px) translateX(5px) scaleY(1.5) scaleX(1.15);
+}
+
+.casket-btn:hover .kris-right {
+    transform: rotate(-24deg) translateY(47px) translateX(-20px) scaleY(1.5) scaleX(1.15);
+}
+
+.casket-btn:hover .mendak-ruby-d8 {
+    animation: rubyGemPulse 1.2s ease-in-out infinite alternate;
+}
+
+.casket-btn:hover .mendak-emerald-d12 {
+    animation: emeraldGemPulse 1.2s ease-in-out infinite alternate;
+}
+
+.casket-btn:hover .hilt-coin-group {
+    transform: rotateY(360deg);
+    filter: drop-shadow(0 0 8px #ffc107) brightness(1.4);
+}
+
+@keyframes rubyGemPulse {
+    0% {
+        filter: drop-shadow(0 0 3px #d50000) brightness(1.1);
+    }
+    100% {
+        filter: drop-shadow(0 0 12px #ff1744) drop-shadow(0 0 20px #ff8a80) brightness(1.6);
+    }
+}
+
+@keyframes emeraldGemPulse {
+    0% {
+        filter: drop-shadow(0 0 3px #1b5e20) brightness(1.1);
+    }
+    100% {
+        filter: drop-shadow(0 0 12px #00e676) drop-shadow(0 0 20px #b9f6ca) brightness(1.6);
+    }
+}
+
+/* =====================================================================
+     Clockwork Cabaret Lute
+   ===================================================================== */
+
+.cabaret-props-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 190px;
+    transform: translateY(-270px) translateX(-115px) rotate(90deg);
+    transform-origin: center bottom;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cabaret-master-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.85));
+}
+
+.soundhole-internal-cog {
+    transform-origin: 80px 152px;
+    transition: transform 0.3s ease;
+}
+
+.grandfather-clock-key {
+    transform: translateX(12px) translateY(-22px) rotateX(60deg) rotateZ(15deg) scaleY(1.4);
+    transform-origin: 120px 165px;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.cabaret-lute-group {
+    transform: rotateX(-35deg) rotateZ(12deg) translateY(-8px);
+    transform-origin: 80px 40px; /* Pivots from headstock */
+    transition: transform 0.25s ease-out;
+}
+
+.cabaret-btn:hover .cabaret-props-wrapper {
+    transform: translateY(-270px) translateX(-115px) rotate(90deg) scale(1.06);
+    cursor: pointer;
+}
+
+.cabaret-btn:hover .cabaret-master-svg {
+    filter: drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 16px #ffb300);
+}
+
+.cabaret-btn:hover .soundhole-internal-cog {
+    animation: gearSpin 3s linear infinite;
+}
+
+.cabaret-btn:hover .grandfather-clock-key {
+    filter: drop-shadow(0 0 10px #ffc107) brightness(1.4);
+    transform: translateX(12px) translateY(-22px) rotateX(60deg) rotateZ(15deg) scaleY(1.4) scale(1.05);
+}
+
+.cabaret-btn:hover .cabaret-lute-group {
+    transform: rotateX(-35deg) rotateZ(12deg) translateY(-14px);
+}
+
+@keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* =====================================================================
+     Knowledge Foundry Staff
+   ===================================================================== */
+
+.foundry-props-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 220px;
+    transform: translateY(-180px) translateX(165px) rotateZ(-67deg) rotateX(-50deg) scaleY(3);
+    transform-origin: center bottom;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.foundry-master-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(-4px 8px 6px rgba(0, 0, 0, 0.75));
+}
+
+.foundry-blue-gem {
+    transition: filter 0.3s ease;
+}
+
+.head-brass-gear {
+    transform-origin: 100px 26px;
+    transition: transform 0.3s ease;
+}
+
+.spark-1, .spark-2, .spark-3 {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.foundry-btn:hover .foundry-props-wrapper {
+    transform: translateY(-225px) translateX(55px) rotateZ(-65deg) rotateX(-20deg) scaleY(2.1);
+    cursor: pointer;
+}
+
+.foundry-btn:hover .foundry-blue-gem {
+    animation: foundryGemPulse 1.2s ease-in-out infinite alternate;
+}
+
+.foundry-btn:hover .head-brass-gear {
+    animation: gearSpin 3s linear infinite;
+}
+
+.foundry-btn:hover .spark-1 {
+    animation: sparkFlicker1 0.4s steps(2) infinite;
+}
+
+.foundry-btn:hover .spark-2 {
+    animation: sparkFlicker2 0.5s steps(2) infinite 0.1s;
+}
+
+.foundry-btn:hover .spark-3 {
+    animation: sparkFlicker3 0.6s steps(2) infinite 0.2s;
+}
+
+.foundry-btn:hover .foundry-master-svg {
+    filter: drop-shadow(0px 14px 10px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 18px #00e5ff);
+}
+
+@keyframes foundryGemPulse {
+    0% {
+        filter: drop-shadow(0 0 4px #00838f) brightness(1.1);
+    }
+    100% {
+        filter: drop-shadow(0 0 16px #00e5ff) drop-shadow(0 0 26px #e0f7fa) brightness(1.7);
+    }
+}
+
+@keyframes gearSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes sparkFlicker1 {
+    0%, 100% { opacity: 0; }
+    25% { opacity: 1; filter: drop-shadow(0 0 4px #ffffff); }
+    50% { opacity: 0.2; }
+    75% { opacity: 0.9; filter: drop-shadow(0 0 6px #00e5ff); }
+}
+
+@keyframes sparkFlicker2 {
+    0%, 100% { opacity: 0; }
+    30% { opacity: 1; filter: drop-shadow(0 0 5px #00e5ff); }
+    60% { opacity: 0; }
+    85% { opacity: 0.8; filter: drop-shadow(0 0 4px #ffffff); }
+}
+
+@keyframes sparkFlicker3 {
+    0%, 100% { opacity: 0; }
+    15% { opacity: 0.9; filter: drop-shadow(0 0 6px #ffffff); }
+    45% { opacity: 0.1; }
+    80% { opacity: 1; filter: drop-shadow(0 0 6px #00e5ff); }
 }

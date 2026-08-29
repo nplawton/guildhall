@@ -1,3 +1,9 @@
+import DMSanctumWeapon from "./weapons/DmSanctumWeapon";
+import StarLitGrottoWeapon from "./weapons/StarLitGrottoWeapon";
+import WhisperingCasketWeapon from "./weapons/WhisperingCasketWeapon";
+import ClockworkCabaretWeapon from "./weapons/ClockworkCabretWeapon";
+import KnowledgeFoundryWeapon from "./weapons/KnowledgeFoundryWeapon";
+
 export const ALL_ROOMS = [
     {
         id: 'mainhall', 
@@ -13,7 +19,8 @@ export const ALL_ROOMS = [
         symbol: '📜',
         angle: 0,
         type: 'anchor',
-        isTableStation: true
+        isTableStation: true,
+        weapon: DMSanctumWeapon
     },
     {
         id: 'range', 
@@ -22,7 +29,8 @@ export const ALL_ROOMS = [
         symbol: '🔮',
         angle: 45,
         type: 'room',
-        isTableStation: true
+        isTableStation: true,
+        weapon: StarLitGrottoWeapon
     },
     {
         id: 'casket', 
@@ -31,7 +39,8 @@ export const ALL_ROOMS = [
         symbol: '🎲',
         angle: 135,
         type: 'room',
-        isTableStation: true
+        isTableStation: true,
+        weapon: WhisperingCasketWeapon
     },
     {
         id: 'cabaret', label: 
@@ -40,7 +49,8 @@ export const ALL_ROOMS = [
         symbol: '🕰️',
         angle: 225,
         type: 'room',
-        isTableStation: true
+        isTableStation: true,
+        weapon: ClockworkCabaretWeapon 
     },
     {
         id: 'bestiary', 
@@ -49,7 +59,8 @@ export const ALL_ROOMS = [
         symbol: '⚙️',
         angle: 315,
         type: 'room',
-        isTableStation: true
+        isTableStation: true,
+        weapon: KnowledgeFoundryWeapon
     },  
 ];
 
