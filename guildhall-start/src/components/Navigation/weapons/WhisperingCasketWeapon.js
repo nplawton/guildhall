@@ -126,13 +126,13 @@ function RightKrisProp() {
     );
 }
 
-export default function WhisperingCasketWeapon({ onClick }) {
+export default function WhisperingCasketWeapon({ onClick, isActive }) {
 
     return (
 
         <button
             type="button"
-            className="weapon-btn casket-btn"
+            className={`weapon-btn casket-btn ${isActive ? 'active-selected' : ''}`}
             onClick={onClick}
             title="Whispering Casket"
         >

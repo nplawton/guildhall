@@ -1,11 +1,11 @@
 import React from "react";
 import './RoomWeapons.css';
 
-export default function ClockworkCabaretWeapon({ onClick }) {
+export default function ClockworkCabaretWeapon({ onClick, isActive }) {
     return (
         <button 
             type="button"
-            className="weapon-btn cabaret-btn"
+            className={`weapon-btn cabaret-btn ${isActive ? 'active-selected' : ''}`}
             onClick={onClick}
             title="Clockwork Cabaret"
         >

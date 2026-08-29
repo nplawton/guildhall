@@ -1,11 +1,11 @@
 import React from "react";
 import './RoomWeapons.css';
 
-export default function KnowledgeFoundryWeapon({ onClick }) {
+export default function KnowledgeFoundryWeapon({ onClick, isActive }) {
     return (
         <button
             type="button"
-            className="weapon-btn foundry-btn"
+            className={`weapon-btn foundry-btn ${isActive ? 'active-selected' : ''}`}
             onClick={onClick}
             title="Knowledge Foundry"
         >

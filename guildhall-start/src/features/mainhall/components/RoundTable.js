@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import '../styles/RoundTable.css'
 import { TABLE_STATIONS } from "../../../components/Navigation/roomsConfig";
 
 export default function RoundTable({ onSelectRoom }) {
+    
+    const [activeStation, setActiveStation] = useState(null);
+
+    const handleStationSelect = (stationId) => {
+        setActiveStation(stationId);
+
+        setTimeout(() => {
+            if(onSelectRoom) {
+                onSelectRoom(stationId);
+            }
+        }, 800);
+    };
+    
     return (
 
         <div className="table-assembly">
 
-            <div className="tabletop-container">
+            <div className={`tabletop-container ${activeStation ? 'has-active-selection' : ''}`}>
                 <div className="tabletop-under-rim"></div>
                 <div className="tabletop-surface"></div>
 
@@ -21,8 +34,11 @@ export default function RoundTable({ onSelectRoom }) {
 
                 {TABLE_STATIONS.map((station) => {
                     const trueNorthAngle = station.angle - 90;
-                    const isLeftHalf = station.angle > 180 && station.angle < 3060;
+                    const isLeftHalf = station.angle > 180 && station.angle < 360;
                     const WeaponComponent = station.weapon;
+                    const isActive = activeStation === station.id;
+
+                    if(!WeaponComponent) return null;
 
                     return (
                         <div
@@ -39,11 +55,10 @@ export default function RoundTable({ onSelectRoom }) {
 
                                 </div>
 
-                                {WeaponComponent && (
-                                    <div className="weapon-prop-slot">
-                                        <WeaponComponent onClick={() => onSelectRoom(station.id)} />
-                                    </div>
-                                )}
+                                <WeaponComponent 
+                                    isActive={isActive}
+                                    onClick={() => handleStationSelect(station.id)}
+                                />
 
                             </div>
 

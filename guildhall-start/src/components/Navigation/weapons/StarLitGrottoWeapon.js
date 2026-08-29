@@ -1,11 +1,11 @@
 import React from "react";
 import './RoomWeapons.css';
 
-export default function StarLitGrottoWeapon({ onClick }) {
+export default function StarLitGrottoWeapon({ onClick, isActive }) {
     return (
         <button
             type="button"
-            className="weapon-btn starlit-grotto-btn"
+            className={`weapon-btn starlit-grotto-btn ${isActive ? 'active-selected' : ''}`}
             onClick={onClick}
             title="Star-Lit Grotto"
         >

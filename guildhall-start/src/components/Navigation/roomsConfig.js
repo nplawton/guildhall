@@ -43,8 +43,8 @@ export const ALL_ROOMS = [
         weapon: WhisperingCasketWeapon
     },
     {
-        id: 'cabaret', label: 
-        'Clockwork Cabaret', 
+        id: 'cabaret', 
+        label: 'Clockwork Cabaret', 
         owner: 'The Bard', 
         symbol: '🕰️',
         angle: 225,

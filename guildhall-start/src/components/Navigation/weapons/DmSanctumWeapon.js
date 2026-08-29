@@ -1,11 +1,11 @@
 import React from "react";
 import './RoomWeapons.css'
 
-export default function DMSanctumWeapon({ onClick }) {
+export default function DMSanctumWeapon({ onClick, isActive }) {
     return (
         <button
             type="button"
-            className="weapon-btn dm-sanctum-btn"
+            className={`weapon-btn dm-sanctum-btn ${isActive ? 'active-selected' : ''}`}
             onClick={onClick}
             title="DM Sanctum"
         >

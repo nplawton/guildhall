@@ -89,13 +89,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 260px;
+    width: 220px;
     height: 40px;
     transform-origin: 0% 50%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 60px;
+    padding-left: 70px;
     z-index: 12;
     pointer-events: none;
 }
@@ -112,7 +112,6 @@
 .radial-label-wrapper.flip-left {
     transform: rotate(180deg);
     transform-origin: center center;
-    flex-direction: row-reverse;
 }
 
 .title-text-box {
