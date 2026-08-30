@@ -1,0 +1,33 @@
+/* =================================================================
+        Lute Pendulum Main Portion
+================================================================= */
+
+.lute-pendulum-wrapper {
+    width: 260px;
+    height: 440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.lute-pendulum-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.pendulum-swing-group {
+    transform-box: fill-box;
+    transform-origin: 100px 30px;
+    animation: pendulumSwing 4s ease-in-out infinite alternate;
+}
+
+@keyframes pendulumSwing {
+    0% {
+        transform: rotate(-12deg);
+    }
+    100% {
+        transform: rotate(12deg);
+    }
+}

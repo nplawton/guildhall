@@ -1,0 +1,50 @@
+.gear-train-wrapper {
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.gear-train-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.gear-group {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+.gear-large {
+    animation-name: spinClockwise;
+}
+
+.gear-medium {
+    animation-name: spinCounterClockwise;
+}
+
+.gear-small {
+    animation-name: spinCounterClockwise;
+}
+
+@keyframes spinClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinCounterClockwise {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}

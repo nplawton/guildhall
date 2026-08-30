@@ -1,12 +1,17 @@
 import React, {useState} from "react";
+import './styles/ClockworkCabaretMain.css'
+
+import BackWall from "./components/BackWall";
 
 export default function ClockworkCabaret() {
+    
+    const [time, setTime] = useState({ hours: 10 , minutes: 10});
+    const [florMode, setFloorMode] = useState('ambient');
+    const [tempo, setTempo] = useState(12);
+    
     return (
-        <div className="guild-room-cabaret">
-            <div className="container py-5 text-center">
-                <h1 className="display-4 text-light">Welcome to the Clockwork Cabaret</h1>
-                <p className="lead text-muted">Work-in Progress - The clock has a spring lose</p>
-            </div>
+        <div className="cabaret-room-stage">
+            <BackWall />
         </div>
     );
 }
