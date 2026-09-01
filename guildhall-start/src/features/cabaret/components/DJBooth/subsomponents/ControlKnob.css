@@ -1,0 +1,46 @@
+.control-knob-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    user-select: none;
+}
+
+.control-knob-wrapper.small { width: 42px; }
+.control-knob-wrapper.medium { width: 58px; }
+.control-knob-wrapper.large { width: 74px; }
+
+.control-knob-body {
+    width: 100%;
+    aspect-ratio: 1;
+    cursor: grab;
+    transition: transform 0,05s ease-out, filter 0.2s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.75));
+    border-radius: 50%;
+}
+
+.control-knob-body:hover {
+    filter: drop-shadow(0px 0px 8px rgba(212, 175, 55, 0.7));
+}
+
+.control-knob-body.dragging {
+    cursor: grabbing;
+    filter: drop-shadow(0px 0px 12px #ffd700);
+}
+
+.knob-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+.knob-label {
+    margin-top: 6px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.75rem;
+    color: #f7d08b;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}

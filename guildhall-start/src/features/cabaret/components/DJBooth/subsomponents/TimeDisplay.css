@@ -1,0 +1,101 @@
+.time-display-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 8, 5, 0.6);
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-radius: 6px;
+    border: 1px solid #573e19;
+    user-select: none;
+}
+
+.time-plaque-wrapper {
+    position: relative;
+    background: linear-gradient(
+        180deg, 
+        #6e4f1b 0%,
+        #b5873d 50%,
+        #302005 100%
+    );
+    border: 2px solid #1a0c02;
+    border-radius: 4px;
+    padding: 4px 24px;
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3)
+    ;
+}
+
+.hex-bolt {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #241402;
+    border: 1px solid #f7d08b;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
+.hex-bolt.left { left: 6px; }
+.hex-bolt.right { right: 6px; }
+
+.time-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #05120a;
+    border: 1px solid #102418;
+    border-radius: 3px;
+    padding: 2px 10px;
+    box-shadow: inset 0 0 6px #000;
+}
+
+.time-screen-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.55rem;
+    color: #70d696;
+    letter-spacing: 1px;
+}
+
+.time-readout {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #4dfd8e;
+    text-shadow: 0 0 6px #4dfd8e;
+}
+
+/* Sun & Moon Dials */
+.time-dials-wrapper {
+    display: flex;
+    gap: 16px;
+}
+
+.time-dial-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.time-dial-item:hover {
+    transform: scale(1.1);
+}
+
+.sun-dial-svg, .moon-dial-svg {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.dial-label {
+    margin-top: 2px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.65rem;
+    color: #f7d08b;
+}

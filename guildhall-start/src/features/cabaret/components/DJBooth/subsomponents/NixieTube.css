@@ -1,0 +1,101 @@
+.nixie-tube-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    user-select: none;
+}
+
+.nixie-tube-container.small { 
+    width: 32px; 
+    height: 60px; 
+}
+
+.nixie-tube-container.medium {
+    width: 44px;
+    height: 80px;
+}
+
+.nixie-tube-container.large {
+    width: 56px;
+    height: 100px;
+}
+
+.nixie-glass-envelope {
+    width: 100%;
+    height: 85%;
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(255, 255, 255, 0.15),
+        rgba(10, 8, 5, 0.85)
+    );
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 20px 20px 6px 6px;
+    position: relative;
+    box-shadow: 
+        inset 0 0 8px rgba(0, 0, 0, 0.9),
+        0 4px 10px rgba(0, 0, 0, 0.5)
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.nixie-mesh-grid {
+    position: absolute;
+    inset: 4px;
+    background-image: radial-gradient(
+        rgba(212, 175, 55, 0.15) 1px,
+        transparent 0
+    );
+    background-size: 3px 3px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.nixie-filament-bg {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 2rem;
+    color: rgba(60, 40, 20, 0.15);
+    pointer-events: none;
+}
+
+.nixie-filament-active {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 2rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    z-index: 2;
+}
+
+.nixie-glass-shine {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 35%;
+    height: 60%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        transparent 60% 
+    );
+    border-radius: 12px 0 0 0;
+    pointer-events: none;
+}
+
+.nixie-brass-base {
+    width: 110%;
+    height: 15%;
+    background: linear-gradient(
+        180deg,
+        #f7d08b 0%,
+        #b5873d 50%,
+        #302005 100%
+    );
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}

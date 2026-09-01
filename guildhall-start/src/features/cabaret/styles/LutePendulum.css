@@ -19,15 +19,15 @@
 
 .pendulum-swing-group {
     transform-box: fill-box;
-    transform-origin: 100px 30px;
-    animation: pendulumSwing 4s ease-in-out infinite alternate;
+    transform-origin: 50% 0%;
+    animation: pendulumSwing 3s ease-in-out infinite alternate;
 }
 
 @keyframes pendulumSwing {
     0% {
-        transform: rotate(-12deg);
+        transform: rotate(-22deg);
     }
     100% {
-        transform: rotate(12deg);
+        transform: rotate(22deg);
     }
 }

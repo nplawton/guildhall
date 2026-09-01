@@ -1,0 +1,214 @@
+.steampunk-display-perspective-wrapper {
+    perspective: 600px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+}
+
+.steampunk-display-housing {
+    width: 100%;
+    background: linear-gradient(
+        180deg,
+        #6e4f1b 0%, 
+        #b5873d 30%, 
+        #573e19 70%, 
+        #241402 100%
+    );
+    border: 3px solid #1a1205;
+    border-radius: 6px;
+    padding: 10px 14px 12px 14px;
+    position: relative;
+    box-shadow: 
+        0 12px 20px rgba(0, 0, 0, 0.9), 
+        inset 0 2px 2px rgba(255, 242, 190, 0.4)
+;
+    transform: rotateX(18deg);
+    transform-origin: bottom center;
+}
+
+.display-rivet {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(
+        circle at 35% 35%,
+        #fff2be,
+        #7a5510
+    );
+    border: 1px solid #1c0901;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.display-rivet.top-left { 
+    top: 4px;
+    left: 4px;
+}
+
+.display-rivet.top-right {
+    top: 4px;
+    right: 4px;
+}
+
+.display-rivet.bottom-left {
+    bottom: 4px;
+    left: 4px;
+}
+
+.display-rivet.bottom-right {
+    bottom: 4px;
+    right: 4px;
+}
+
+.display-visor-hood {
+    position: absolute;
+    top: -4px;
+    left: 10%;
+    width: 80%;
+    height: 6px;
+    background: linear-gradient(
+        180deg,
+        #f7d08b 0%,
+        #6e4f1b 100%
+    );
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #1a1205;
+}
+
+.steampunk-display-screen {
+    width: 100%;
+    height: 105px;
+    background: radial-gradient(circle at 50% 50%, #102418 0%, #05120a 70%, #010503 100%);
+    border: 2px solid #302005;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 255, 102, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 12px;
+}
+
+.screen-scanlines {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.4) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.7;
+}
+
+.screen-glass-glare {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 4;
+}
+
+.screen-content {
+    position: relative;
+    z-index: 2;
+    font-family: 'Courier New', monospace;
+    color: #4dfd8e;
+    text-shadow: 0 0 4px rgba(77, 253, 142, 0.7);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.screen-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
+    color: #70d696;
+    border-bottom: 1px dashed rgba(77, 253, 142, 0.3);
+    padding-bottom: 3px;
+}
+
+.screen-label {
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 4px #ffffff;
+}
+
+.screen-status-indicator {
+    font-size: 0.6rem;
+    color: #6bb386;
+}
+
+.status-on {
+    color: #4dfd8e;
+    text-shadow: 0 0 6px #4dfd8e;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.status-off {
+    color: #ff4444;
+    text-shadow: 0 0 4px #ff0000;
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+.screen-mode-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 40, 15, 0.5);
+    padding: 3px 6px;
+    border-radius: 3px;
+    border: 1px solid rgba(77, 253, 142, 0.25);
+}
+
+.screen-mode-code {
+    font-weight: 900;
+    font-size: 0.9rem;
+    color: #ffd700;
+    text-shadow: 0 0 5px #ffd700;
+}
+
+.screen-mode-title {
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-shadow: 0 0 6px #ffffff;
+}
+
+.screen-telemetry-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    margin-top: 2px;
+}
+
+.telemetry-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.telemetry-label {
+    font-size: 0.55rem;
+    color: #6bb386;
+}
+
+.telemetry-val {
+    font-weight: bold;
+    color: #f7d08b;
+    text-shadow: 0 0 4px #f7d08b;
+}
