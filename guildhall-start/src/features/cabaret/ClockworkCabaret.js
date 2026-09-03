@@ -22,12 +22,12 @@ export default function ClockworkCabaret() {
                 mode={floorMode}
             />
 
-            {/*<DJBooth 
+            <DJBooth 
                 time={time}
                 setTime={setTime}
                 mode={floorMode}
                 setMode={setFloorMode}
-            />*/}
+            />
 
         </div>
     );

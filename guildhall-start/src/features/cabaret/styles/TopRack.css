@@ -1,61 +1,80 @@
-.top-rack-container {
+.top-rack-tray-perspective {
+    width: 100%;
+    max-width: 400px;
+    perspective: 600px;
+    position: relative;
+    z-index: 10;
+    user-select: none;
+    box-sizing: border-box;
+    transform: scaleY(0.85);
+    transform-origin: bottom center;
+    margin-bottom: -5px;
+}
+
+.top-rack-tray-base {
     width: 100%;
     background: linear-gradient(
         180deg,
-        #1c140a 0%,
-        #2b1f0e 50%,
-        #120c06 100%
+        #120b05 0%,
+        #2b1d0e 60%,
+        #1a1006 100%
     );
     border: 2px solid #573e19;
+    border-bottom: none;
     border-radius: 8px 8px 0 0;
-    padding: 12px 16px;
+    padding: 10px 8px 0 8px;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(247, 208, 139, 0.3)
+    ;
+    transform: rotateX(6deg);
+    transform-origin: bottom center;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tray-back-tier {
+    width: 100%;
+    background: rgba(10, 6, 2, 0.7);
+    border: 1px solid #3e2a10;
+    border-radius: 4px;
+    padding: 3px 2px;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+}
+
+.mode-tubes-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow:
-        0 6px 14px rgba(0, 0, 0, 0.95),
-        inset 0 1px 0 rgba(255, 242, 190, 0.2)
-    ;
-    user-select: none;
-    position: relative;
-    z-index: 10;
-}
-
-.top-rack-selection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.rack-status-label {
-    margin-top: 4px;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.65rem;
-    color: #b5873d;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-    letter-spacing: 1px;
-}
-
-.mode-tubes-grid {
-    display: flex;
-    gap: 8px;
-    background: rgba(10, 8, 5, 0.6);
-    padding: 6px 12px;
-    border-radius: 6px;
-    border: 1px solid #3e2b10;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+    width: 100%;
+    max-width: 370px;
 }
 
 .mode-tube-item {
+    cursor: pointer;
+    flex-shrink: 0;
     transition: transform 0.15s ease;
 }
 
 .mode-tube-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px) scale(1.05);
 }
 
-.bpm-rack {
+.tray-front-tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.foreground-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,33 +82,57 @@
 
 .bpm-digits-row {
     display: flex;
-    gap: 4px;
+    gap: 2px;
 }
 
-.bpm-brass-placard {
-    margin-top: 4px;
+.tray-front-beveled-trim {
+    height: 14px;
     width: 100%;
     background: linear-gradient(
-        180deg,
-        #f7d08b 0%,
-        #b5873d 50%,
-        #6e4f1b 100%
-    );
-    border: 1px solid #1a1205;
-    border-radius: 3px;
-    padding: 2px 0;
-    text-align: center;
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4)
-    ;
+        180deg, 
+        #f7d08b 0%, 
+        #b5873d 50%, 
+        #3a2205 100%);
+    border-radius: 0 0 2px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-.placard-text {
+.cast-brass-plaque {
+    background: linear-gradient(
+        180deg, 
+        #1f150a 0%, 
+        #0a0603 100%
+    );
+    border: 1.5px solid #d4af37;
+    border-radius: 3px;
+    padding: 1px 5px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.9),
+        inset 0 0 4px rgba(212, 175, 55, 0.3);
+    transform: translateY(-1px);
+}
+
+.plaque-text {
     font-family: 'Courier New', monospace;
     font-weight: 900;
-    font-size: 0.7rem;
-    color: #1a0c02;
-    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.6);
-    letter-spacing: 2px;
+    font-size: 0.5rem;
+    color: #f7d08b;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px #000;
+}
+
+.plaque-star-rivet {
+    font-size: 0.42rem;
+    color: #d4af37;
+    text-shadow: 0 0 2px rgba(212, 175, 55, 0.8);
 }

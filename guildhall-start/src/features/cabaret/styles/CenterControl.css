@@ -1,0 +1,162 @@
+.center-control.container {
+    flex: 2.2;
+    background: linear-gradient(
+        180deg,
+        #1c140a 0%,
+        #150e06 50%,
+        #0c0804 100%
+    );
+    border-bottom: 2px solid #573e19;
+    border-left: 2px solid #3a2810;
+    border-right: 2px solid #3a2810;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.9);
+    user-select: none;
+}
+
+.center-layer {
+    width: 100%;
+}
+
+.center-lower-top-deck {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background: rgba(10, 8, 5, 0.5);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #3a2810;
+}
+
+.deck-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-spacer {
+    height: 10px;
+}
+
+.nixie-meters-frame {
+    background: linear-gradient(
+        180deg,
+        #2b1f0e 0%,
+        #120c06 100%
+    );
+    border: 2px solid #573e19;
+    border-radius: 6px;
+    padding: 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: inset 0 2px 6px #000;
+}
+
+.meter-frame-title {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.58rem;
+    color: #b5873d;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+
+.meters-grid {
+    display: flex;
+    gap: 16px;
+}
+
+.meter-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.mini-nixie-bulb {
+    width: 12px;
+    height: 16px;
+    background: #1c1006;
+    border: 1px solid #3a2810;
+    border-radius: 3px;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mini-nixie-bulb.lit {
+    background: var(--bulb-color);
+}
+
+.col-label {
+    margin-top: 4px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.55rem;
+    color: #f7d08b;
+}
+
+.presets-plate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10, 8, 5, 0.6);
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #573e19;
+}
+
+.presets-label {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.68rem;
+    color: #f7d08b;
+    letter-spacing: 1px;
+}
+
+.presets-buttons-row {
+    display: flex;
+    gap: 10px;
+}
+
+.oval-preset-btn {
+    width: 44px;
+    height: 24px;
+    border-radius: 12px;
+    background: linear-gradient(
+        180deg,
+        #f7d08b 0%,
+        #b5873d 50%,
+        #6e4f1b 100%
+    );
+    border: 1px solid #1a0c02;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4)
+    ;
+    transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+.oval-preset-btn:hover {
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #ffd700 50%,
+        #b5873d 100%
+    );
+    box-shadow: 0 0 10px #ffd700;
+}
+
+.preset-num {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.75rem;
+    color: #1a0c02;
+}

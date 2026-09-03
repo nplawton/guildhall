@@ -12,7 +12,7 @@ export default function BackWall() {
                 <GearTrain />
             </div>
 
-            <div className="wall-section center-section">
+           <div className="wall-section center-section">
                 <LutePendulum />
             </div>
 
