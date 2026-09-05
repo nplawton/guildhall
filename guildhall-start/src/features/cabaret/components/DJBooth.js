@@ -8,7 +8,7 @@ export default function DJBooth(props) {
 
     const [energyLevel, setEnergyLevel] = useState(100);
     const [isCuckooOpen, setIsCuckooOpen] = useState(false);
-    const [activeMode, setActiveMode] = useState("CY");
+    const [activeMode, setActiveMode] = useState("I");
     const [bpm, setBpm] = useState(120);
     
     return(

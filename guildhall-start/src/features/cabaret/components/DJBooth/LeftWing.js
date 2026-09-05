@@ -12,7 +12,7 @@ export default function LeftWing({
     activeDice = {},
     onTriggerDice, 
     bpm = 120,
-    soundPower =true
+    soundPower = true
 }) {
 
     return (

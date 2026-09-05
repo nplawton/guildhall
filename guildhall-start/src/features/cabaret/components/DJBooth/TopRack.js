@@ -1,6 +1,7 @@
 import React from "react";
 import NixieTube from "./subsomponents/NixieTube";
 import "../../styles/TopRack.css";
+import { MODES } from "../../../../components/Navigation/modeConfig";
 
 export default function TopRack({
     activeMode = "I",
@@ -10,16 +11,6 @@ export default function TopRack({
     onModeSelect
 }) {
 
-    const MODE_TUBES = [
-        { code: "CY", label: "1", color: "#00ffff" },
-        { code: "PI", label: "2", color: "#ff69b4" },
-        { code: "BU", label: "3", color: "#0099ff" },
-        { code: "G", label: "4", color: "#00ff66"},
-        { code: "PU", label: "5", color: "#9933ff" },
-        { code: "O", label: "6", color: "#ff6600" },
-        { code: "Y", label: "7", color: "#ffd700" },
-        { code: "R", label: "8", color: "#ff0055" }
-    ];
 
     const bpmDigits = String(bpm).padStart(3, "0").split("");
 
@@ -34,7 +25,7 @@ export default function TopRack({
                 <div className="tray-back-tier">
 
                     <div className="mode-tubes-row">
-                        {MODE_TUBES.map((tube) => {
+                        {MODES.map((tube) => {
                             const isActive = activeMode === tube.code;
                             return (
                                 <div

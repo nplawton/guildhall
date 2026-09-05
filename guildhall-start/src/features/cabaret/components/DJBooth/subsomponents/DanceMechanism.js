@@ -1,18 +1,9 @@
 import React from "react";
 import "./DanceMechanism.css";
+import { MODES } from "../../../../../components/Navigation/modeConfig";
 
 export default function DanceMechanism({ activeMode = "I", onSelectMode }) {
 
-    const MODES = [
-        { code: "CY", modeNum: 1, color: "#00ffff" },
-        { code: "PI", modeNum: 2, color: "#ff69b4" },
-        { code: "BU", modeNum: 3, color: "#0099ff" },
-        { code: "G", modeNum: 4, color: "#00ff66" },
-        { code: "PU", modeNum: 5, color: "#9933ff" },
-        { code: "0", modeNum: 6, color: "#ff6600" },
-        { code: "Y", modeNum: 7, color: "#ffd700" },
-        { code: "R", modeNum: 8, color: "#ff0055" }
-    ];
 
     return (
 
