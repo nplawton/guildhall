@@ -255,3 +255,6 @@ The magic randomly spins the cog to select a creature. However, the wild magic i
 <p align="center">
   <img src="guildhall-start/src/assets/images/bestiary/foundry_lever_demo.gif" alt="Foundry Lever Pull" />
 </p>
+
+* **IMAGES USED:**
+The Images and creature are from the Wizards of Coast DnD Beyond

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/BoothBase.css";
 
-export default function BoothBase({ children }) {
+export default function BoothBase() {
 
     const [weightLevel, setWeightLevel] = useState(85);
     const [isCranking, setIsCranking] = useState(false);
@@ -18,9 +18,6 @@ export default function BoothBase({ children }) {
 
         <div className="booth-base-pedestal">
 
-            <div className="booth-top-deck-housing">
-                {children}
-            </div>
 
             {/* Main Clock Pedestal Body */}
             <div className="grandfather-cabinet-body">

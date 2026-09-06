@@ -1,14 +1,14 @@
 .booth-base-pedestal {
     width: 100%;
     max-width: 400px;
-    position: absolute;
-    bottom: 12px;
-    right: 45px;
+    height: 100px;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     user-select: none;
     z-index: 1;
+    box-sizing: border-box;
 }
 
 .booth-top-deck-housing {
@@ -18,7 +18,7 @@
 
 .grandfather-cabinet-body {
     width: 100%;
-    height: 140px;
+    height: 85px;
     background: linear-gradient(
         180deg,
         #2b0e06 0%,
@@ -34,7 +34,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding: 8px 12px;
+    padding: 4px 8px;
     box-sizing: border-box;
 }
 
@@ -367,8 +367,8 @@
 }
 
 .pedestal-molded-base {
-    width: 104%;
-    height: 18px;
+    width: 100%;
+    height: 15px;
     background: linear-gradient(
         180deg,
         #3d140a 0%,
@@ -377,4 +377,5 @@
     border: 2px solid #0d0402;
     border-radius: 0 0 6px 6px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.95);
+    box-sizing: border-box;
 }

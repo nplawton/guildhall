@@ -44,12 +44,12 @@ export default function LeftWing({
                     max={100}
                     value={lightDimmer}
                     onChange={onChangeLightDimmer}
-                    size="medium"
+                    size="small"
                 />
                 
             </div>
 
-            <div className="left-wing-speake-section">
+            <div className="left-wing-speaker-section">
                 <CogSpeaker 
                     active={soundPower}
                     side="left"
@@ -59,40 +59,50 @@ export default function LeftWing({
 
             <div className="left-wing-dice-section">
 
-                <div className="dice-row">
-                    <DiceButton 
-                        type="D4"
-                        label="Strobe Pulse"
-                        active={!!activeDice.D4}
-                        onClick={() => onTriggerDice && onTriggerDice("D4")}
-                    />
-                    <span className="dice-function-label">
-                        STROBE
+                <div className="dice-cluster-header">
+                    <span className="dice-node-label">
+                        LIGHT MATRIX
                     </span>
                 </div>
 
-                <div className="dice-row">
-                    <DiceButton 
-                        type="D6"
-                        label="Stage Spotlight"
-                        active={!!activeDice.D6}
-                        onClick={() => onTriggerDice && onTriggerDice("D6")}
-                    />
-                    <span className="dice-function-label">
-                        SPOTLIGHT
-                    </span>
-                </div>
 
-                <div className="dice-row">
-                    <DiceButton 
-                        type="D8"
-                        label="Wildcard Strobe"
-                        active={!!activeDice.D8}
-                        onClick={() => onTriggerDice && onTriggerDice("D8")}
-                    />
-                    <span className="dice-function-label">
-                        WILDCARD
-                    </span>
+                <div className="dice-arrow-cluster-left">
+                    <div className="dice-node arrow-left">
+                        <DiceButton 
+                            type="D6"
+                            label="Stage Spotlight"
+                            active={!!activeDice.D6}
+                            onClick={() => onTriggerDice && onTriggerDice("D6")}
+                        />
+                        <span className="dice-node-label">
+                            SPOTLIGHT
+                        </span>
+                    </div>
+
+                    <div className="dice-node arrow-top-right">
+                        <DiceButton 
+                            type="D4"
+                            label="Strobe Pulse"
+                            active={!!activeDice.D4}
+                            onClick={() => onTriggerDice && onTriggerDice("D4")}
+                        />
+                        <span className="dice-node-label">
+                            STROBE
+                        </span>
+                        
+                    </div>
+
+                    <div className="dice-node arrow-bottom-right">
+                        <DiceButton 
+                            type="D8"
+                            label="Wildcard Strobe"
+                            active={!!activeDice.D8}
+                            onClick={() => onTriggerDice && onTriggerDice("D8")}
+                        />
+                        <span className="dice-node-label">
+                            WILDCARD
+                        </span>
+                    </div>
                 </div>
 
             </div>

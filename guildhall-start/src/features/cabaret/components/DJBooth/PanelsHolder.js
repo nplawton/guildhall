@@ -5,7 +5,6 @@ import "../../styles/PanelsHolder.css";
 export default function PanelsHolder ({
     energyLevel = 100,
     isCuckooOpen = false,
-    children
 }) {
 
     const isDepleted = energyLevel <= 0;
@@ -103,10 +102,6 @@ export default function PanelsHolder ({
                     <div className="whistle-mount-bracket" />
 
                 </div>
-            </div>
-
-            <div className="panels-deck-content">
-                {children}
             </div>
 
         </div>
