@@ -6,13 +6,14 @@
     pointer-events: auto;
 }
 
-.dj-booth-frame-400 {
-    width: 400px;
-    max-width: 400px;
+.dj-booth-frame-480 {
+    width: 480px;
+    max-width: 480px;
     height: 510px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-end;
     position: relative;
     box-sizing: border-box;
     user-select: none;
@@ -20,12 +21,12 @@
 
 .dj-booth-deck-row {
     width: 100%;
-    height: 290px;
+    height: 270px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     box-sizing: border-box;
     position: relative;
-    z-index: 5;
+    z-index: 3;
 }

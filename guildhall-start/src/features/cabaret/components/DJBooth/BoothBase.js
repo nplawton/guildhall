@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "../../styles/BoothBase.css";
 
-export default function BoothBase() {
+export default function BoothBase({ energyLevel = 100 }) {
 
     const [weightLevel, setWeightLevel] = useState(85);
     const [isCranking, setIsCranking] = useState(false);
+
+    const needleRotation = -60 + (energyLevel / 100) * 120;
 
     const handleCrank = (e) => {
         e.stopPropagation();
@@ -23,7 +25,38 @@ export default function BoothBase() {
             <div className="grandfather-cabinet-body">
 
                 <div className="cabinet-panel side-left">
-                    <div className="carved-wood-filigree"></div>
+
+                    <div className="carved-wood-filigree" />
+
+                    {/* Left Side: Circular Guage */}
+                    <div 
+                        className="booth-base-gauge-assembly" 
+                        title={`Cavort Energy: ${Math.round(energyLevel)}%`}
+                    >
+                        <div className="gauge-outer-bezel">
+                            <div className="gauge-dial-face">
+                                <svg className="gauge-zones-svg" viewBox="0 0 100 100">
+                                    <path d="M 85,50 A 35,35 0 0,0 50,15" fill="none" stroke="#2e7d32" strokeWidth="8" />
+                                    <path d="M 50,15 A 35,35 0 0,0 22,32" fill="none" stroke="#f57c00" strokeWidth="8" />
+                                    <path d="M 22,32 A 35,35 0 0,0 15,50" fill="none" stroke="#c62828" strokeWidth="8" strokeDasharray="2 2" />
+                                </svg>
+
+                                <span className="gauge-tick tick-empty">E</span>
+                                <span className="gauge-tick tick-full">F</span>
+                                <span className="gauge-title-text">CAVORT</span>
+
+                                <div
+                                    className="gauge-needle-wrapper"
+                                    style={{ transform: `rotate(${needleRotation}deg)` }}
+                                >
+                                    <div className="gauge-needle-pointer" />
+                                    <div className="gauge-needle-cap" />
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div className="cabinet-center-door">

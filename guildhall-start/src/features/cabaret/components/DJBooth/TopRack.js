@@ -8,7 +8,8 @@ export default function TopRack({
     bpm = 120,
     lightPower = true,
     soundPower = true,
-    onModeSelect
+    onModeSelect,
+    isDepleted = false
 }) {
 
 
@@ -110,6 +111,24 @@ export default function TopRack({
                     </div>
 
                 </div>
+
+            </div>
+
+            <div 
+                className="top-rack-whistle-assembly" 
+                title="Overpressure Vent Whistle"
+            >
+                <div className={`steam-cloud-emitter ${isDepleted ? "regulated-steam" : ""}`}>
+                    <div className="steam-puff puff-1" />
+                    <div className="steam-puff puff-2" />
+                    <div className="steam-puff puff-3" />
+                </div>
+
+                <div className="whistle-office-cap" />
+                <div className="whistle-brass-pipe">
+                    <div className="pipe-slot" />
+                </div>
+                <div className="whistle-mount-bracket" />
 
             </div>
 

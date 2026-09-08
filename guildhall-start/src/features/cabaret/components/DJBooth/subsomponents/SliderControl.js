@@ -90,14 +90,24 @@ export default function SliderControl({
 
                 {/* Knurled Brass Slider Handle */}
                 <div
-                    className={`slinder-handle ${isDragging ? "dragging" : ""}`}
-                    style={{ bottom: `calc(${pct}% - 12px)` }}
+                    className={`slider-handle tbar-handle ${isDragging ? "dragging" : ""}`}
+                    style={{ bottom: `calc(${pct}% - 10px)` }}
                     onMouseDown={handleMouseDown}
                     title={`${label}: ${value}`}
                 >
-                    <div className="slider-handle-grip-line" />
-                    <div className="slider-handle-grip-line" />
-                    <div className="slider-handle-grip-line" />
+
+                    <div className="tbar-crossbar">
+                        <div className="tbar-endcap left" />
+                        <div className="tbar-grip-lines">
+                            <div className="slider-handle-grip-line" />
+                            <div className="slider-handle-grip-line" />
+                            <div className="slider-handle-grip-line" />
+                        </div>
+                        <div className="tbar-endcap right" />
+                    </div>
+
+                    <div className="tbar-stem" />
+                    
                 </div>
 
             </div>

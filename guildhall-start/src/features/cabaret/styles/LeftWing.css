@@ -1,11 +1,12 @@
 .left-wing-container {
     width: 133px;
-    height: 290px;
+    height: 100%;
     flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 6px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 4px;
     box-sizing: border-box;
     background: linear-gradient(
         165deg,
@@ -14,106 +15,96 @@
         #0a0603 100%
     );
     border: 2px solid #5a401c;
-    border-radius: 6px;
+    border-right: none;
+    border-radius: 6px 0 0 6px;
     box-shadow:
         inset 0 1px 1px rgba(255, 215, 0, 0.15),
         inset 0 0 12px rgba(0, 0, 0, 0.9),
-        2px 4px 10px rgba(0, 0, 0, 0.8)
+        -2px 4px 10px rgba(0, 0, 0, 0.8)
     ;
     position: relative;
+    user-select: none;
+    overflow: visible;
 }
 
 .wing-header {
-    text-align: center;
-    padding-bottom: 2px;
-}
-
-.wing-title {
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.6rem;
-    color: #b5873d;
-    letter-spacing: 1px;
-}
-
-.left-wing-top-controls,
-.left-wing-dice-section {
+    display: flex;
+    justify-content: center;
     width: 100%;
-    box-sizing: border-box;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
 }
 
-.left-wing-top-controls {
+.left-wing-time-section {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
+    margin: -8px 0;
+}
+
+.wing-cast-plaque-large {
+    background: linear-gradient(
+        180deg,
+        #1f150a 0%,
+        #0a0603 100%
+    );
+    border: 1.5px solid #d4af37;
+    border-radius: 4px;
+    padding: 2px 8px;
+    display: flex;
+    align-items: center;
     gap: 4px;
-}
-
-.flipper-switch-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.flipper-switch {
-    width: 14px;
-    height: 34px;
-    background: #080503;
-    border: 1px solid #3d2b13;
-    position: relative;
-    cursor: pointer;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.95);
-}
-
-.flipper-handle {
-    left: -2px;
-    width: 16px;
-    height: 16px;
-    background: linear-gradient(
-        180deg, 
-        #ffe082 0%, 
-        #b8860b 45%, 
-        #5c4000 100%
-    );
-    border-radius: 3px;
-    border: 1px solid #2b1a04;
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8), 
-        inset 0 1px 1px rgba(255, 255, 255, 0.6)
-    ;
-    transition: top 0.18s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.flipper-switch.on .flipper-handle {
-    top: -1px;
-    box-shadow: 
-        0 0 8px rgba(255, 215, 0, 0.6),
-        0 2px 4px rgba(0, 0, 0, 0.9)    
+    box-shadow:
+        0 3px 6px rgba(0, 0, 0, 0.9),
+        inset 0 0 5px rgba(212, 175, 55, 0.4)
     ;
 }
 
-.flipper-switch.off .flipper-handle {
-    top: 19px;
-    background: linear-gradient(
-        180deg, 
-        #6e5021 0%, 
-        #3a280d 100%
-    );
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-}
-
-.flipper-label {
-    margin-top: 2px;
+.wing-cast-plaque-large .plaque-text {
     font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.55rem;
-    color: #b5873d;
-    letter-spacing: 0.5px;
+    font-weight: 900;
+    font-size: 0.58rem;
+    color: #f7d08b;
+    letter-spacing: 1.2px;
+    text-shadow: 0 1px 2px #000;
+}
+
+.wing-cast-plaque-large .plaque-star-rivet {
+    font-size: 0.48rem;
+    color: #d4af37;
+    text-shadow: 0 0 3px rgba(212, 175, 55, 0.9);
+}
+
+.flipper-cast-plaque {
+    background: linear-gradient(
+        180deg,
+        #1f150a 0%,
+        #0a0603 100%
+    );
+    border: 1px solid #d4af37;
+    border-radius: 3px;
+    padding: 1px 4px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        inset 0 0 3px rgba(212, 175, 55, 0.3)
+    ;
+}
+
+.flipper-cast-plaque .plaque-text {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.48rem;
+    color: #f7d08b;
+    letter-spacing: 0.8px;
+    text-shadow: 0 1px 2px #000;
+}
+
+.flipper-cast-plaque .plaque-star-rivet {
+    font-size: 0.4rem;
+    color: #d4af37;
+    text-shadow: 0 0 2px rgba(212, 175, 55, 0.8);
 }
 
 .left-wing-speaker-section {
@@ -121,47 +112,30 @@
     justify-content: center;
     align-items: center;
     padding: 0;
-    transform: scale(0.85);
-    margin: -6px 0;
+    transform: scale(0.68);
+    margin: -16px 0;
 }
 
 .left-wing-dice-section {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.dice-cluster-header {
-    text-align: center;
+    justify-content: center;
 }
 
 .dice-arrow-cluster-left {
+    width: 100%;
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-areas:
-    ".    top"
-    "tip  ."
-    ".    bottom";
+        "d4 d8"
+        "d6 d8"
+    ;
     align-items: center;
     justify-items: center;
-    gap: 2px 6px;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 6px 8px;
-    border-radius: 6px;
-    border: 1px solid rgba(60, 42, 18, 0.6);
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.8);
-}
-
-.arrow-tip{
-    grid-area: tip;
-}
-
-.arrow-top-right {
-    grid-area: top;
-}
-
-.arrow-bottom-right {
-    grid-area: bottom;
+    gap: 2px 4px;
+    padding: 2px 0;
+    box-sizing: border-box;
 }
 
 .dice-node {
@@ -171,17 +145,25 @@
     gap: 1px;
 }
 
-.dice-node button,
-.dice-node .dice-button-container {
-    transform: scale(0.65);
-    transform-origin: center;
+.dice-node.node-d4 {
+    grid-area: d4;
+    justify-self: flex-start;
 }
 
-.dice-node-label {
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.48rem;
-    color: #d4af37;
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 1px #000;
+.dice-node.node-d6 {
+    grid-area: d6;
+    justify-self: flex-start;
+}
+
+.dice-node.node-d8 {
+    grid-area: d8;
+    justify-self: flex-end;
+    align-self: center;
+}
+
+.dice-node button,
+.dice-node .dice-button-container {
+    width: 36px;
+    height: 36px;
+    margin: 0;
 }

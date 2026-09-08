@@ -68,55 +68,77 @@
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.slider-handle {
+.slider-handle.tbar-handle {
     position: absolute;
-    width: 36px;
-    height: 24px;
-    background: linear-gradient(
-        180deg, 
-        #f7d08b 0%, 
-        #b5873d 40%, 
-        #6e4f1b 80%, 
-        #302005 100%
-    );
-    border: 1px solid #1c0901;
-    border-radius: 4px;
-    box-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.85), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.4)
-    ;
+    width: 38px;
+    height: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 3px;
+    justify-content: flex-start;
     cursor: grab;
     z-index: 5;
     transition: filter 0.2s ease;
 }
 
-.slider-handle:hover {
-    filter: drop-shadow(0px 0px 6px rgba(212, 175, 55, 0.8));
+.slider-handle.tbar-handle.dragging {
+    cursor: grabbing;
+    filter: drop-shadow(0px 0px 8px #ffd700);
 }
 
-.slider-handle.dragging {
-    cursor: grabbing;
-    filter: drop-shadow(0px 0px 10px #ffd700);
+.tbar-crossbar {
+    width: 38px;
+    height: 12px;
+    background: linear-gradient(
+        180deg, 
+        #ffe082 0%, 
+        #b5873d 40%, 
+        #6e4f1b 80%, 
+        #241402 100%
+    );
+    border: 1px solid #1a0c02;
+    border-radius: 6px;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.9), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.tbar-endcap {
+    width: 4px;
+    height: 8px;
+    background: #1a0c02;
+    border-radius: 2px;
+}
+
+.tbar-grip-lines {
+    display: flex;
+    gap: 2.5px;
+    align-items: center;
 }
 
 .slider-handle-grip-line {
-    width: 2px;
-    height: 12px;
-    background-color: #241402;
-    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.2);
+    width: 1.5px;
+    height: 8px;
+    background-color: #1a0c02;
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.3);
 }
 
-.slider-label {
-    margin-top: 8px;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.72rem;
-    color: #f7d08b;
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.9);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+.tbar-stem {
+    width: 4px;
+    height: 8px;
+    background: linear-gradient(
+        90deg,
+        #3a3a3a,
+        #ffffff,
+        #222222
+    );
+    border: 0.5px solid #1a0c02;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    margin-top: -1px;
 }

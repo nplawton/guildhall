@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+
 import '../styles/DJBooth.css';
-import BoothBase from "../components/DJBooth/BoothBase";
-import PanelsHolder from "../components/DJBooth/PanelsHolder";
+
 import TopRack from "./DJBooth/TopRack";
 import LeftWing from "./DJBooth/LeftWing";
+import CenterControl from "./DJBooth/CenterControl";
+import RightWing from "./DJBooth/RightWing";
+import BoothBase from "../components/DJBooth/BoothBase";
+
 import { getModeByCode, DEFAULT_MODE_CODE } from "../../../components/Navigation/modeConfig";
+
 
 export default function DJBooth(props) {
 
@@ -41,7 +46,7 @@ export default function DJBooth(props) {
 
         <div className="dj-booth-stage-wrapper">
 
-            <div className="dj-booth-frame-400">
+            <div className="dj-booth-frame-480">
 
                 <TopRack 
                     activeMode={activeMode}
@@ -49,11 +54,6 @@ export default function DJBooth(props) {
                     lightPower={lightPower && energyLevel > 0}
                     soundPower={soundPower && energyLevel > 0}
                     onModeSelect={handleModeSelect}
-                />
-
-                <PanelsHolder 
-                    energyLevel={energyLevel} 
-                    isCuckooOpen={isCuckooOpen}
                 />
 
                 <div className="dj-booth-deck-row">
@@ -69,9 +69,31 @@ export default function DJBooth(props) {
                             soundPower={soundPower && energyLevel > 0}
                         />
 
+                        <CenterControl 
+                            bpm={bpm}
+                            onChangeBpm={(val) => setBpm(val)}
+                            lightSpeed={50}
+                            onChangeLightSpeed={(val) => {}}
+                            bass={50}
+                            activeMode={activeMode}
+                            setActiveMode="I"
+                        />
+
+                        <RightWing 
+                            soundPower={soundPower && energyLevel > 0}
+                            onToggleSoundPower={() => setSoundPower(prev => !prev)}
+                            volume={75}
+                            onChangeVolume={(val) => {}}
+                            activeDice={activeDice}
+                            ontriggerDice={handleTriggerDice}
+                            bpm={bpm}
+                        />
+
                 </div>
 
-                <BoothBase />
+                <BoothBase 
+                    energyLevel={energyLevel}
+                />
 
             </div>
 

@@ -1,14 +1,13 @@
 .booth-base-pedestal {
     width: 100%;
-    max-width: 400px;
-    height: 100px;
+    max-width: 480px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     user-select: none;
-    z-index: 1;
     box-sizing: border-box;
+    z-index: 2;
 }
 
 .booth-top-deck-housing {
@@ -18,7 +17,7 @@
 
 .grandfather-cabinet-body {
     width: 100%;
-    height: 85px;
+    height: 120px;
     background: linear-gradient(
         180deg,
         #2b0e06 0%,
@@ -34,7 +33,7 @@
     display: flex;
     justify-content: space-between;
     position: relative;
-    padding: 4px 8px;
+    padding: 8px 12px;
     box-sizing: border-box;
 }
 
@@ -57,7 +56,10 @@
 }
 
 .cabinet-panel.side-right {
-    justify-content: flex-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .carved-wood-filigree {
@@ -76,8 +78,7 @@
 .riveted-wind-plaque {
     position: relative;
     z-index: 2;
-    margin-bottom: 6px;
-    margin-right: -2px;
+    margin-bottom: -75px;
     background: linear-gradient(
         180deg,
         #f7d08b 0%,
@@ -364,6 +365,128 @@
     border-radius: 50%;
     border: 0.5px solid #1a0c02;
     pointer-events: none;
+}
+
+.cabinet-panel.side-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.booth-base-gauge-assembly {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.9));
+}
+
+.gauge-outer-bezel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg, 
+        #f7d08b, 
+        #6e4f1b
+    );
+    border: 1.5px solid #1a0c02;
+    padding: 2px;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.8), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4)
+    ;
+    box-sizing: border-box;
+}
+
+.gauge-dial-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 50% 50%,
+        #2b1f0e,
+        #0d0803
+    );
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gauge-zones-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.gauge-tick {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.42rem;
+    bottom: 12px;
+}
+
+.tick-empty {
+    left: 8px;
+    color: #ff4444;
+}
+
+.tick-full {
+    right: 8px;
+    color: #44ff44;
+}
+
+.gauge-title-text {
+    position: absolute;
+    top: 33px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 0.35rem;
+    color: #b5873d;
+    letter-spacing: 0.5px;
+    z-index: 3;
+}
+
+.gauge-needle-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 4;
+}
+
+.gauge-needle-pointer {
+    position: absolute;
+    bottom: 50%;
+    width: 2px;
+    height: 16px;
+    background: linear-gradient(
+        180deg, 
+        #ff1100 0%, 
+        #ffd700 100%
+    );
+    border-radius: 1px;
+    box-shadow: 0 0 3px #ff0000;
+    transform-origin: bottom center;
+}
+
+.gauge-needle-cap {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 35% 35%, 
+        #f7d08b, 
+        #1a0c02
+    );
+    border: 1px solid #1a0c02;
+    z-index: 2;
 }
 
 .pedestal-molded-base {

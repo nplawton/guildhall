@@ -1,18 +1,18 @@
 import React from "react";
-import ControlKnob from "./subsomponents/ControlKnob";
+import TimeDisplay from "./subsomponents/TimeDisplay";
 import CogSpeaker from "./subsomponents/CogSpeaker";
 import DiceButton from "./subsomponents/DiceButton";
 import "../../styles/LeftWing.css";
 
 export default function LeftWing({
-    lightPower = true,
-    onToggleLightPower,
-    lightDimmer = 100,
-    onChangeLightDimmer,
     activeDice = {},
     onTriggerDice, 
     bpm = 120,
-    soundPower = true
+    soundPower = true,
+    hours = 12,
+    minutes = 0,
+    onChangeHours,
+    onChangeMinutes
 }) {
 
     return (
@@ -21,87 +21,87 @@ export default function LeftWing({
 
             {/* Wing Title Header */}
             <div className="wing-header">
-                <span className="wing-title">LIGHTING DECK</span>
+                <div className="wing-cast-plaque-large">
+                    <span className="plaque-star-rivet">★</span>
+                    <span className="plaque-text">CHRONO DECK</span>
+                    <span className="plaque-star-rivet">★</span>
+                </div>
             </div>
 
-            {/* Top Corner */}
-            <div className="left-wing-top-controls">
-                
-                <div className="flipper-switch-wrapper">
-                    <button
-                        className={`flipper-switch ${lightPower ? "on" : "off"}`}
-                        onClick={onToggleLightPower}
-                        title="Toggle Lighting Power"
-                    >
-                        <div className="flipper-handle" />
-                    </button>
-                    <span className="flipper-label">POWER</span>
-                </div>
-
-                <ControlKnob 
-                    label="DIMMER"
-                    min={0}
-                    max={100}
-                    value={lightDimmer}
-                    onChange={onChangeLightDimmer}
-                    size="small"
+            <div className="left-wing-time-section">
+                <TimeDisplay 
+                    hours={hours}
+                    minutes={minutes}
+                    onChangeHours={onChangeHours}
+                    onChangeMinutes={onChangeMinutes}
                 />
-                
             </div>
 
             <div className="left-wing-speaker-section">
+
                 <CogSpeaker 
                     active={soundPower}
                     side="left"
                     speed={bpm}
                 />
+
             </div>
 
             <div className="left-wing-dice-section">
 
-                <div className="dice-cluster-header">
-                    <span className="dice-node-label">
-                        LIGHT MATRIX
-                    </span>
-                </div>
-
-
                 <div className="dice-arrow-cluster-left">
-                    <div className="dice-node arrow-left">
-                        <DiceButton 
-                            type="D6"
-                            label="Stage Spotlight"
-                            active={!!activeDice.D6}
-                            onClick={() => onTriggerDice && onTriggerDice("D6")}
-                        />
-                        <span className="dice-node-label">
-                            SPOTLIGHT
-                        </span>
-                    </div>
-
-                    <div className="dice-node arrow-top-right">
+                    
+                    <div className="dice-node node-d4">
+                        
+                        <div className="flipper-cast-plaque">
+                            <span className="plaque-star-rivet">★</span>
+                            <span className="plaque-text">STROBE</span>
+                            <span className="plaque-star-rivet">★</span>
+                        </div>
+                        
                         <DiceButton 
                             type="D4"
-                            label="Strobe Pulse"
+                            label="Strobe Trigger"
                             active={!!activeDice.D4}
                             onClick={() => onTriggerDice && onTriggerDice("D4")}
                         />
-                        <span className="dice-node-label">
-                            STROBE
-                        </span>
+                                                
+                    </div>
+                    
+                    <div className="dice-node node-d6">
+
+                        <DiceButton 
+                            type="D6"
+                            label="Spotlight Sweep"
+                            active={!!activeDice.D6}
+                            onClick={() => onTriggerDice && onTriggerDice("D6")}
+                        />
+
+                        <div className="flipper-cast-plaque">
+                            <span className="plaque-star-rivet">★</span>
+                            <span className="plaque-text">SPOTLIGHT</span>
+                            <span className="plaque-star-rivet">★</span>
+                        </div>
                         
                     </div>
 
-                    <div className="dice-node arrow-bottom-right">
+                    
+
+                    <div className="dice-node node-d8">
+
                         <DiceButton 
                             type="D8"
-                            label="Wildcard Strobe"
+                            label="Wildcard Pattern"
                             active={!!activeDice.D8}
                             onClick={() => onTriggerDice && onTriggerDice("D8")}
                         />
-                        <span className="dice-node-label">
-                            WILDCARD
-                        </span>
+                        
+                        <div className="flipper-cast-plaque">
+                            <span className="plaque-star-rivet">★</span>
+                            <span className="plaque-text">WILDCARD</span>
+                            <span className="plaque-star-rivet">★</span>
+                        </div>
+
                     </div>
                 </div>
 

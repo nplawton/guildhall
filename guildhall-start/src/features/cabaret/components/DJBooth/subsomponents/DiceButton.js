@@ -11,7 +11,7 @@ export default function DiceButton({ type = "D6", label, active = false, onClick
                 );
             case "D6":
                 return (
-                    <polygon points="50,10 85,30 85,70 50,90 15,70 15,30" />
+                    <rect x="15" y="15" width="70" height="70" rx="8" ry="8" />
                 );
             case "D8":
                 return (

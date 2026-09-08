@@ -1,11 +1,11 @@
-export const DEFAULT_MODE_CODE = "I";
+export const DEFAULT_MODE_CODE = null;
 
 export const MODES = [
     {
         code: "I",
         modeNum: 0,
         label: "I",
-        name: "Standard Clockwork",
+        name: "CLASSIC BRASS",
         color: "#b5873d",
         burnRate: 0.5,
         defaultBpm: 120,
@@ -147,4 +147,7 @@ export const MODES = [
     }
 ];
 
-export const getModeByCode = (code) => MODES.find((m) => m.code === code) || MODES[0];
+export const getModeByCode = (code) => {
+    if(!code) return null;
+    return MODES.find((m) => m.code === code) || null;
+};

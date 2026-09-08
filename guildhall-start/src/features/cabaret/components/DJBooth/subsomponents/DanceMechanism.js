@@ -2,8 +2,9 @@ import React from "react";
 import "./DanceMechanism.css";
 import { MODES } from "../../../../../components/Navigation/modeConfig";
 
-export default function DanceMechanism({ activeMode = "I", onSelectMode }) {
+export default function DanceMechanism({ activeMode = null, onSelectMode }) {
 
+    const activeModesList = MODES.filter((m) => m.modeNum > 0);
 
     return (
 
@@ -15,7 +16,7 @@ export default function DanceMechanism({ activeMode = "I", onSelectMode }) {
             <div className="master-screw bottom-right" />
 
             <div className="dance-cogs-grid">
-                {MODES.map((mode) => {
+                {activeModesList.map((mode) => {
                     const isActive = activeMode === mode.code;
                     const teethCount = mode.modeNum * 2;
 
@@ -25,6 +26,7 @@ export default function DanceMechanism({ activeMode = "I", onSelectMode }) {
                             key={mode.code}
                             className={`cog-socket-plate ${isActive ? "active-locked" : ""}`}
                             onClick={() => onSelectMode && onSelectMode(mode.code)}
+                            title={`${mode.name} (${mode.label})`}
                         >
                             <div className="star-screw top-left">★</div>
                             <div className="star-screw top-right">★</div>
@@ -35,7 +37,7 @@ export default function DanceMechanism({ activeMode = "I", onSelectMode }) {
 
                                 <div
                                     className={`cog-button-body ${isActive ? "depressed-rotating" : ""}`}
-                                    style={{ "--glow-clor": mode.color }}
+                                    style={{ "--glow-color": mode.color }}
                                 >
 
                                     <svg viewBox="0 0 100 100" className="cog-btn-svg">
@@ -53,7 +55,7 @@ export default function DanceMechanism({ activeMode = "I", onSelectMode }) {
                                                 <rect 
                                                     key={i}
                                                     x="44" y="2" width="12" height="12" rx="2"
-                                                    fill={`url(#cog-grad-${mode.code})`}
+                                                    fill={`url(#cogGrad-${mode.code})`}
                                                     stroke="#1a0c02" strokeWidth="1"
                                                     transform={`rotate(${(360 / teethCount) * i} 50 50)`}
                                                 />
