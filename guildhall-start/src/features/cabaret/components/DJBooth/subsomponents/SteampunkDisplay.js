@@ -17,6 +17,10 @@ export default function SteampunkDisplay({
 
             <div className="steampunk-display-housing">
 
+                <div className="display-bezel-stamped-title">
+                    CABARET DJ CONSOLE v3.03
+                </div>
+
                 {/*Brass Corner Rivets */}
                 <div className="display-rivet top-left" />
                 <div className="display-rivet top-right" />
@@ -40,10 +44,6 @@ export default function SteampunkDisplay({
                                 LGT:<span className={lightPower ? "status-on" : "status-off"}>
                                     {lightPower ? "ON" : "OFF"}
                                 </span>
-                            </span>
-
-                            <span className="screen-label">
-                                [CABARET DJ CONSOLE v3.03]
                             </span>
 
                             <span className="screen-status-indicator right">

@@ -1,7 +1,7 @@
 .steampunk-display-perspective-wrapper {
     perspective: 600px;
     width: 100%;
-    max-width: 380px;
+    max-width: 204px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -17,22 +17,22 @@
         #573e19 70%, 
         #241402 100%
     );
-    border: 3px solid #1a1205;
-    border-radius: 6px;
-    padding: 10px 14px 12px 14px;
+    border: 2px solid #1a1205;
+    border-radius: 5px;
+    padding: 10px 6px 4px 6px;
     position: relative;
     box-shadow: 
-        0 12px 20px rgba(0, 0, 0, 0.9), 
-        inset 0 2px 2px rgba(255, 242, 190, 0.4)
+        0 6px 12px rgba(0, 0, 0, 0.9), 
+        inset 0 1px 1px rgba(255, 242, 190, 0.4)
 ;
-    transform: rotateX(18deg);
+    transform: rotateX(6deg);
     transform-origin: bottom center;
 }
 
 .display-rivet {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     background: radial-gradient(
         circle at 35% 35%,
         #fff2be,
@@ -44,53 +44,62 @@
 }
 
 .display-rivet.top-left { 
-    top: 4px;
-    left: 4px;
+    top: 3px;
+    left: 3px;
 }
 
 .display-rivet.top-right {
-    top: 4px;
-    right: 4px;
+    top: 3px;
+    right: 3px;
 }
 
 .display-rivet.bottom-left {
-    bottom: 4px;
-    left: 4px;
+    bottom: 3px;
+    left: 3px;
 }
 
 .display-rivet.bottom-right {
-    bottom: 4px;
-    right: 4px;
+    bottom: 3px;
+    right: 3px;
 }
 
 .display-visor-hood {
     position: absolute;
-    top: -4px;
-    left: 10%;
-    width: 80%;
-    height: 6px;
+    top: -3px;
+    left: 15%;
+    width: 70%;
+    height: 4px;
     background: linear-gradient(
         180deg,
         #f7d08b 0%,
         #6e4f1b 100%
     );
-    border-radius: 4px 4px 0 0;
+    border-radius: 3px 3px 0 0;
     border: 1px solid #1a1205;
 }
 
 .steampunk-display-screen {
     width: 100%;
-    height: 105px;
-    background: radial-gradient(circle at 50% 50%, #102418 0%, #05120a 70%, #010503 100%);
-    border: 2px solid #302005;
-    border-radius: 4px;
+    height: 92px;
+    background: radial-gradient(
+        circle at 50% 50%, 
+        #102418 0%, 
+        #05120a 70%, 
+        #010503 100%
+    );
+    border: 1.5px solid #302005;
+    border-radius: 3px;
     position: relative;
-    box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.95), 0 0 8px rgba(0, 255, 102, 0.15);
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.95), 
+        0 0 6px rgba(0, 255, 102, 0.15)
+    ;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 8px 12px;
+    justify-content: space-between;
+    padding: 4px 6px;
+    box-sizing: border-box;
 }
 
 .screen-scanlines {
@@ -100,10 +109,10 @@
         rgba(18, 16, 16, 0) 50%, 
         rgba(0, 0, 0, 0.4) 50%
     );
-    background-size: 100% 4px;
+    background-size: 100% 3px;
     pointer-events: none;
     z-index: 3;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .screen-glass-glare {
@@ -112,7 +121,11 @@
     right: 0;
     width: 60%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 50%
+    );
     pointer-events: none;
     z-index: 4;
 }
@@ -122,93 +135,124 @@
     z-index: 2;
     font-family: 'Courier New', monospace;
     color: #4dfd8e;
-    text-shadow: 0 0 4px rgba(77, 253, 142, 0.7);
+    text-shadow: 0 0 3px rgba(77, 253, 142, 0.7);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    justify-content: space-between;
+    height: 100%;
+    gap: 2px;
 }
 
 .screen-header-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.65rem;
-    letter-spacing: 0.5px;
+    font-size: 0.52rem;
+    letter-spacing: 0.3px;
     color: #70d696;
     border-bottom: 1px dashed rgba(77, 253, 142, 0.3);
-    padding-bottom: 3px;
+    padding-bottom: 2px;
 }
 
 .screen-label {
     font-weight: bold;
     color: #ffffff;
-    text-shadow: 0 0 4px #ffffff;
+    text-shadow: 0 0 3px #ffffff;
+    font-size: 0.5rem;
 }
 
 .screen-status-indicator {
-    font-size: 0.6rem;
+    font-size: 0.48rem;
     color: #6bb386;
 }
 
 .status-on {
     color: #4dfd8e;
-    text-shadow: 0 0 6px #4dfd8e;
+    text-shadow: 0 0 4px #4dfd8e;
     font-weight: bold;
-    margin-left: 2px;
+    margin-left: 1px;
 }
 
 .status-off {
     color: #ff4444;
     text-shadow: 0 0 4px #ff0000;
     font-weight: bold;
-    margin-left: 2px;
+    margin-left: 1px;
 }
 
 .screen-mode-banner {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     background: rgba(0, 40, 15, 0.5);
-    padding: 3px 6px;
+    padding: 3px 8px;
     border-radius: 3px;
     border: 1px solid rgba(77, 253, 142, 0.25);
+    width: 90%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .screen-mode-code {
     font-weight: 900;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #ffd700;
-    text-shadow: 0 0 5px #ffd700;
+    text-shadow: 0 0 4px #ffd700;
+    line-height: 1;
 }
 
 .screen-mode-title {
     font-weight: bold;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: #ffffff;
-    text-shadow: 0 0 6px #ffffff;
+    text-shadow: 0 0 5px #ffffff;
+    line-height: 1;
 }
 
 .screen-telemetry-row {
     display: flex;
     justify-content: space-between;
-    font-size: 0.68rem;
-    margin-top: 2px;
+    font-size: 0.52rem;
+    margin-top: 1px;
 }
 
 .telemetry-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .telemetry-label {
-    font-size: 0.55rem;
+    font-size: 0.44rem;
     color: #6bb386;
+    letter-spacing: 0.2px;
 }
 
 .telemetry-val {
     font-weight: bold;
+    font-size: 0.55rem;
     color: #f7d08b;
-    text-shadow: 0 0 4px #f7d08b;
+    text-shadow: 0 0 3px #f7d08b;
+}
+
+.display-bezel-stamped-title {
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.50rem;
+    color: #0a0603;
+    text-shadow: 
+        -1px -1px 0 #000000,
+        0 1px 0 rgba(255, 235, 170, 0.85)
+    ;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+    z-index: 5;
+    pointer-events: none;
 }

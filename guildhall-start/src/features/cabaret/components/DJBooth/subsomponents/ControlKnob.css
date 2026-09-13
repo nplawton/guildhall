@@ -6,6 +6,7 @@
     user-select: none;
 }
 
+.control-knob-wrapper.micro { width: 26px; }
 .control-knob-wrapper.small { width: 42px; }
 .control-knob-wrapper.medium { width: 58px; }
 .control-knob-wrapper.large { width: 74px; }

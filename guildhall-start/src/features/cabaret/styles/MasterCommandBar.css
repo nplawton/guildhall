@@ -1,461 +1,341 @@
-.panels-holder-container {
-    width: 100%;
-    position: relative;
-    user-select: none;
-    z-index: 5;
-}
+/* ==========================================
+   MASTER COMMAND BAR
+   ========================================== */
 
-.filigree-drop-panel {
-    width: 100%;
-    height: 55px;
-    background: linear-gradient(
-        180deg,
-        #2b170a 0%,
-        #170b04 100%
-    );
-    border: 3px solid #1a0c02;
-    border-radius: 6px 6px 0 0;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 12px;
-    box-sizing: border-box;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.9);
-    z-index: 5;
-}
-
-.panel-filigree-overlay {
-    position: absolute;
-    inset: 2px;
-    border: 1px solid #572012;
-    background-image: radial-gradient(
-        #572012 1px,
-        transparent 0
-    );
-    background-size: 5px 5px;
-    opacity: 0.3;
-    pointer-events: none;
-}
-
-.panel-corner-rivets .star-rivet {
-    position: absolute;
-    font-size: 0.5rem;
-    color: #f7d08b;
-    pointer-events: none;
-}
-
-.panel-corner-rivets .top-left { 
-    top: 2px; 
-    left: 4px;
-}
-
-.panel-corner-rivets .top-right { 
-    top: 2px; 
-    right: 4px; 
-}
-
-.panel-corner-rivets .bottom-left { 
-    bottom: 2px; 
-    left: 4px; 
-}
-
-.panel-corner-rivets .bottom-right { 
-    bottom: 2px; 
-    right: 4px; 
-}
-
-
-
-.cuckoo-housing {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 5;
-}
-
-.cuckoo-arch-frame {
-    width: 46px;
-    height: 42px;
-    background: #0d0603;
-    border: 2px solid #572012;
-    border-radius: 20px 20px 2px 2px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 0 8px #000;
-}
-
-.cuckoo-door {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-        180deg, 
-        #3d140a, 
-        #1f0904
-    );
-    border: 1px solid #1a0c02;
-    transition: transform 0.4s ease;
-    z-index: 3;
-}
-.cuckoo-door.door-left { 
-    left: 0; 
-    transform-origin: left center; 
-}
-
-.cuckoo-door.door-right { 
-    right: 0; 
-    transform-origin: right center; 
-}
-
-.cuckoo-door.door-left.open { transform: rotateY(-110deg); }
-
-.cuckoo-door.door-right.open { transform: rotateY(110deg); }
-
-.cuckoo-inner-chamber {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cuckoo-bird {
-    width: 32px;
-    height: 24px;
-    transform: translateY(12px) scale(0.5);
-    opacity: 0;
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
-}
-
-.cuckoo-bird.emerged {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-}
-
-.warning-flag-assembly {
-    position: absolute;
-    top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translateY(-20px) scaleY(0);
-    transform-origin: top center;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    z-index: 6;
-}
-
-.warning-flag-assembly.triggered {
-    transform: translateY(0) scaleY(1);
-}
-
-.flag-hinge-pin {
-    width: 20px;
-    height: 3px;
-    background: #1a0c02;
-}
-
-.brass-warning-plaque {
-    background: linear-gradient(
-        180deg, 
-        #ff4444 0%, 
-        #990000 100%
-    );
-    border: 1.5px solid #ffd700;
-    border-radius: 3px;
-    padding: 2px 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
-}
-
-.warning-text {
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.52rem;
-    color: #ffffff;
-    letter-spacing: 1px;
-    text-shadow: 0 1px 2px #000;
-    white-space: nowrap;
-}
-
-.steam-whistle-assembly {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 5;
+.master-command-bar-container {
+    width: 480px;
+    height: 70px;
     flex-shrink: 0;
-}
-
-.whistle-orifice-cap {
-    width: 8px;
-    height: 4px;
-    background: #f7d08b;
-    border: 1px solid #1a0c02;
-    border-radius: 2px 2px 0 0;
-}
-
-.whistle-brass-pipe {
-    width: 10px;
-    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 6px;
+    box-sizing: border-box;
     background: linear-gradient(
-        90deg, 
-        #6e4f1b 0%, 
-        #f7d08b 50%, 
+        180deg, 
+        #6e4f1b 0%,
+        #b5873d 50%,
         #302005 100%
     );
-    border: 1px solid #1a0c02;
-    border-radius: 1px;
+    border: 2px solid #1a0c02;
+    border-radius: 6px 6px 0 0;
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.8)
+    ;
     position: relative;
+    user-select: none;
+    overflow: hidden;
 }
 
-.pipe-slot {
+.bar-rivet{
     position: absolute;
-    top: 6px;
-    width: 100%;
-    height: 3px;
-    background: #0d0402;
-}
-
-.whistle-mount-bracket {
-    width: 16px;
-    height: 4px;
-    background: #1a0c02;
-    border-radius: 2px;
-}
-
-.steam-cloud-emitter {
-    position: absolute;
-    top: -10px;
-    width: 20px;
-    height: 20px;
+    font-size: 0.38rem;
+    color: #f7d08b;
+    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.85);
     pointer-events: none;
-    opacity: 0;
+    z-index: 5;
 }
 
-.steam-cloud-emitter.releasing-steam {
-    opacity: 1;
+.bar-rivet.top-left { 
+    top: 2px; 
+    left: 3px; 
 }
 
-.steam-cloud-emitter.releasing-steam .puff-1 {
-    animation: steamPuffRise 1.5s infinite ease-out;
+.bar-rivet.top-right { 
+    top: 2px; 
+    right: 3px; 
 }
 
-.steam-cloud-emitter.releasing-steam .puff-2 {
-    animation: steamPuffRise 1.5s infinite ease-out 0.4s;
+.bar-rivet.bottom-left { 
+    bottom: 2px; 
+    left: 3px; 
 }
 
-.steam-cloud-emitter.releasing-steam .puff-3 {
-    animation: steamPuffRise 1.5s infinite ease-out 0.8s;
+.bar-rivet.bottom-right { 
+    bottom: 2px; 
+    right: 3px; 
 }
 
-.steam-puff {
-    position: absolute;
-    width: 12px;
-    height: 12px;
-    background: rgba(240, 240, 240, 0.7);
-    border-radius: 50%;
-    filter: blur(2px);
-    opacity: 0;
+.command-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-@keyframes steamPuffRise {
-    0% {
-        transform: translateY(0) scale(0.3);
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(-35px) scale(2);
-        opacity: 0;
-    }
+.switch-stamped-label,
+.quad-stamped-label {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.5rem;
+    color: #ffe082;
+    text-shadow: 
+        0 1px 2px #000000,
+        0 0 4px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.6px;
+    line-height: 1;
 }
 
-.panels-deck-content {
-    width: 100%;
+/* ==========================================
+   Far-Left Lighting PWR & Dimmer
+   ========================================== */
+
+.far-left-lighting {
+    display: flex;
+    gap: 8px;
+    padding-left: 6px;
 }
 
-.flipper-switch-wrapper {
+.flipper-switch-unit, 
+.dimmer-knob-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-}
-
-.flipper-switch {
-    width: 18px;
-    height: 38px;
-    background: linear-gradient(
-        180deg,
-        #120904 0%,
-        #2b170a 100%
-    );
-    border: 1.5px solid #573e19;
-    border-radius: 4px;
-    position: relative;
+    gap: 1px;
     cursor: pointer;
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        inset 0 2px 5px rgba(0, 0, 0, 0.95)
-    ;
-    padding: 2px;
+}
+
+.switch-stamped-label,
+.quad-stamped-label {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.35rem;
+    color: #100501;
+    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.85);
+    letter-spacing: 0.3px;
+    line-height: 1;
+}
+
+.flipper-toggle-housing {
+    width: 12px;
+    height: 24px;
+    background: #0d0a05;
+    border: 1px solid #1a0c02;
+    border-radius: 3px;
+    padding: 1.5px;
     box-sizing: border-box;
-    perspective: 200px;
-    outline: none;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: inset 0 2px 4px #000;
+    transition: align-items 0.15s ease;
 }
 
-.flipper-track-recess {
+.flipper-toggle-housing.engaged {
+    align-items: flex-end;
+}
+
+.flipper-toggle-lever {
     width: 100%;
-    height: 100%;
-    background: #080402;
-    border-radius: 2px;
-    position: relative;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.95);
-}
-
-.flipper-handle {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 18px;
-    height: 16px;
+    height: 9px;
     background: linear-gradient(
         180deg, 
         #ffe082 0%, 
-        #b8860b 45%, 
-        #5c4000 100%
+        #b5873d 100%
     );
-    border-radius: 3px;
     border: 1px solid #1a0c02;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.flipper-toggle-housing {
+    width: 14px;
+    height: 28px;
+    background: #0d0a05;
+    border: 1px solid #1a0c02;
+    border-radius: 3px;
+    padding: 2px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: inset 0 2px 4px #000;
+    transition: align-items 0.15s ease;
+}
+
+.flipper-toggle-housing.engaged {
+    align-items: flex-end;
+}
+
+.flipper-toggle-lever {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(180deg, #ffe082 0%, #b5873d 100%);
+    border: 1px solid #1a0c02;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================
+   Left-Center Cuckoo Housing Vault
+   ========================================== */
+
+.left-center-cuckoo {
+    width: 60px;
+}
+
+.cuckoo-vault-housing {
+    width: 54px;
+    height: 38px;
+    background: radial-gradient(
+        circle at 50% 50%, 
+        #171007 0%, 
+        #080502 100%
+    );
+    border: 1.5px solid #1a0c02;
+    border-radius: 4px;
+    padding: 2px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 
+        inset 0 2px 6px #000, 
+        0 2px 4px rgba(0, 0, 0, 0.8)
+    ;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 
-        top 0.18s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.18s ease, 
-        box-shadow 0.18s ease
-    ;
 }
 
-.flipper-pin-indicator {
-    width: 4px;
-    height: 4px;
+.cuckoo-double-doors {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.cuckoo-door {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #3a2810 0%,
+        #1c1006 100%
+    );
+    border: 1px solid #000;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cuckoo-door.left-door {
+    border-radius: 2px 0 0 2px;
+    transform-origin: left center;
+}
+
+.cuckoo-door.right-door {
+    border-radius: 0 2px 2px 0;
+    transform-origin: right center;
+}
+
+.cuckoo-double-doors.open .left-door {
+    transform: rotateY(-110deg);
+}
+
+.cuckoo-double-doors.open .right-door {
+    transform: rotateY(110deg);
+}
+
+.door-emboss-ring {
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    border: 0.5px solid #1a0c02;
+    border: 1px solid #f7d08b;
+    opacity: 0.6;
+}
+
+.cuckoo-hinge-pin {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #d4af37;
+    border-radius: 50%;
+    border: 1px solid #000;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cuckoo-hinge-pin.top { top: 1px; }
+.cuckoo-hinge-pin.bottom { bottom: 1px; }
+
+/* ==========================================
+   CENTER: Dance Mechanism Mount
+   ========================================== */
+
+.center-dance-deck {
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================
+   FAR-RIGHT: 4-BOX AUDIO QUAD GRID
+   ========================================== */
+
+.far-right-audio-quad {
+    padding-right: 6px;
+}
+
+.audio-quad-inverted-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 6px 12px;
+    padding: 2px 4px;
+}
+
+.quad-cell.controls-inside {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quad-cell.controls-inside:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.audio-power-push-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 35% 35%, 
+        #550000 0%, 
+        #1a0000 100%
+    );
+    border: 1px solid #1a0c02;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
     transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
-
-.flipper-switch.on .flipper-handle {
-    top: -1px;
-    transform: translateX(-50%) rotateX(-15deg);
-    box-shadow: 
-        0 -2px 4px rgba(255, 215, 0, 0.4),
-        0 3px 6px rgba(0, 0, 0, 0.9), 
-        inset 0 1px 1px rgba(255, 255, 255, 0.8)   
-    ;
-}
-
-.flipper-switch.on .flipper-pin-indicator {
-    background: #ffe082;
-    box-shadow: 0 0 6px #ffd700;
-}
-
-.flipper-switch.off .flipper-handle {
-    top: 17px;
-    transform: translateX(-50%) rotateX(15deg);
-    background: linear-gradient(
-        180deg, 
-        #6e5021 0%, 
-        #3a280d 100%
-    );
-    box-shadow: 
-        0 2px 4px rgba(0, 0, 0, 0.9),
-        inset 0 1px 2px rgba(0, 0, 0, 0.8)
-    ;
-}
-
-.dimmer-control-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.right-wing-top-controls {
-   display: flex;
-   flex-direction: row;
-   align-items: center;
-   justify-content: space-around;
-   gap: 4px;
-   width: 100%;
-}
-
-.push-button-wrapper,
-.volume-control-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-}
-
-.steampunk-push-btn {
-    width: 36px;
-    height: 36px;
+.audio-power-push-btn.active-glow {
     background: radial-gradient(
         circle at 35% 35%, 
-        #573e19, 
-        #1c0901
+        #ff3366 0%, 
+        #cc0033 70%, 
+        #660011 100%
     );
-    border: 2px solid #573e19;
-    border-radius: 50%;
-    position: relative;
-    cursor: pointer;
-    outline: none;
+    border-color: #ff99bb;
     box-shadow: 
-        0 4px 6px rgba(0, 0, 0, 0.8), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.2)
+        0 0 6px #ff0055, 
+        inset 0 1px 0 rgba(255, 255, 255, 0.6)
     ;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-.btn-cap {
-    width: 20px;
-    height: 20px;
+.push-inner-ruby {
+    width: 4px;
+    height: 4px;
     border-radius: 50%;
-    background: linear-gradient(
-        180deg, 
-        #f7d08b 0%, 
-        #b5873d 50%, 
-        #6e4f1b 100%
-    );
-    border: 1px solid #1a1205;
-    transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.steampunk-push-btn.on .btn-cap {
-    transform: translateY(2px);
-    box-shadow: inset 0 2px 4px #000, 0 0 8px #ff0055;
-    background: linear-gradient(
-        180deg, 
-        #ff4488 0%, 
-        #cc0044 100%
-    );
-}
-
-.steampunk-push-btn.off .btn-cap {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-}
-
-.push-btn-label {
-    margin-top: 6px;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 0.65rem;
-    color: #b5873d;
-    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.6);
 }

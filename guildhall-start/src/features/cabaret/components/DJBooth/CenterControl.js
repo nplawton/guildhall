@@ -1,6 +1,6 @@
 import React from "react";
 import SliderControl from "./subsomponents/SliderControl";
-import DanceMechanism from "./subsomponents/DanceMechanism";
+import SteampunkDisplay from "./subsomponents/SteampunkDisplay";
 import "../../styles/CenterControl.css";
 
 export default function CenterControl({
@@ -8,8 +8,12 @@ export default function CenterControl({
     onChangeBpm,
     lightSpeed = 50,
     onChangeLightSpeed,
-    activeMode = "I",
-    onSelectMode
+    bass = 50,
+    lightPower = true,
+    soundPower = true,
+    lightDimmer = 100,
+    activeMode = null,
+    activeModeName = "DORMANT"
 }) {
 
     const getLitCount = (val) => Math.round((val / 100) * 6);
@@ -29,6 +33,18 @@ export default function CenterControl({
 
         <div className="center-control-container">
 
+            <div className="center-display-deck">
+                <SteampunkDisplay 
+                    modeName={activeModeName}
+                    colorCode={activeMode}
+                    floorOpacity={lightDimmer}
+                    speed={lightSpeed}
+                    bass={bass}
+                    lightPower={lightPower}
+                    soundPower={soundPower}
+                />
+            </div>
+
             <div className="center-sliders-meter-deck">
 
                 <div className="deck-column left-slider-col">
@@ -39,7 +55,7 @@ export default function CenterControl({
                         max={100}
                         value={lightSpeed}
                         onChange={onChangeLightSpeed}
-                        height={120}
+                        height={110}
                     />
 
                     <div className="flipper-cast-plaque">
@@ -113,7 +129,7 @@ export default function CenterControl({
                         max={180}
                         value={bpm}
                         onChange={onChangeBpm}
-                        height={120}
+                        height={110}
                     />
 
                     <div className="flipper-cast-plaque">
@@ -126,13 +142,6 @@ export default function CenterControl({
 
             </div>
 
-            <div className="center-dance-mechanism-deck">
-                <DanceMechanism 
-                    activeMode={activeMode}
-                    onSelectMode={onSelectMode}
-                />
-            </div>            
-            
         </div>
 
     );

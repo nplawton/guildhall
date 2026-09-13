@@ -1,78 +1,50 @@
-.top-rack-tray-perspective {
-    width: 100%;
-    max-width: 480px;
-    height: 129px;
-    perspective: 600px;
-    position: relative;
-    z-index: 4;
-    overflow: visible;
-    margin-top: -6px;
-}
-
-.top-rack-tray-base {
-    width: 100%;
-    background: linear-gradient(
-        180deg,
-        #120b05 0%,
-        #2b1d0e 60%,
-        #1a1006 100%
-    );
-    border: 2px solid #573e19;
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    padding: 10px 8px 0 8px;
-    box-shadow:
-        0 8px 16px rgba(0, 0, 0, 0.9),
-        inset 0 1px 0 rgba(247, 208, 139, 0.3)
-    ;
-    transform: rotateX(6deg);
-    transform-origin: bottom center;
+.top-rack-container-480 {
+    width: 480px;
+    height: 70px;
+    background: transparent;
+    border: none;
     position: relative;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    justify-content: flex-end;
+    user-select: none;
+    overflow: visible;
+    z-index: 4;
 }
 
-.tray-back-tier {
-    width: 100%;
-    background: rgba(10, 6, 2, 0.7);
-    border: 1px solid #3e2a10;
-    border-radius: 4px;
-    padding: 3px 2px;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-}
-
-.mode-tubes-row {
+.top-rack-back-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 370px;
+    max-width: 400px;
+    margin: 0 auto -28px auto;
+    position: relative;
+    padding: 0 4px;
+    box-sizing: border-box;
 }
 
-.mode-tube-item {
+.mode-tube-node {
     cursor: pointer;
-    flex-shrink: 0;
     transition: transform 0.15s ease;
 }
 
-.mode-tube-item:hover {
-    transform: translateY(-3px) scale(1.05);
+.mode-tube-node:hover {
+    transform: translateY(-3px) scale(1.08);
 }
 
-.tray-front-tier {
+.top-rack-deck-components {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 12px;
+    padding: 0 16px;
     position: relative;
-    z-index: 2;
+    z-index: 4;
+    margin-bottom: -11px;
 }
 
-.foreground-unit {
+.deck-component {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,23 +55,32 @@
     gap: 2px;
 }
 
-.tray-front-beveled-trim {
-    height: 14px;
+.svg-3d-base-wrapper {
+    position: relative;
     width: 100%;
-    background: linear-gradient(
-        180deg, 
-        #f7d08b 0%, 
-        #b5873d 50%, 
-        #3a2205 100%);
-    border-radius: 0 0 2px 2px;
+    height: 28px;
+    z-index: 3;
+}
+
+.top-rack-svg-base {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.svg-front-face-plaques {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 100%;
+    height: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 12px;
     box-sizing: border-box;
-    position: relative;
     z-index: 5;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
 }
 
 .cast-brass-plaque {
@@ -108,37 +89,37 @@
         #1f150a 0%, 
         #0a0603 100%
     );
-    border: 1.5px solid #d4af37;
+    border: 1px solid #d4af37;
     border-radius: 3px;
     padding: 1px 5px;
     display: flex;
     align-items: center;
     gap: 3px;
     box-shadow: 
-        0 3px 6px rgba(0, 0, 0, 0.9),
-        inset 0 0 4px rgba(212, 175, 55, 0.3);
-    transform: translateY(-1px);
+        0 2px 4px rgba(0, 0, 0, 0.9),
+        inset 0 0 3px rgba(212, 175, 55, 0.3)
+    ;
+    pointer-events: auto;
 }
 
 .plaque-text {
     font-family: 'Courier New', monospace;
     font-weight: 900;
-    font-size: 0.5rem;
+    font-size: 0.45rem;
     color: #f7d08b;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-shadow: 0 1px 2px #000;
 }
 
 .plaque-star-rivet {
-    font-size: 0.42rem;
+    font-size: 0.38rem;
     color: #d4af37;
-    text-shadow: 0 0 2px rgba(212, 175, 55, 0.8);
 }
 
 .top-rack-whistle-assembly {
     position: absolute;
-    right: -5px;
-    top: 14px;
+    right: -17px;
+    top: 105px;
     width: 14px;
     height: 48px;
     display: flex;

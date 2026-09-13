@@ -5,23 +5,43 @@ The Guild Hall is a *Dungeons & Dragons* (D&D) inspired website using Knex/Postg
 
 ## 🏰 Guild Navigation
 
-Dynamic and thematic navigation is critical for party members as they traverse the Guild Hall. Rather than generic web links, the global navigation menu automatically adapts its aesthetics, materials, and conduits to mirror the room currently being explored.
+Dynamic and thematic navigation is critical for party members as they traverse the Guild Hall. Rather than relying on generic web components, the global navigation menu automatically adapts its aesthetics, materials, and hardware conduits to mirror the room currently being explored.
 
 * **🍻 The Main Hall (The Party):** Warm dark oak paneling, forged wrought-iron brackets, and amber firelight shadows. Represented by a foaming tavern tankard (`🍻`).
 
+![Main Hall Nav Display Collapse](guildhall-start/src/assets/images/mainhall/main_hall_nav_display_collapse.png)
+
 ![Main Hall Nav Display](guildhall-start/src/assets/images/mainhall/main_hall_nav_display.png)
 
-* **📜 The DM Sanctum (The Dungeon Master):** Gold-leaf stamped cursive, wax-draped parchment edges, and a scholar's dark mahogany trim. Represented by the rolled campaign scroll (`📜`).
+* **📜 The DM Sanctum (The Dungeon Master):** Gold-leaf stamped cursive, wax-draped parchment edges, and a scholar's dark mahogany trim. Unlock the DM drawer to transition to another party member's file, highlighted by a deep, rich mahogany spine with a glowing red wax seal. Represented by the rolled campaign scroll (`📜`).
 
-* **🔮 The Star-Lit Grotto (The Sorcerer):** Deep purple velvet textures with pulsing, floating arcane sigils and glowing particle borders. Represented by the crystal orb (`🔮`).
+![Sanctum Nav Dispaly Collapse](./guildhall-start/src/assets/images/sanctum/sanctum_nav_display_collapse.png)
 
-* **🎲 The Whispering Casket (The Rogue):** Scarred mahogany wood grain, brass coin accents, leather binding straps, and subtle lantern glow. Represented by the gaming die (`🎲`).
+![Sanctum Nav Display](./guildhall-start/src/assets/images/sanctum/sanctum_nav_display.png)
 
-* **🕰️ The Clockwork Cabaret (The Bard):** A 45-degree angled switchboard, glowing neon nixie tubes, and brass toggles. Represented by the clockwork mechanism (`🕰️`).
+* **🔮 The Star-Lit Grotto (The Sorcerer):** Deep purple velvet textures with pulsing, floating arcane sigils and glowing particle borders. Reach out and touch the rune of "Home" to choose a "Destiny", accented by a cavernous night sky with twinkling celestial stars. Represented by the crystal orb (`🔮`).
 
-* **⚙️ The Knowledge Foundry (The Archmage):** Riveted dark iron plates framed with polished brass bevels and a subtle cyan conduit glow. Represented by the ancient mechanical cog (`⚙️`).
+![Range Nav Display Collapse](./guildhall-start/src/assets/images/range/range_nav_display_collapse.png)
 
-![Foundry Nav Dispaly](guildhall-start/src/assets/images/bestiary/foundry_nav_display.png)
+![Range Nav Display](./guildhall-start/src/assets/images/range/range_nav_display.png)
+
+* **🎲 The Whispering Casket (The Rogue):** Scarred mahogany wood grain, 3D coin flip hardware, leather binding straps, and subtle lantern glow. Dare to take a chance and flip the Rogue's coin to see if Lady Luck is on your side—as you inspect your target, your luck just might roll from a Nat 1 to a Nat 20. Represented by the gaming die (`🎲`).
+
+![Casket Nav Display Collapse](./guildhall-start/src/assets/images/casket/casket_nav_display_collapse.png)
+
+![Casket Nav Display](./guildhall-start/src/assets/images/casket/casket_nav_display.gif)
+
+* **🕰️ The Clockwork Cabaret (The Bard):** Cast brass bevels, dark rose glass switchboard panels, and ruby-neon vacuum tubes. Pull the 3D industrial knife switch down to flip the main power on, lighting up custom per-row filaments as you dance through the intricate inner workings of the Cabaret. Represented by the clockwork mechanism (`🕰️`).
+
+![Cabaret Nav Display Collapse](./guildhall-start/src/assets/images/cabaret/cabaret_nav_display_collapse.png)
+
+![Cabaret Nav Display](./guildhall-start/src/assets/images/cabaret/cabaret_nav_display.gif)
+
+* **⚙️ The Knowledge Foundry (The Archmage):** Riveted dark iron plates framed with polished brass bevels and an unpowered-to-active cyan conduit energy grid. Engaging the ancient brass gear powers up the arcane engine to open portals to new adventures. Represented by the mechanical cog (`⚙️`).
+
+![Foundry Nav Dispaly Collapse](./guildhall-start/src/assets/images/bestiary/foundry_nav_display_collapse.png)
+
+![Foundry Nav Display](./guildhall-start/src/assets/images/bestiary/foundry_nav_display.gif)
 
 ---
 
