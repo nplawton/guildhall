@@ -41,6 +41,16 @@
     transform: scale(0.92);
 }
 
+.plaque-dial-btn.unpowered {
+    cursor: default;
+    pointer-events: none;
+    filter: brightness(0.7);
+}
+
+.plaque-dial-btn.unpowered:hover {
+    transform: none;
+}
+
 .moon-dial-svg {
     width: 22px;
     height: 22px;
@@ -55,7 +65,13 @@
     height: 22px;
     filter: 
         drop-shadow(0 0 4px rgba(255, 215, 0, 0.85)) 
-        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9))
+    ;
+}
+
+.plaque-dial-btn.unpowered .sun-dial-svg,
+.plaque-dial-btn.unpowered .moon-dial-svg {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.9));
 }
 
 .dial-stamped-label {
@@ -83,11 +99,21 @@
     box-sizing: border-box;
 }
 
+.time-screen.unpowered {
+    background: #020804;
+    border-color: #0a180f;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.98);
+}
+
 .time-screen-label {
     font-family: 'Courier New', monospace;
     font-size: 0.38rem;
     color: #70d696;
     letter-spacing: 0.5px;
+}
+
+.time-screen.unpowered .time-screen-label {
+    color: rgba(30, 90, 50, 0.3);
 }
 
 .time-readout {
@@ -96,4 +122,9 @@
     font-size: 0.82rem;
     color: #4dfd8e;
     text-shadow: 0 0 6px #4dfd8e;
+}
+
+.time-screen.unpowered .time-readout {
+    color: rgba(20, 80, 40, 0.25);
+    text-shadow: none;
 }

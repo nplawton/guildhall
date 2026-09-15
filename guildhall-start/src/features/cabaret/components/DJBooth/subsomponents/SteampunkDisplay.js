@@ -8,7 +8,10 @@ export default function SteampunkDisplay({
     speed = 100,
     bass = 50,
     lightPower = true,
-    soundPower = true
+    soundPower = true,
+    volume = 80,
+    isMuted = false,
+    treble = 50
 }) {
 
     return (
@@ -39,27 +42,41 @@ export default function SteampunkDisplay({
                     {/* Screen Readout Content */}
                     <div className="screen-content">
                         {/* Status Header Line */}
-                        <div className="screen-header-row">
-                            <span className="screen-status-indicator left">
-                                LGT:<span className={lightPower ? "status-on" : "status-off"}>
+                        <div className="crt-status-header-row">
+                            <div className="status-badge">
+                                <span className="badge-label">
+                                LGT:</span>
+                                <span className={`badge-value ${lightPower ? "status-green" : "status-red"}`}>
                                     {lightPower ? "ON" : "OFF"}
                                 </span>
-                            </span>
+                            </div>
 
-                            <span className="screen-status-indicator right">
-                                SND:<span className={soundPower ? "status-on" : "status-off"}>
+                            <div className="status-badge">
+                                <span className="badge-label">VOL:</span>
+                                {!soundPower ? (
+                                    <span className="badge-value status-red">OFF</span>
+                                ) : (isMuted || volume === 0) ? (
+                                    <span className="badge-value status-amber">MUTED</span>
+                                ) : (
+                                    <span className="badge-value status-green">{volume}%</span>
+                                )}
+                            </div>
+
+                            <div className="status-badge">
+                                <span className="badge-label">SND:</span>
+                                <span className={`badge-value ${soundPower ? "status-green" : "status-red"}`}>
                                     {soundPower ? "ON" : "OFF"}
                                 </span>
-                            </span>
+                            </div>
                         </div>
 
                         {/* Center Active Mode Title Banner */}
                         <div className="screen-mode-banner">
                             <span className="screen-mode-code">
-                                [{colorCode}]
+                                [{lightPower ? colorCode : " "}]
                             </span>
                             <span className="screen-mode-title">
-                                {modeName}
+                                {lightPower ? modeName : "STANDBY"}
                             </span>
                         </div>
 
@@ -67,10 +84,10 @@ export default function SteampunkDisplay({
                         <div className="screen-telemetry-row">
                             <div className="telemetry-item">
                                 <span className="telemetry-label">
-                                    FLR BRIGHTNESS
+                                    FLR BRGHT
                                 </span>
-                                <span className="telemetry-val">
-                                    {floorOpacity}
+                                <span className={`telemetry-val ${!lightPower ? 'val-off' : ''}`}>
+                                    {lightPower ? floorOpacity : "OFF"}
                                 </span>
                             </div>
 
@@ -78,8 +95,8 @@ export default function SteampunkDisplay({
                                 <span className="telemetry-label">
                                     SPD MULT
                                 </span>
-                                <span className="telemetry-val">
-                                    {(speed / 100).toFixed(2)}x
+                                <span className={`telemetry-val ${!lightPower ? "val-off" : ''}`}>
+                                    {lightPower ? `${(speed / 100).toFixed(2)}x` : "OFF"}
                                 </span>
                             </div>
 
@@ -87,10 +104,20 @@ export default function SteampunkDisplay({
                                 <span className="telemetry-label">
                                     BASS RESP
                                 </span>
-                                <span className="telemetry-val">
-                                    {bass}%
+                                <span className={`telemetry-val ${!soundPower ? 'val-off' : ''}`}>
+                                    {soundPower ? `${bass}%` : "OFF"}
                                 </span>
                             </div>
+
+                            <div className="telemetry-cell">
+
+                                <div className="telemetry-label">TREB RESP</div>
+                                <div className={`telemetry-val ${!soundPower ? 'val-off' : ''}`}>
+                                    {!soundPower ? "OFF" : `${treble}%`}
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                     

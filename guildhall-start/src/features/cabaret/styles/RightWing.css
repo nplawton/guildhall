@@ -123,6 +123,26 @@
     ;
 }
 
+.oval-preset-btn.unpowered {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    filter: brightness(0.7);
+}
+
+.oval-preset-btn.unpowered:hover {
+    transform: none;
+    filter: brightness(0.7);
+}
+
+.oval-preset-btn.save-btn.unpowered.armed {
+    animation: none;
+    background: linear-gradient(
+        180deg,
+        #5c3d1e 0%,
+        #2b1a0a 100%
+    );
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
 .oval-preset-btn.save-btn {
     width: 22px; /* Slightly wider for 'REC/SET' label */
     background: linear-gradient(

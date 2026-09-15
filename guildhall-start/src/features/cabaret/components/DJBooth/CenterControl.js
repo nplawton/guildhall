@@ -13,7 +13,9 @@ export default function CenterControl({
     soundPower = true,
     lightDimmer = 100,
     activeMode = null,
-    activeModeName = "DORMANT"
+    activeModeName = "DORMANT",
+    volume = 80,
+    treble = 50
 }) {
 
     const getLitCount = (val) => Math.round((val / 100) * 6);
@@ -42,6 +44,8 @@ export default function CenterControl({
                     bass={bass}
                     lightPower={lightPower}
                     soundPower={soundPower}
+                    volume={volume}
+                    treble={treble}
                 />
             </div>
 
@@ -56,6 +60,7 @@ export default function CenterControl({
                         value={lightSpeed}
                         onChange={onChangeLightSpeed}
                         height={110}
+                        isPowerOn={lightPower}
                     />
 
                     <div className="flipper-cast-plaque">
@@ -80,9 +85,9 @@ export default function CenterControl({
 
                             {/* Column 1: Light Speed Ramp */}
                             <div className="meter-col">
-                                {Array.from({ length:6 }).map ((_, i) => {
+                                {Array.from({ length: 6 }).map ((_, i) => {
                                     const level = 6 - i;
-                                    const isLit = leftLitCount >= level;
+                                    const isLit = lightPower && (leftLitCount >= level);
                                     const color = METER_COLORS[level - 1];
                                     return(
                                         <div 
@@ -101,7 +106,7 @@ export default function CenterControl({
                             <div className="meter-col">
                                 {Array.from({ length: 6 }).map((_, i) => {
                                     const level = 6 - i;
-                                    const isLit = rightLitCount >= level;
+                                    const isLit = lightPower && soundPower && (rightLitCount >= level);
                                     const color = METER_COLORS[level - 1];
                                     return (
                                         <div 
@@ -130,6 +135,7 @@ export default function CenterControl({
                         value={bpm}
                         onChange={onChangeBpm}
                         height={110}
+                        isPowerOn={true}
                     />
 
                     <div className="flipper-cast-plaque">

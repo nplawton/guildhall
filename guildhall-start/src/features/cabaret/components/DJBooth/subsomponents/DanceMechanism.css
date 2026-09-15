@@ -88,6 +88,20 @@
     ;
 }
 
+.cog-socket-plate.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+.cog-socket-plate.disabled:hover {
+    filter: none;
+    transform: none;
+}
+
+.dance-mechanism-master-plate.unpowered {
+    filter: brightness(0.85);
+}
+
 .star-screw {
     position: absolute;
     font-size: 0.32rem;

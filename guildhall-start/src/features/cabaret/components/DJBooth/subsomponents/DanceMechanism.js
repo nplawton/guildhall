@@ -2,7 +2,11 @@ import React from "react";
 import "./DanceMechanism.css";
 import { MODES } from "../../../../../components/Navigation/modeConfig";
 
-export default function DanceMechanism({ activeMode = null, onSelectMode }) {
+export default function DanceMechanism({ 
+    activeMode = null, 
+    onSelectMode ,
+    lightPower = true
+}) {
 
     const activeModesList = MODES.filter((m) => m.modeNum > 0);
 
@@ -17,7 +21,7 @@ export default function DanceMechanism({ activeMode = null, onSelectMode }) {
 
             <div className="dance-cogs-grid">
                 {activeModesList.map((mode) => {
-                    const isActive = activeMode === mode.code;
+                    const isActive = lightPower && (activeMode === mode.code);
                     const teethCount = mode.modeNum * 2;
 
                     return (
@@ -25,8 +29,11 @@ export default function DanceMechanism({ activeMode = null, onSelectMode }) {
                         <div
                             key={mode.code}
                             className={`cog-socket-plate ${isActive ? "active-locked" : ""}`}
-                            onClick={() => onSelectMode && onSelectMode(mode.code)}
-                            title={`${mode.name} (${mode.label})`}
+                            onClick={() => {
+                                if (lightPower && onSelectMode) {
+                                    onSelectMode(mode.code);
+                                }
+                            }}
                         >
                             <div className="star-screw top-left">★</div>
                             <div className="star-screw top-right">★</div>

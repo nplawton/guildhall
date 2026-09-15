@@ -40,6 +40,17 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nixie-tube-container.unpowered .nixie-glass-envelope {
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(100, 100, 100, 0.5),
+        rgba(5, 4, 3, 0.95)
+    );
+    border-color: rgba(100, 80, 40, 0.2);
+    box-shadow: rgba(5, 4, 3, 0.95);
 }
 
 .nixie-mesh-grid {
@@ -54,22 +65,45 @@
     pointer-events: none;
 }
 
-.nixie-filament-bg {
-    position: absolute;
-    font-family: 'Courier New', monospace;
-    font-weight: bold;
-    font-size: 2rem;
-    color: rgba(60, 40, 20, 0.15);
-    pointer-events: none;
+.nixie-tube-container.unpowered .nixie-mesh-grid {
+    opacity: 0.1;
 }
 
+
+.nixie-filament-bg, 
 .nixie-filament-active {
     position: absolute;
     font-family: 'Courier New', monospace;
     font-weight: bold;
-    font-size: 2rem;
+    pointer-events: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nixie-tube-container.small .nixie-filament-bg,
+.nixie-tube-container.small .nixie-filament-active {
+    font-size: 0.85rem;
+}
+
+.nixie-tube-container.medium .nixie-filament-bg,
+.nixie-tube-container.medium .nixie-filament-active {
+    font-size: 1.15rem;
+}
+
+.nixie-tube-container.large .nixie-filament-bg,
+.nixie-tube-container.large .nixie-filament-active {
+    font-size: 1.6rem;
+}
+
+.nixie-filament-bg {
+    color: rgba(70, 40, 20, 0.12);
+    z-index: 1;
+}
+
+.nixie-filament-active {
     transition: color 0.3s ease, text-shadow 0.3s ease;
-    z-index: 2;
 }
 
 .nixie-glass-shine {

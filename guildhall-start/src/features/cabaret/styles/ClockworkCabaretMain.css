@@ -23,6 +23,7 @@
     align-items: center;
     overflow: hidden;
     box-sizing: border-box;
+    transition: filter 0.5s ease-in-out, background-color 0.5s ease-in-out;
 }
 
 .cabaret-room-stage::before {
@@ -42,4 +43,3 @@
     pointer-events: none;
     z-index: 0;
 }
-

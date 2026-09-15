@@ -7,7 +7,8 @@ export default function SliderControl({
     max = 100,
     value = 50,
     onChange,
-    height = 140
+    height = 140,
+    isPowerOn = true
 }) {
 
     const trackRef = useRef(null);
@@ -61,7 +62,7 @@ export default function SliderControl({
 
     return (
 
-        <div className="slider-control-wrapper" onWheel={handleWheel}>
+        <div className={`slider-control-wrapper ${!isPowerOn ? 'unpowered-slider' : ''}`} onWheel={handleWheel}>
 
             <div className="slider-track-container" style={{ height: `${height}px` }}>
 

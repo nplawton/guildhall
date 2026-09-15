@@ -1,13 +1,19 @@
 import React from "react";
 import './CogSpeaker.css';
 
-export default function CogSpeaker({ active = true, side = "left", speed = 120 }) {
+export default function CogSpeaker({ 
+    active = true, 
+    side = "left", 
+    speed = 120,
+    volume = 80 
+}) {
 
+    const isMoving = active && volume > 0;
     const animDuration = (60 / speed) * 8;
 
     return (
 
-        <div className={`cog-speaker-container ${active ? "active" : ""}`}>
+        <div className={`cog-speaker-container ${isMoving ? "active" : ""}`}>
 
             <svg viewBox="0 0 120 120" className="cog-speak-svg">
                 <defs>
@@ -27,7 +33,7 @@ export default function CogSpeaker({ active = true, side = "left", speed = 120 }
 
                 {/* Rotating Outer Gear Chassis */}
                 <g
-                    className={`cog-outer-ring ${active ? "spinning" : ""}`}
+                    className={`cog-outer-ring ${isMoving ? "spinning" : ""}`}
                     style={{ animationDuration: `${animDuration}s`, animationDirection: side === "left" ? "normal" : "reverse" }}
                 >
 
@@ -50,7 +56,7 @@ export default function CogSpeaker({ active = true, side = "left", speed = 120 }
                 {/* Speaker Cone Housing */}
                 <circle cx="60" cy="60" r="38" fill="#120d07" stroke="#3a2810" strokeWidth="2" />
 
-                <g className={`speaker-cone-pulse ${active ? "throbbing" : ""}`}>
+                <g className={`speaker-cone-pulse ${isMoving ? "throbbing" : ""}`}>
                   
                   {/* Speaker Rubber Surround Ring */}
                   <circle cx="60" cy="60" r="34" fill={`url(#speakerConeGrad-${side})`} stroke="#573e19" strokeWidth="2" />

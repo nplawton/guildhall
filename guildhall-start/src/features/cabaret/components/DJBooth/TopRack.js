@@ -25,14 +25,17 @@ export default function TopRack({
                     return (
                         <div
                             key={tube.code}
-                            className="mode-tube-node"
-                            onClick={() => onModeSelect && onModeSelect(tube.code)}
-                            title={`${tube.code} Mode`}
+                            className={`mode-tube-node ${lightPower ? 'disabled' : ''}`}
+                            onClick={() => {
+                                if (!lightPower) return;
+                                if (onModeSelect) onModeSelect(tube.code);
+                            }}
                         >
                             <NixieTube 
                                 value={tube.label}
                                 color={tube.color}
-                                active={isActive}
+                                active={lightPower && isActive}
+                                isPowerOn = {lightPower}
                                 size="medium"
                             />
                         </div>
@@ -49,6 +52,7 @@ export default function TopRack({
                         value="⚡"
                         color="#ffd700"
                         active={lightPower}
+                        isPowerOn={lightPower}
                         size="small"
                     />
 
@@ -63,6 +67,7 @@ export default function TopRack({
                                 value={digit}
                                 color="#ffaa00"
                                 active={lightPower}
+                                isPowerOn={lightPower}
                                 size="small"
                             />
                         ))}
@@ -75,7 +80,8 @@ export default function TopRack({
                     <NixieTube 
                         value="🎵"
                         color="#ff0055"
-                        active={soundPower}
+                        active={soundPower && lightPower}
+                        isPowerOn={lightPower}
                         size="small"
                     />
                         

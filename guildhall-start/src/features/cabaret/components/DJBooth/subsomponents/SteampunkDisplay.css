@@ -102,6 +102,15 @@
     box-sizing: border-box;
 }
 
+.steampunk-display-screen.unpowered {
+    background: radial-gradient(
+        circle at 50% 50%,
+        #020804 0%,
+        #010503 100%,
+    );
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.98);
+}
+
 .screen-scanlines {
     position: absolute;
     inset: 0;
@@ -143,15 +152,21 @@
     gap: 2px;
 }
 
-.screen-header-row {
+.steampunk-display-screen.unpowered .screen-content {
+    color: rgba(20, 70, 35, 0.2);
+    text-shadow: none;
+}
+
+.crt-status-header-row {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.52rem;
-    letter-spacing: 0.3px;
-    color: #70d696;
-    border-bottom: 1px dashed rgba(77, 253, 142, 0.3);
-    padding-bottom: 2px;
+    width: 100%;
+    padding: 2px 4px;
+    box-sizing: border-box;
+    border-bottom: 1px dashed rgba(247, 208, 139, 0.3);
+    margin-bottom: 4px;
 }
 
 .screen-label {
@@ -161,23 +176,39 @@
     font-size: 0.5rem;
 }
 
-.screen-status-indicator {
-    font-size: 0.48rem;
-    color: #6bb386;
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.55rem;
+    font-weight: 900;
 }
 
-.status-on {
-    color: #4dfd8e;
-    text-shadow: 0 0 4px #4dfd8e;
-    font-weight: bold;
-    margin-left: 1px;
+.badge-label {
+    color: #f7d08b;
+    opacity: 0.8;
 }
 
-.status-off {
-    color: #ff4444;
+.status-red {
+    color: #ff3333;
     text-shadow: 0 0 4px #ff0000;
-    font-weight: bold;
-    margin-left: 1px;
+}
+
+.status-amber {
+    color: #ffb700;
+    text-shadow: 0 0 4px #ff9900;
+    animation: amberMutedPulse 1.4s infinite alternate;
+}
+
+.status-green {
+    color: #33ff66;
+    text-shadow: 0 0 4px #00ff44;
+}
+
+@keyframes amberMutePulse {
+    0% { opacity: 0.7; }
+    100% { opacity: 1; }
 }
 
 .screen-mode-banner {
@@ -236,6 +267,18 @@
     font-size: 0.55rem;
     color: #f7d08b;
     text-shadow: 0 0 3px #f7d08b;
+}
+
+.telemetry-val.val-off {
+    color: #ff4444;
+    text-shadow: 0 0 3px #ff0000;
+}
+
+.steampunk-display-screen.unpowered .screen-mode-code,
+.steampunk-display-screen.unpowered .screen-mode-title,
+.steampunk-display-screen.unpowered .telemetry-val {
+    color: rgba(40, 90, 45, 0.25);
+    text-shadow: none;
 }
 
 .display-bezel-stamped-title {

@@ -13,29 +13,37 @@ import { getModeByCode, DEFAULT_MODE_CODE } from "../../../components/Navigation
 
 
 
-export default function DJBooth(props) {
-
-    const [energyLevel, setEnergyLevel] = useState(100);
+export default function DJBooth({
+    hours = 10,
+    minutes = 10,
+    onIncrementHours,
+    onIncrementMinutes,
+    mode,
+    setMode,
+    lightPower,
+    setLightPower,
+    lightDimmer,
+    setLightDimmer,
+    lightSpeed = 50,
+    setLightSpeed,
+    activeDice = {},
+    onTriggerDice,
+    bpm = 120,
+    setBpm
+}) {
+    
     const [isCuckooOpen, setIsCuckooOpen] = useState(false);
     const [activeMode, setActiveMode] = useState(DEFAULT_MODE_CODE);
-    const [bpm, setBpm] = useState(120);
 
-    const [lightPower, setLightPower] = useState(true);
-    const [lightDimmer, setLightDimmer] = useState(100);
-    const [lightSpeed, setLightSpeed] = useState(50);
+    
     const [soundPower, setSoundPower] = useState(true);
     const [volume, setVolume] = useState(80);
+    const [isMuted, setIsMuted] = useState(false);
+    const [prevVolume, setPrevVolume] = useState(80);
     const [bass, setBass] = useState(50);
-    const [treble, setTreble]=useState(50);
+    const [treble, setTreble] = useState(50);
 
-    const [activeDice, setActiveDice] = useState({
-        D4: false,
-        D6: false,
-        D8: false,
-        D10: false,
-        D12: false,
-        D20: false
-    });
+    const [energyLevel, setEnergyLevel] = useState(100);
 
     const activeModeObj = getModeByCode(activeMode);
     const activeModeName = activeModeObj ? activeModeObj.name : "DORMANT";
@@ -48,11 +56,34 @@ export default function DJBooth(props) {
         setBpm(mode ? mode.defaultBpm : 120);
     };
 
-    const handleTriggerDice = (diceType) => {
-        setActiveDice((prev) => ({
-            ...prev,
-            [diceType]: !prev[diceType]
-        }));
+    const handleToggleLightPower = () => {
+        if (setLightPower) {
+            setLightPower(prev => !prev);
+        }
+    };
+
+    const handleLightDimmerChange = (val) => {
+        if (setLightDimmer) {
+            setLightDimmer(val);
+        }
+    };
+
+    const handleToggleMute = () => {
+        if(isMuted) {
+            setVolume(prevVolume > 0 ? prevVolume : 80);
+            setIsMuted(false);
+        } else {
+            setPrevVolume(volume);
+            setVolume(0);
+            setIsMuted(true);
+        }
+    };
+
+    const handleVolumeChange = (newVal) => {
+        if (isMuted && newVal > 0) {
+            setIsMuted(false);
+        }
+        setVolume(newVal);
     };
     
     return(
@@ -71,35 +102,39 @@ export default function DJBooth(props) {
 
                 <MasterCommandBar 
                     lightPower={lightPower}
-                    onToggleLightPower={() => setLightPower(prev => !prev)}
+                    onToggleLightPower={handleToggleLightPower}
                     lightDimmer={lightDimmer}
-                    onChangeLightDimmer={(val) => setLightDimmer(val)}
+                    onChangeLightDimmer={handleLightDimmerChange}
+                     lightSpeed={lightSpeed}
                     isCuckooOpen={isCuckooOpen}
                     onToggleCuckoo={() => setIsCuckooOpen(prev => !prev)}
                     activeMode={activeMode}
                     activeModeName={activeModeName}
-                    lightSpeed={lightSpeed}
-                    bass={bass}
                     soundPower={soundPower}
                     onToggleSoundPower={() => setSoundPower(prev => !prev)}
+                    bass={bass}
+                    onChangeBass={(val) => setBass(val)}
                     volume={volume}
-                    onChangeVolume={(val) => setVolume(val)}
+                    onChangeVolume={handleVolumeChange}
+                    isMuted={isMuted}
+                    onToggleMute={handleToggleMute}
                     treble={treble}
                     onChangeTreble={(val) => setTreble(val)}
-                    onChangeBass={(val) => setBass(val)}
                 />
 
                 <div className="dj-booth-deck-row">
 
                     <LeftWing 
-                            lightPower={lightPower}
-                            onToggleLightPower={() => setLightPower(prev => !prev)}
-                            lightDimmer={lightDimmer}
-                            onChangeLightDimmer={(val) => setLightDimmer(val)}
-                            activeDice={activeDice}
-                            onTriggerDice={handleTriggerDice}
-                            bpm={bpm}
+                            lightPower={lightPower && energyLevel > 0}
                             soundPower={soundPower && energyLevel > 0}
+                            activeDice={activeDice}
+                            onTriggerDice={onTriggerDice}
+                            bpm={bpm}
+                            volume={volume}
+                            hours={hours}
+                            minutes={minutes}
+                            onIncrementHours={onIncrementHours}
+                            onIncrementMinutes={onIncrementMinutes}
                         />
 
                         <CenterControl 
@@ -110,16 +145,22 @@ export default function DJBooth(props) {
                             bass={bass}
                             activeMode={activeMode}
                             setActiveMode={handleModeSelect}
+                            lightPower={lightPower}
+                            soundPower={soundPower}
+                            lightDimmer={lightDimmer}
+                            activeModeName={activeModeName}
+                            volume={volume}
+                            isMuted={isMuted}
+                            treble={treble}
                         />
 
                         <RightWing 
+                            lightPower={lightPower && energyLevel > 0}
                             soundPower={soundPower && energyLevel > 0}
-                            onToggleSoundPower={() => setSoundPower(prev => !prev)}
-                            volume={volume}
-                            onChangeVolume={(val) => setVolume(val)}
                             activeDice={activeDice}
-                            ontriggerDice={handleTriggerDice}
+                            onTriggerDice={onTriggerDice}
                             bpm={bpm}
+                            volume={volume}
                         />
 
                 </div>

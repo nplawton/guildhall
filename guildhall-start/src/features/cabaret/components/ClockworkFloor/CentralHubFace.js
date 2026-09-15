@@ -1,12 +1,21 @@
 import React from "react";
 import '../../styles/CentralHubFace.css';
 
-export default function CentralHubFace({ hours = 10, minutes = 10 }) {
+export default function CentralHubFace({ 
+    hours = 10, 
+    minutes = 10,
+    lightPower = true 
+}) {
     
     const minuteAngle = minutes * 6;
     const hourAngle = (hours % 12) *30 + minutes * 0.5;
 
-    const secondaryHours = [30, 60, 120, 150, 210, 240, 300, 330]
+    const secondaryHours = [30, 60, 120, 150, 210, 240, 300, 330];
+
+    const sunColor = lightPower ? "#ffd700" : "#573e19";
+    const moonColor = lightPower ? "#ffffff" : "#6a7b8c";
+    const handStroke = lightPower ? "#d4af37" : "#6e4f1b";
+    const accentOpacity = lightPower ? 0.95 : 0.35;
     
     return (
         <g className="central-hub-face-group">
@@ -58,7 +67,7 @@ export default function CentralHubFace({ hours = 10, minutes = 10 }) {
 
             </g>
 
-            <g stroke="#d4af37" strokeWidth="1" opacity="0.65">
+            <g stroke="#d4af37" strokeWidth="1" opacity={lightPower ? "0.65" : "0.25"}>
                 {Array.from({ length: 48 }).map((_, i) => {
                     const deg = i * 7.5;
                     if(deg % 30 === 0) return null;
@@ -73,16 +82,27 @@ export default function CentralHubFace({ hours = 10, minutes = 10 }) {
                 })}
             </g>
 
-            <g stroke="#ffd700" strokeWidth="2.5" strokeLinecap="round" fill="none">
+            <g 
+                stroke={sunColor} 
+                strokeWidth="2.5" 
+                strokeLinecap="round" 
+                fill="none"
+                opacity={accentOpacity}
+            >
                 {secondaryHours.map(deg => (
                     <g key={`t-mark-${deg}`} transform={`rotate(${deg} 300 300)`}>
-                        <line x1="291" y1="190" x2="309" y2="190" stroke="#ffd700" strokeWidth="2" />
-                        <line x1="300" y1="190" x2="300" y2="204" stroke="#ffd700" strokeWidth="2.5" />
+                        <line x1="291" y1="190" x2="309" y2="190" stroke={sunColor} strokeWidth="2" />
+                        <line x1="300" y1="190" x2="300" y2="204" stroke={sunColor} strokeWidth="2.5" />
                     </g>
                 ))}
             </g>
 
-            <g fill="url(#agedBronzeEdgeGradHub)" stroke="#2b1c03" strokeWidth="0.8">
+            <g 
+                fill="url(#agedBronzeEdgeGradHub)" 
+                stroke="#2b1c03" 
+                strokeWidth="0.8"
+                opacity={lightPower ? "1" : "0.4"}
+            >
                 {[0, 90, 180, 270].map(deg =>(
                     <polygon 
                         key={`cardinal-arrow-${deg}`}
@@ -93,16 +113,16 @@ export default function CentralHubFace({ hours = 10, minutes = 10 }) {
             </g>
 
             <g transform={`rotate(${hourAngle} 300 300)`}>
-                <line x1="300" y1="300" x2="300" y2="228" stroke="#d4af37" strokeWidth="3.5" strokeLinecap="round" />
-                <polygon points="300,220 295,230 305,230" fill="#ffd700" stroke="#3b2b07" strokeWidth="0.5" />
+                <line x1="300" y1="300" x2="300" y2="228" stroke={handStroke} strokeWidth="3.5" strokeLinecap="round" opacity={accentOpacity}/>
+                <polygon points="300,220 295,230 305,230" fill={sunColor} stroke="#3b2b07" strokeWidth="0.5" />
                 <g transform="translate(300, 262)">
-                    <circle cx="0" cy="0" r="6" fill="#ffd700" stroke="#3b2b07" strokeWidth="0.8" />
+                    <circle cx="0" cy="0" r="6" fill={sunColor} stroke="#3b2b07" strokeWidth="0.8" />
                     {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => (
                         <line 
                             key={`sun-ray-${deg}`}
                             x1="0" y1="-6"
                             x2="0" y2="-11"
-                            stroke="#ffd700"
+                            stroke={sunColor}
                             strokeWidth="1.5"
                             transform={`rotate(${deg})`}
                         />
@@ -111,14 +131,15 @@ export default function CentralHubFace({ hours = 10, minutes = 10 }) {
             </g>
 
             <g transform={`rotate(${minuteAngle} 300 300)`}>
-                <line x1="300" y1="300" x2="300" y2="198" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" opacity="0.95" />
-                <circle cx="300" cy="196" r="3" fill="#ffffff" />
+                <line x1="300" y1="300" x2="300" y2="198" stroke={moonColor} strokeWidth="2.5" strokeLinecap="round" opacity={accentOpacity} />
+                <circle cx="300" cy="196" r="3" fill={moonColor} opacity={accentOpacity} />
                 <g transform="translate(310, 240) rotate(155)">
                     <path 
                         d="M 0,-11 A 11,11 0 1,1 -9,7 A 13,13 0 1,0 0,-11 Z"
-                        fill="#ffffff"
+                        fill={moonColor}
                         stroke="#1a1a1a"
                         strokeWidth="1.2"
+                        opacity={accentOpacity}
                     />
                 </g>
             </g>

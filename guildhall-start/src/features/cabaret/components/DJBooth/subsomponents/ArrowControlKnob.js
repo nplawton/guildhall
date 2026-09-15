@@ -13,42 +13,48 @@ export default function ArrowControlKnob({
     const [isDragging, setIsDragging] = useState(false);
     const dragStartY = useRef(0);
     const dragStartValue = useRef(value);
+    const safeValue = typeof value === 'number' && !isNaN(value) ? value : 50;
 
     const valueToDegress = (val) => {
         const pct = (val - min) / (max - min);
         return -135 + pct * 270;
     };
 
-    const currentDegress = valueToDegress(value);
+    const currentDegress = valueToDegress(safeValue);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
-        dragStartY.current = e.cilentY;
-        dragStartValue.current = value;
+        dragStartY.current = e.clientY;
+        dragStartValue.current = safeValue;
+
+        const handleMouseMove = (moveEvent) => {
+            const deltaY = dragStartY.current - moveEvent.clientY;
+            const range = max - min;
+            let newValue = dragStartValue.current + (deltaY * 0.5 * (range / 100));
+            newValue = Math.min(max, Math.max(min, Math.round(newValue)));
+            if (onChange && !isNaN(newValue)) {
+                onChange(newValue);
+            }
+        };
+
+        const handleMouseUp = () => {
+            setIsDragging(false);
+            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
+
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("mouseup", handleMouseUp);
     };
 
-    const handleMouseMove = (e) => {
-        const deltaY = dragStartY.current - e.cilentY;
-        const range = max - min;
-        let newValue = dragStartValue.current + (deltaY * 0.5 * (range / 100));
-        newValue = Math.min(max, Math.max(min, Math.round(newValue)));
-        if (onChange) onChange(newValue);
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseup", handleMouseUp);
-    };
-
     const handelWheel = (e) => {
-        e.prebentDefault();
+        e.preventDefault();
         const step = (max - min) / 20;
         const direction = e.deltaY < 0 ? 1 : -1;
-        let newValue = Math.min(max, Math.max(min, Math.round(value + direction * step)));
-        if (onChange) onChange(newValue);
+        let newValue = Math.min(max, Math.max(min, Math.round(safeValue + direction * step)));
+        if (onChange && !isNaN(newValue)){
+            onChange(newValue);
+        }
     };
 
     return (

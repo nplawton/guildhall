@@ -18,3 +18,49 @@
     height: 100%;
     overflow: visible;
 }
+
+@keyframes spotlightOrbit {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spotlight-orbit-group {
+    pointer-events: none;
+    will-change: transform;
+}
+
+@keyframes discoRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.disco-strobe-layer {
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+@keyframes shockwaveExpand {
+    0% {
+        transform: scale(0.3);
+        opacity: 1;
+        stroke-width: 8px;
+    }
+    100% {
+        transform: scale(1.25);
+        opacity: 0;
+        stroke-width: 1px;
+    }
+}
+
+.anthem-shockwave-ring {
+    transform-origin: 300px 300px;
+    animation: shockwaveExpand 1.2s ease-out infinite;
+}

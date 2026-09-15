@@ -5,27 +5,34 @@ export default function TimeDisplay({
     hours = 12,
     minutes = 0,
     onChangeHours,
-    onChangeMinutes
+    onChangeMinutes,
+    lightPower = true
 }) {
 
     const formattedTIme = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
 
     const handleSunClick = () => {
-        const nextHr = hours >= 12  ? 1 : hours + 1;
-        if(onChangeHours) onChangeHours(nextHr);
+        if (!lightPower) return;
+        if(onChangeHours) {
+            const nextHr = (hours % 12) + 1;
+            onChangeHours(nextHr);
+        }
     };
 
     const handleMoonClick = () => {
-        const nextMin = (minutes + 5) % 60;
-        if (onChangeMinutes) onChangeMinutes(nextMin)
+        if (!lightPower) return;
+        if (onChangeMinutes) {
+            const nextMin = (minutes + 1) % 60;
+            onChangeMinutes(nextMin);
+        }
     };
 
     return (
 
-        <div className="time-plaque-wrapper" title="Chrono Time Regulation">
+        <div className="time-plaque-wrapper">
 
             <div
-                className="plaque-dial-btn left-dial" 
+                className={`plaque-dial-btn left-dial ${!lightPower ? 'unpowered' : ''}`} 
                 onClick={handleSunClick} 
                 title="Increment Hour (Sun Dial)"
                 role="button"
@@ -59,7 +66,7 @@ export default function TimeDisplay({
 
             </div>
 
-            <div className="time-screen">
+            <div className={`time-screen ${!lightPower ? 'unpowered' : ''}`}>
                 <span className="time-screen-label">
                     SET TIME
                 </span>
@@ -70,7 +77,7 @@ export default function TimeDisplay({
 
 
             <div
-                className="plaque-dial-btn right-dial" 
+                className={`plaque-dial-btn right-dial ${!lightPower ? 'unpowered' : ''}`} 
                 onClick={handleMoonClick} 
                 title="Set Minute (Moon Dial)"
                 role="button"

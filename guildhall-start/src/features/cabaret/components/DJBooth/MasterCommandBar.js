@@ -29,7 +29,9 @@ export default function MasterCommandBar ({
     treble=50,
     onChangeTreble,
     bass=50,
-    onChangeBass
+    onChangeBass,
+    isMuted,
+    onToggleMute
 }) {
 
 
@@ -45,9 +47,8 @@ export default function MasterCommandBar ({
             <div className="command-section far-left-lighting">
 
                 <div 
-                    className="flipper-switch-unit"
+                    className={`flipper-switch-unit ${!lightPower ? 'unpowered-dull' : ''}`}
                     onClick={onToggleLightPower}
-                    title="Master Lighting Circuit"
                 >
 
                     <span className="switch-stamped-label">PWR</span>
@@ -58,7 +59,7 @@ export default function MasterCommandBar ({
 
                 </div>
 
-                <div className="dimmer-knob-unit" title="Lighting Filment Dimmer">
+                <div className={`dimmer-knob-unit ${!lightPower ? 'unpowered-dim' : ''}`}>
 
                     <span className="switch-stamped-label">DIM</span>
 
@@ -69,6 +70,7 @@ export default function MasterCommandBar ({
                         value={lightDimmer}
                         onChange={onChangeLightDimmer}
                         size="micro"
+                        isPowerOn={lightPower}
                     />
 
                 </div>
@@ -109,6 +111,7 @@ export default function MasterCommandBar ({
                 <DanceMechanism 
                     activeMode={activeMode}
                     onSelectMode={onSelectMode}
+                    lightPower={lightPower}
                 />
 
             </div>
@@ -120,7 +123,7 @@ export default function MasterCommandBar ({
                     <div className="quad-cell controls-inside">
                     
                         <button 
-                            className={`audio-push-btn ${soundPower ? "active-glow" : ""}`}
+                            className={`audio-push-btn ${soundPower && lightPower ? "active-glow" : ""}`}
                             onClick={onToggleSoundPower}
                             title="Toggle Sound Engine Power"
                             type="button"
@@ -132,7 +135,12 @@ export default function MasterCommandBar ({
 
                     </div>
 
-                    <div className="quad-cell controls-inside">
+                    <div 
+                        className={`quad-cell controls-inside volume-knob-wrapper ${isMuted ? "knob-muted" : ""}`}
+                        onClick={onToggleMute}
+                        title="Click to Mute / Unmute"
+                        style={{ cursor: "pointer" }}
+                    >
 
                         <ControlKnob 
                             label=""
@@ -143,7 +151,9 @@ export default function MasterCommandBar ({
                             size="micro"
                         />
 
-                        <span className="quad-stamped-label">VOL</span>
+                        <span className="quad-stamped-label">
+                            {isMuted ? "MUTED" : "VOL"}
+                        </span>
 
                     </div>
 

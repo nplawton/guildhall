@@ -7,11 +7,13 @@ import "../../styles/RightWing.css";
 export default function RightWing({
     bpm = 120,
     soundPower = true,
+    lightPower = true,
     activeDice = {},
     onTriggerDice,
     activePreset = null,
     onSelectPreset,
-    onSavePreset
+    onSavePreset,
+    volume=80
 }) {
 
     const [isSaveArmed, setIsSavedArmed] = useState(false);
@@ -40,14 +42,14 @@ export default function RightWing({
 
             {/* Layer 1: Oval Brass Prsets */}
             <div className="right-wing-presets-section">
-                <div className="presets-plate">
+                <div className={`presets-plate ${!lightPower ? 'unpowered' : ''}`}>
                     <span className="presets-label">
                         {isSaveArmed ? "SELECT SLOT TO SAVE" : "SCENE PRESETS"}
                     </span>
                     <div className="presets-buttons-row">
 
                         <button
-                            className={`oval-preset-btn save-btn ${isSaveArmed ? "armed" : ""}`}
+                            className={`oval-preset-btn save-btn ${isSaveArmed && lightPower ? "armed" : ""}  ${!lightPower ? "unpowered" : ""}`}
                             onClick={() => setIsSavedArmed(prev => !prev)}
                             title="Arm Save Mode then press 1-4"
                             type="button"
@@ -62,7 +64,7 @@ export default function RightWing({
                         {[1, 2, 3, 4].map((num) => (
                             <button 
                                 key={num}
-                                className={`oval-preset-btn ${activePreset === num ? "active" : ""}`}
+                                className={`oval-preset-btn ${activePreset === num && lightPower ? "active" : ""} ${!lightPower ? 'unpowered' : ''}`}
                                 onClick={() => onSelectPreset && onSelectPreset(num)}
                                 title={isSaveArmed ? `Save Current Scenec to Preset ${num}` : `Recall Preset ${num}`}
                                 type="button"
@@ -82,6 +84,7 @@ export default function RightWing({
                     active={soundPower}
                     side="right"
                     speed={bpm}
+                    volume={volume}
                 />
             </div>
 
@@ -95,8 +98,9 @@ export default function RightWing({
                         <DiceButton 
                             type="D20"
                             label="Fog / Stream Burst"
-                            active={!!activeDice.D20}
-                            onClick={() => onTriggerDice && onTriggerDice("D20")}
+                            active={lightPower && !!activeDice.D20}
+                            isPowerOn={lightPower}
+                            onClick={() => lightPower && onTriggerDice && onTriggerDice("D20")}
                         />
 
                         <div className="flipper-cast-plaque">
@@ -117,9 +121,10 @@ export default function RightWing({
 
                         <DiceButton
                             type="D10"
-                            label="BPM Shuffle"
-                            active={!!activeDice.D10}
-                            onClick={() => onTriggerDice && onTriggerDice("D10")}                    
+                            label="BPM & Mode Shuffle"
+                            active={lightPower && !!activeDice.D10}
+                            isPowerOn={lightPower || soundPower}
+                            onClick={() => (lightPower || soundPower) && onTriggerDice && onTriggerDice("D10")}                    
                         />
 
                     </div>
@@ -129,8 +134,9 @@ export default function RightWing({
                         <DiceButton 
                             type="D12"
                             label="Subterranean Reverse"
-                            active={!!activeDice.D12}
-                            onClick={() => onTriggerDice && onTriggerDice("D12")}
+                            active={lightPower && !!activeDice.D12}
+                            isPowerOn={lightPower}
+                            onClick={() => soundPower && onTriggerDice && onTriggerDice("D12")}
                         />
 
                         <div className="flipper-cast-plaque">

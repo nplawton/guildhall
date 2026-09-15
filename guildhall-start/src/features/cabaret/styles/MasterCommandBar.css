@@ -97,6 +97,16 @@
     cursor: pointer;
 }
 
+.flipper-switch-unit.unpowered-dull .flipper-toggle-lever {
+    background: linear-gradient(
+        180deg, 
+        #5c3d13 0%,
+        #2b1a0a 100%
+    );
+    border-color: #100501;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
 .switch-stamped-label,
 .quad-stamped-label {
     font-family: 'Courier New', monospace;
@@ -164,6 +174,16 @@
     border: 1px solid #1a0c02;
     border-radius: 1.5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dimmer-knob-unit.unpowered-dim {
+    opacity: 0.65;
+}
+
+.dimmer-knob-unit.unpowered-dim:hover,
+.dimmer-knob-unit.unpowered-dim * {
+    box-shadow: none;
+    filter: none;
 }
 
 /* ==========================================

@@ -8,11 +8,13 @@ export default function LeftWing({
     activeDice = {},
     onTriggerDice, 
     bpm = 120,
+    lightPower = true,
     soundPower = true,
     hours = 12,
     minutes = 0,
-    onChangeHours,
-    onChangeMinutes
+    onIncrementHours,
+    onIncrementMinutes,
+    volume = 80
 }) {
 
     return (
@@ -32,8 +34,9 @@ export default function LeftWing({
                 <TimeDisplay 
                     hours={hours}
                     minutes={minutes}
-                    onChangeHours={onChangeHours}
-                    onChangeMinutes={onChangeMinutes}
+                    onChangeHours={onIncrementHours}
+                    onChangeMinutes={onIncrementMinutes}
+                    lightPower={lightPower}
                 />
             </div>
 
@@ -43,6 +46,7 @@ export default function LeftWing({
                     active={soundPower}
                     side="left"
                     speed={bpm}
+                    volume={volume}
                 />
 
             </div>
@@ -55,14 +59,15 @@ export default function LeftWing({
                         
                         <div className="flipper-cast-plaque">
                             <span className="plaque-star-rivet">★</span>
-                            <span className="plaque-text">STROBE</span>
+                            <span className="plaque-text">SPOTLIGHT</span>
                             <span className="plaque-star-rivet">★</span>
                         </div>
                         
                         <DiceButton 
                             type="D4"
-                            label="Strobe Trigger"
-                            active={!!activeDice.D4}
+                            label="Spotlight Sweep"
+                            active={lightPower && !!activeDice.D4}
+                            isPowerOn={lightPower}
                             onClick={() => onTriggerDice && onTriggerDice("D4")}
                         />
                                                 
@@ -72,14 +77,15 @@ export default function LeftWing({
 
                         <DiceButton 
                             type="D6"
-                            label="Spotlight Sweep"
-                            active={!!activeDice.D6}
+                            label="Strobe Trigger"
+                            active={lightPower && !!activeDice.D6}
+                            isPowerOn={lightPower}
                             onClick={() => onTriggerDice && onTriggerDice("D6")}
                         />
 
                         <div className="flipper-cast-plaque">
                             <span className="plaque-star-rivet">★</span>
-                            <span className="plaque-text">SPOTLIGHT</span>
+                            <span className="plaque-text">STROBE</span>
                             <span className="plaque-star-rivet">★</span>
                         </div>
                         
@@ -92,7 +98,8 @@ export default function LeftWing({
                         <DiceButton 
                             type="D8"
                             label="Wildcard Pattern"
-                            active={!!activeDice.D8}
+                            active={lightPower && !!activeDice.D8}
+                            isPowerOn={lightPower}
                             onClick={() => onTriggerDice && onTriggerDice("D8")}
                         />
                         
