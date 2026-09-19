@@ -1,9 +1,13 @@
 import React from "react";
 import '../../styles/GearTrain.css';
 
-export default function GearTrain({ speed = 12 }) {
+export default function GearTrain({ 
+    speed = 12,
+    isReversed = false,
+    isDepleted = false 
+}) {
     return (
-        <div className="gear-train-wrapper">
+        <div className={`gear-train-wrapper ${isReversed ? 'is-reversed' : ''}`}>
             <svg
                 className="gear-train-svg"
                 viewBox="0 0 260 260"
@@ -29,7 +33,10 @@ export default function GearTrain({ speed = 12 }) {
 
                 <g
                     className="gear-group gear-large"
-                    style={{ animationDuration: `${speed}s`}}
+                    style={{ 
+                        animationDuration: `${speed}s`,
+                        animationPlayState: isDepleted ? 'paused' : 'running'
+                    }}
                     filter="url(#gearShadow)"
                 >
                     <circle cx="100" cy="140" r="60" fill="url(#gearBrassGrad)" stroke="#59430c" strokeWidth="2" />
@@ -52,13 +59,16 @@ export default function GearTrain({ speed = 12 }) {
                      <circle cx="100" cy="140" r="42" fill="#1f180a" />
                      <circle cx="100" cy="140" r="16" fill="url(#gearBrassGrad)" stroke="59430c" strokeWidth="1.5" />
                      <line x1="100" y1="98" x2="100" y2="182" stroke="url(#gearBrassGrad)" strokeWidth="8" />
-                     <line x1="58" y1="140" x2="142" y2="140" stroke="url(#gearBrassGrad" strokeWidth="8" />
+                     <line x1="58" y1="140" x2="142" y2="140" stroke="url(#gearBrassGrad)" strokeWidth="8" />
                      <circle cx="100" cy="140" r="8" fill="#0d0a04" />
                 </g>
 
                 <g
                     className="gear-group gear-medium"
-                    style={{animationDuration: `${speed * 0.66}s`}}
+                    style={{
+                        animationDuration: `${speed * 0.66}s`,
+                        animationPlayState: isDepleted ? 'paused' : 'running'
+                    }}
                     filter="url(#gearShadow)"
                 >
                     <circle cx="185" cy="85" r="40" fill="url(#gearBronzeGrad)" stroke="#3b280a" strokeWidth="2" />
@@ -85,7 +95,10 @@ export default function GearTrain({ speed = 12 }) {
 
                 <g
                     className="gear-group gear-small"
-                    style={{animationDuration: `${speed * 0.33}s`}}
+                    style={{
+                        animationDuration: `${speed * 0.33}s`,
+                        animationPlayState: isDepleted ? 'paused' : 'running'
+                    }}
                     filter="url(#gearShadow)"
                 >
                     <circle cx="185" cy="190" r="24" fill="url(#gearBrassGrad)" stroke="#59430c" strokeWidth="1.5" />

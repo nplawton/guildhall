@@ -69,12 +69,10 @@
 .quad-stamped-label {
     font-family: 'Courier New', monospace;
     font-weight: 900;
-    font-size: 0.5rem;
-    color: #ffe082;
-    text-shadow: 
-        0 1px 2px #000000,
-        0 0 4px rgba(0, 0, 0, 0.9);
-    letter-spacing: 0.6px;
+    font-size: 0.45rem;
+    color: #100501;
+    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.85);
+    letter-spacing: 0.4px;
     line-height: 1;
 }
 
@@ -107,48 +105,6 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 
-.switch-stamped-label,
-.quad-stamped-label {
-    font-family: 'Courier New', monospace;
-    font-weight: 900;
-    font-size: 0.35rem;
-    color: #100501;
-    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.85);
-    letter-spacing: 0.3px;
-    line-height: 1;
-}
-
-.flipper-toggle-housing {
-    width: 12px;
-    height: 24px;
-    background: #0d0a05;
-    border: 1px solid #1a0c02;
-    border-radius: 3px;
-    padding: 1.5px;
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    box-shadow: inset 0 2px 4px #000;
-    transition: align-items 0.15s ease;
-}
-
-.flipper-toggle-housing.engaged {
-    align-items: flex-end;
-}
-
-.flipper-toggle-lever {
-    width: 100%;
-    height: 9px;
-    background: linear-gradient(
-        180deg, 
-        #ffe082 0%, 
-        #b5873d 100%
-    );
-    border: 1px solid #1a0c02;
-    border-radius: 1.5px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
-}
-
 .flipper-toggle-housing {
     width: 14px;
     height: 28px;
@@ -170,7 +126,11 @@
 .flipper-toggle-lever {
     width: 100%;
     height: 10px;
-    background: linear-gradient(180deg, #ffe082 0%, #b5873d 100%);
+    background: linear-gradient(
+        180deg, 
+        #ffe082 0%, 
+        #b5873d 100%
+    );
     border: 1px solid #1a0c02;
     border-radius: 1.5px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
@@ -215,6 +175,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    perspective: 400px;
+    position: relative;
+    overflow: visible;
 }
 
 .cuckoo-double-doors {
@@ -224,6 +187,7 @@
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    perspective: 400px;
 }
 
 .cuckoo-door {
@@ -245,11 +209,13 @@
 .cuckoo-door.left-door {
     border-radius: 2px 0 0 2px;
     transform-origin: left center;
+    transform: rotateY(-115deg);
 }
 
 .cuckoo-door.right-door {
     border-radius: 0 2px 2px 0;
     transform-origin: right center;
+    transform: rotateY(115deg);
 }
 
 .cuckoo-double-doors.open .left-door {
@@ -281,6 +247,119 @@
 
 .cuckoo-hinge-pin.top { top: 1px; }
 .cuckoo-hinge-pin.bottom { bottom: 1px; }
+
+.cuckoo-bird-popout {
+    position: absolute;
+    width: 28px;
+    height: 22px;
+    background: radial-gradient(
+        circle at 40% 30%, 
+        #ffd700 0%, 
+        #b5873d 70%, 
+        #573e19 100%
+    );
+    border: 1px solid #1a0c02;
+    border-radius: 5px 12px 4px 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    transform: translateZ(-30px) scale(0.2);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.cuckoo-vault-housing.doors-open .cuckoo-bird-popout {
+    transform: translateZ(10px) scale(1.35);
+    opacity: 1;
+    animation: cuckooSquawkChrip 0.5s infinite alternate ease-in-out;
+}
+
+.cuckoo-beak {
+    position: absolute;
+    left: -8px;
+    top: 7px;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-right: 9px solid #ff4500;
+}
+
+.cuckoo-eye {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 4px;
+    height: 4px;
+    background: #000000;
+    border-radius: 50%;
+    box-shadow: 0 0 2px #ffffff;
+}
+
+.cuckoo-wing {
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 10px;
+    height: 9px;
+    background: #8a6d1b;
+    border: 0.5px solid #1a0c02;
+    border-radius: 2px 7px 2px 2px;
+}
+
+.cuckoo-warning-banner {
+    position: absolute;
+    top: 18px;
+    left: -12px;
+    bottom: auto;
+    background: linear-gradient(
+        180deg, 
+        #800000 0%, 
+        #3a0000 100%
+    );
+    border: 1px solid #ff4500;
+    border-radius: 2px;
+    padding: 2px 5px;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.9),
+        0 0 6px rgba(255, 69, 0, 0.6)
+    ;
+    white-space: nowrap;
+    z-index: 10;
+    transform-origin: top left;
+    transform: scale(0);
+    transition: transform 0.4s 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cuckoo-warning-banner::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 4px;
+    width: 3px;
+    height: 5px;
+    border-left: 1px solid #ffd700;
+    border-top: 1px solid #ffd700;
+}
+
+.cuckoo-warning-banner span {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.38rem;
+    color: #ffd700;
+    text-shadow: 0 1px 2px #000000;
+    letter-spacing: 0.8px;
+    display: block;
+}
+
+.cuckoo-vault-housing.doors-open .cuckoo-warning-banner {
+    transform: scale(0.85);
+}
+
+@keyframes cuckooSquawkChirp {
+    from { transform: translateZ(10px) scale(1) rotate(0deg); }
+    to { transform: translateZ(12px) scale(1.06) rotate(-4deg); }
+}
 
 /* ==========================================
    CENTER: Dance Mechanism Mount
@@ -320,8 +399,8 @@
 }
 
 .audio-power-push-btn {
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
     background: radial-gradient(
         circle at 35% 35%, 

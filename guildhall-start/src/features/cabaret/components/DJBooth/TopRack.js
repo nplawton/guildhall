@@ -1,5 +1,5 @@
-import React from "react";
-import NixieTube from "./subsomponents/NixieTube";
+import React, {useState, useEffect, useRef} from "react";
+import NixieTube from "./subcomponents/NixieTube";
 import "../../styles/TopRack.css";
 import { MODES } from "../../../../components/Navigation/modeConfig";
 
@@ -9,33 +9,59 @@ export default function TopRack({
     lightPower = true,
     soundPower = true,
     onModeSelect,
-    isDepleted = false
+    isDepleted = false,
+    isScrambling = false,
+    activeDice = {},
 }) {
 
     const activeTubes = MODES.filter((tube) => tube.modeNum > 0);
     const bpmDigits = String(bpm).padStart(3, "0").split("");
+    const isFogActive = !isDepleted && !!activeDice.D20;
+    const[whistleBurst, setWhistleBurst] = useState(false);
+    const prevFogState = useRef(isFogActive);
+
+    const isLightEffective = lightPower && !isDepleted;
+    const isSoundEffective = soundPower && !isDepleted;
+
+    useEffect(() => {
+        if (isFogActive && !prevFogState.current) {
+            setWhistleBurst(true);
+            const timer = setTimeout(() => setWhistleBurst(false), 700);
+            return () => clearTimeout(timer);
+        }
+        prevFogState.current = isFogActive;
+    }, [isFogActive]);
+
+    const steamPressureOpacity = isFogActive ? Math.min(0.9, 0.3 + (bpm / 200) * 0.5) : 0;
+    const plumeSpeed = isFogActive
+        ? (1.8 - (bpm / 200) * 1.2).toFixed(2)
+        : 1.5
+    ;
 
     return (
 
         <div className="top-rack-container-480">
 
             <div className="top-rack-back-row">
-                {activeTubes.map((tube) => {
-                    const isActive = activeMode === tube.code;
+                {activeTubes.map((tube, index) => {
+                    const isLit = isScrambling
+                    ? (index === (bpm % activeTubes.length))
+                    : (activeMode === tube.code);
+
                     return (
                         <div
                             key={tube.code}
-                            className={`mode-tube-node ${lightPower ? 'disabled' : ''}`}
+                            className={`mode-tube-node ${!isLightEffective ? 'disabled' : ''}`}
                             onClick={() => {
-                                if (!lightPower) return;
+                                if (!isLightEffective || isScrambling) return;
                                 if (onModeSelect) onModeSelect(tube.code);
                             }}
                         >
                             <NixieTube 
                                 value={tube.label}
                                 color={tube.color}
-                                active={lightPower && isActive}
-                                isPowerOn = {lightPower}
+                                active={isLightEffective && isLit}
+                                isPowerOn={isLightEffective}
                                 size="medium"
                             />
                         </div>
@@ -51,8 +77,8 @@ export default function TopRack({
                     <NixieTube 
                         value="⚡"
                         color="#ffd700"
-                        active={lightPower}
-                        isPowerOn={lightPower}
+                        active={isLightEffective}
+                        isPowerOn={isLightEffective}
                         size="small"
                     />
 
@@ -66,8 +92,8 @@ export default function TopRack({
                                 key={index}
                                 value={digit}
                                 color="#ffaa00"
-                                active={lightPower}
-                                isPowerOn={lightPower}
+                                active={isLightEffective}
+                                isPowerOn={isLightEffective}
                                 size="small"
                             />
                         ))}
@@ -80,8 +106,8 @@ export default function TopRack({
                     <NixieTube 
                         value="🎵"
                         color="#ff0055"
-                        active={soundPower && lightPower}
-                        isPowerOn={lightPower}
+                        active={isSoundEffective && isLightEffective}
+                        isPowerOn={isLightEffective}
                         size="small"
                     />
                         
@@ -166,13 +192,19 @@ export default function TopRack({
                 className="top-rack-whistle-assembly" 
                 title="Overpressure Vent Whistle"
             >
-                <div className={`steam-cloud-emitter ${isDepleted ? "regulated-steam" : ""}`}>
+                <div 
+                    className={`steam-cloud-emitter ${isFogActive || whistleBurst ? "releasing-steam" : ""} ${whistleBurst ? "initial-pop" : ""} ${isDepleted ? "regulated-steam" : ""}`}
+                    style={{
+                        '--steam-opacity': whistleBurst ? 1 : steamPressureOpacity,
+                        '--plume-speed': `${plumeSpeed}s`
+                    }}
+                >
                     <div className="steam-puff puff-1" />
                     <div className="steam-puff puff-2" />
                     <div className="steam-puff puff-3" />
                 </div>
 
-                <div className="whistle-office-cap" />
+                <div className="whistle-orifice-cap" />
                 <div className="whistle-brass-pipe">
                     <div className="pipe-slot" />
                 </div>

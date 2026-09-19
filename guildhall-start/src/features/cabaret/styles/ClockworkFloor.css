@@ -42,9 +42,14 @@
     }
 }
 
-.disco-strobe-layer {
+.disco-ball-layer {
     pointer-events: none;
     will-change: transform, opacity;
+}
+
+.clockwork-floor-stage.is-reversed .spotlight-orbit-group,
+.clockwork-floor-stage.is-reversed .disco-ball-layer {
+    animation-direction: reverse !important;
 }
 
 @keyframes shockwaveExpand {
@@ -63,4 +68,13 @@
 .anthem-shockwave-ring {
     transform-origin: 300px 300px;
     animation: shockwaveExpand 1.2s ease-out infinite;
+}
+
+@keyframes underGlassSwirl {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

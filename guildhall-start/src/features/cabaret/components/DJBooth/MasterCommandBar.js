@@ -1,9 +1,9 @@
 import React from "react";
 import "../../styles/MasterCommandBar.css";
 
-import DanceMechanism from "./subsomponents/DanceMechanism";
-import ControlKnob from "./subsomponents/ControlKnob";
-import ArrowControlKnob from "./subsomponents/ArrowControlKnob";
+import DanceMechanism from "./subcomponents/DanceMechanism";
+import ControlKnob from "./subcomponents/ControlKnob";
+import ArrowControlKnob from "./subcomponents/ArrowControlKnob";
 
 
 export default function MasterCommandBar ({
@@ -16,6 +16,7 @@ export default function MasterCommandBar ({
     //Cuckoo Door Props
     isCuckooOpen = false,
     onToggleCuckoo,
+    isDepleted = false,
 
     //Dance Mechanism Props
     activeMode=null,
@@ -34,10 +35,13 @@ export default function MasterCommandBar ({
     onToggleMute
 }) {
 
+    const isLightEffective = lightPower && !isDepleted;
+    const isSoundEffective = soundPower && !isDepleted;
+
 
     return (
 
-        <div className="master-command-bar-container">
+        <div className={`master-command-bar-container ${isDepleted ? 'is-depleted' : ''}`}>
 
             <div className="bar-rivet top-left">★</div>
             <div className="bar-rivet top-right">★</div>
@@ -47,19 +51,19 @@ export default function MasterCommandBar ({
             <div className="command-section far-left-lighting">
 
                 <div 
-                    className={`flipper-switch-unit ${!lightPower ? 'unpowered-dull' : ''}`}
+                    className={`flipper-switch-unit ${!isLightEffective ? 'unpowered-dull' : ''}`}
                     onClick={onToggleLightPower}
                 >
 
                     <span className="switch-stamped-label">PWR</span>
 
-                    <div className={`flipper-toggle-housing ${lightPower ? "engaged" : ""}`}>
+                    <div className={`flipper-toggle-housing ${isLightEffective ? "engaged" : ""}`}>
                         <div className="flipper-toggle-lever" />
                     </div>
 
                 </div>
 
-                <div className={`dimmer-knob-unit ${!lightPower ? 'unpowered-dim' : ''}`}>
+                <div className={`dimmer-knob-unit ${!isLightEffective ? 'unpowered-dim' : ''}`}>
 
                     <span className="switch-stamped-label">DIM</span>
 
@@ -70,7 +74,7 @@ export default function MasterCommandBar ({
                         value={lightDimmer}
                         onChange={onChangeLightDimmer}
                         size="micro"
-                        isPowerOn={lightPower}
+                        isPowerOn={isLightEffective}
                     />
 
                 </div>
@@ -80,13 +84,13 @@ export default function MasterCommandBar ({
             <div className="command-section left-center-cuckoo">
 
                 <div 
-                    className="cuckoo-vault-housing"
+                    className={`cuckoo-vault-housing ${isCuckooOpen || isDepleted ? "doors-open" : ""}`}
                     onClick={onToggleCuckoo}
                     title="Chrono Automaton Door Vault"
                 >
                     
 
-                    <div className={`cuckoo-double-doors ${isCuckooOpen ? "open" : "sealed"}`}>
+                    <div className={`cuckoo-double-doors ${isCuckooOpen || isDepleted ? "open" : "sealed"}`}>
 
                         <div className="cuckoo-door left-door">
                             <span className="door-emboss-ring" />
@@ -96,6 +100,16 @@ export default function MasterCommandBar ({
                             <span className="door-emboss-ring" />
                         </div>
 
+                    </div>
+
+                    <div className="cuckoo-bird-popout">
+                        <div className="cuckoo-beak" />
+                        <div className="cuckoo-eye" />
+                        <div className="cuckoo-wing" />
+
+                        <div className="cuckoo-warning-banner">
+                            <span>DEPLETED</span>
+                        </div>
                     </div>
 
                     <div className="cuckoo-hinge-pin top" />
@@ -112,6 +126,7 @@ export default function MasterCommandBar ({
                     activeMode={activeMode}
                     onSelectMode={onSelectMode}
                     lightPower={lightPower}
+                    isDepleted={isDepleted}
                 />
 
             </div>
@@ -123,7 +138,7 @@ export default function MasterCommandBar ({
                     <div className="quad-cell controls-inside">
                     
                         <button 
-                            className={`audio-push-btn ${soundPower && lightPower ? "active-glow" : ""}`}
+                            className={`audio-power-push-btn ${isSoundEffective && isLightEffective ? "active-glow" : ""}`}
                             onClick={onToggleSoundPower}
                             title="Toggle Sound Engine Power"
                             type="button"
@@ -149,6 +164,7 @@ export default function MasterCommandBar ({
                             value={volume}
                             onChange={onChangeVolume}
                             size="micro"
+                            isPowerOn={isSoundEffective}
                         />
 
                         <span className="quad-stamped-label">
@@ -165,6 +181,7 @@ export default function MasterCommandBar ({
                             max={100}
                             value={treble}
                             onChange={onChangeTreble}
+                            isPowerOn={isSoundEffective}
                         />
 
                         <span className="quad-stamped-label">TREB</span>
@@ -180,9 +197,10 @@ export default function MasterCommandBar ({
                             value={bass}
                             onChange={onChangeBass}
                             size="micro"
+                            isPowerOn={isSoundEffective}
                         />
 
-                        <span className="quad-stamped-label">BASS`</span>
+                        <span className="quad-stamped-label">BASS</span>
 
                     </div>
                 </div>

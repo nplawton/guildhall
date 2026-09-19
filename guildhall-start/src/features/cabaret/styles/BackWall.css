@@ -207,3 +207,14 @@
 .confetti-particle {
     animation: confettiBurstScatter 1.5s cubic-bezier(0.2, 0.8, 0.4, 1) infinite;
 }
+
+.is-reversed .gear-train-rotate,
+.is-reversed .clock-hand-sweep,
+.is-reversed .floor-ring-spinner {
+    animation-direction: reverse !important;
+}
+
+.back-wall-assembly.is-depleted {
+    filter: brightness(0.4) sepia(0.3);
+    transition: filter 0.8s ease-in-out;
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import TimeDisplay from "./subsomponents/TimeDisplay";
-import CogSpeaker from "./subsomponents/CogSpeaker";
-import DiceButton from "./subsomponents/DiceButton";
+import TimeDisplay from "./subcomponents/TimeDisplay";
+import CogSpeaker from "./subcomponents/CogSpeaker";
+import DiceButton from "./subcomponents/DiceButton";
 import "../../styles/LeftWing.css";
 
 export default function LeftWing({
@@ -14,12 +14,17 @@ export default function LeftWing({
     minutes = 0,
     onIncrementHours,
     onIncrementMinutes,
-    volume = 80
+    volume = 80,
+    isReversed = false,
+    isDepleted = false
 }) {
+
+    const isLightEffective = lightPower && !isDepleted;
+    const isSoundEffective = soundPower && !isDepleted;
 
     return (
 
-        <div className="left-wing-container">
+        <div className={`left-wing-container ${isDepleted ? 'is-depleted' : ''}`}>
 
             {/* Wing Title Header */}
             <div className="wing-header">
@@ -34,19 +39,20 @@ export default function LeftWing({
                 <TimeDisplay 
                     hours={hours}
                     minutes={minutes}
-                    onChangeHours={onIncrementHours}
-                    onChangeMinutes={onIncrementMinutes}
-                    lightPower={lightPower}
+                    onChangeHours={() => !isDepleted && onIncrementHours && onIncrementHours()}
+                    onChangeMinutes={() => !isDepleted && onIncrementMinutes && onIncrementMinutes()}
+                    lightPower={isLightEffective}
                 />
             </div>
 
             <div className="left-wing-speaker-section">
 
                 <CogSpeaker 
-                    active={soundPower}
+                    active={isSoundEffective}
                     side="left"
                     speed={bpm}
                     volume={volume}
+                    isReversed={isReversed}
                 />
 
             </div>
@@ -66,9 +72,9 @@ export default function LeftWing({
                         <DiceButton 
                             type="D4"
                             label="Spotlight Sweep"
-                            active={lightPower && !!activeDice.D4}
-                            isPowerOn={lightPower}
-                            onClick={() => onTriggerDice && onTriggerDice("D4")}
+                            active={isLightEffective && !!activeDice.D4}
+                            isPowerOn={isLightEffective}
+                            onClick={() => !isDepleted && onTriggerDice && onTriggerDice("D4")}
                         />
                                                 
                     </div>
@@ -78,9 +84,9 @@ export default function LeftWing({
                         <DiceButton 
                             type="D6"
                             label="Strobe Trigger"
-                            active={lightPower && !!activeDice.D6}
-                            isPowerOn={lightPower}
-                            onClick={() => onTriggerDice && onTriggerDice("D6")}
+                            active={isLightEffective && !!activeDice.D6}
+                            isPowerOn={isLightEffective}
+                            onClick={() => !isDepleted && onTriggerDice && onTriggerDice("D6")}
                         />
 
                         <div className="flipper-cast-plaque">
@@ -98,9 +104,9 @@ export default function LeftWing({
                         <DiceButton 
                             type="D8"
                             label="Wildcard Pattern"
-                            active={lightPower && !!activeDice.D8}
-                            isPowerOn={lightPower}
-                            onClick={() => onTriggerDice && onTriggerDice("D8")}
+                            active={isLightEffective && !!activeDice.D8}
+                            isPowerOn={isLightEffective}
+                            onClick={() => !isDepleted && onTriggerDice && onTriggerDice("D8")}
                         />
                         
                         <div className="flipper-cast-plaque">

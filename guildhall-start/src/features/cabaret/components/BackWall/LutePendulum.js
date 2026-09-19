@@ -1,9 +1,13 @@
 import React from "react";
 import '../../styles/LutePendulum.css';
 
-export default function LutePendulum({ swingDuration = 4 }) {
+export default function LutePendulum({ 
+    swingDuration = 4,
+    isReversed = false,
+    isDepleted = false 
+}) {
     return (
-        <div className="lute-pendulum-wrapper">
+        <div className={`lute-pendulum-wrapper ${isReversed ? 'is-reversed' : ''}`}>
             <svg
                 className="lute-pendulum-svg"
                 viewBox="0 0 200 400"
@@ -54,7 +58,14 @@ export default function LutePendulum({ swingDuration = 4 }) {
                     </filter>
                 </defs>
 
-                <g className="pendulum-swing-group" filter="url(#luteShadow)">
+                <g 
+                    className="pendulum-swing-group" 
+                    filter="url(#luteShadow)"
+                    style={{ 
+                        animationDuration: `${swingDuration}s`,
+                        animationPlayState: isDepleted ? 'paused' : 'running'
+                    }}
+                >
                     
                     {/* SoundBoard (Bottom Base) */}
                     <g className="soundboard-group">
@@ -72,7 +83,7 @@ export default function LutePendulum({ swingDuration = 4 }) {
                         />
 
                         <circle cx="100" cy="315" r="36" fill="#140b05" stroke="url(#luteBrassGrad)" strokeWidth="3" />
-                        <circle cx="100" cy="315" r="31" fill="none" stroke="#d4f37" strokeWidth="1" strokeDasharray="2,3" />
+                        <circle cx="100" cy="315" r="31" fill="none" stroke="#d4af37" strokeWidth="1" strokeDasharray="2,3" />
 
                         <text x="100" y="292" fill="#ffd700" fontSize="10" textAnchor="middle" fontFamily="serif" fontWeight="bold">XII</text>
                         <text x="126" y="319" fill="#ffd700" fontSize="10" textAnchor="middle" fontFamily="serif" fontWeight="bold">III</text>

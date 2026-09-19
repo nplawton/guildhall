@@ -27,6 +27,14 @@
 ;
     transform: rotateX(6deg);
     transform-origin: bottom center;
+    transition: box-shadow 0.3s ease;
+}
+
+.steampunk-display-housing.d8-electrical-surge {
+    box-shadow: 
+        0 0 14px #ffd700,
+        0 6px 12px rgba(0, 0, 0, 0.9), 
+        inset 0 0 8px #ffd700;
 }
 
 .display-rivet {
@@ -198,7 +206,7 @@
 .status-amber {
     color: #ffb700;
     text-shadow: 0 0 4px #ff9900;
-    animation: amberMutedPulse 1.4s infinite alternate;
+    animation: amberMutePulse 1.4s infinite alternate;
 }
 
 .status-green {
@@ -298,4 +306,27 @@
     white-space: nowrap;
     z-index: 5;
     pointer-events: none;
+}
+
+.steampunk-display-screen.is-reversed-crt {
+    box-shadow: inset 0 0 18px rgba(255, 110, 0, 0.45);
+    transition: box-shadow 0.4s ease-in-out;
+}
+
+.steampunk-display-screen.is-reversed-crt .screen-glass-glare {
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 140, 0, 0.18) 0%, 
+        transparent 65%
+    );
+}
+
+.steampunk-display-screen.is-reversed-crt .telemetry-val {
+    color: #ffaa33;
+    text-shadow: 0 0 5px rgba(255, 170, 51, 0.7);
+}
+
+.steampunk-display-screen.is-depleted-crt {
+    filter: brightness(0.35) sepia(0.8) hue-rotate(-50deg);
+    transition: filter 0.6s ease-in-out;
 }

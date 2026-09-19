@@ -3,29 +3,33 @@ import '../styles/ClockworkFloor.css';
 import CentralHubFace from "../components/ClockworkFloor/CentralHubFace";
 
 export default function ClockworkFloor({ 
-    hours, 
-    minutes, 
+    hours = 10, 
+    minutes = 10, 
     mode,
     lightPower = true,
-    lightDimmer = 100 ,
     lightSpeed = 50,
+    lightDimmer = 100,
     activeDice = {},
-    bpm = 120
+    bpm = 120,
+    isReversed = false,
+    isDepleted = false
 }) {
 
     const secondaryHourAngles = [30, 60, 120, 150, 210, 240, 300, 330];
     const cardinalHourAngles = [0, 90, 180, 270];
     const halfHourAngles = Array.from({ length: 12 }, (_, i) => i * 30 + 15);
 
-    const isSpotlightActive = lightPower && !!activeDice.D4;
-    const baseOpacity = lightPower ? (lightDimmer / 100) : 0;
-    const floorAmbientOpacity = isSpotlightActive ? baseOpacity * 0.35 : baseOpacity;
+    const isLightEffective = lightPower && !isDepleted;
+    const baseOpacity = isLightEffective ? (lightDimmer / 100) : 0;
+
+    const isSpotlightActive = isLightEffective && !!activeDice.D4;
+    const spotlightOpacity = isSpotlightActive ? baseOpacity : 0;
 
     const normalizedSpeed = Math.max(1, lightSpeed);
     const orbitDuration = (13 - (normalizedSpeed / 100) * 10.5).toFixed(2);
 
     const [strobeState, setStrobeState] = useState(false);
-    const isStrobeActive = lightPower && !!activeDice.D6;
+    const isStrobeActive = isLightEffective && !!activeDice.D6;
 
     useEffect(() => {
         if (!isStrobeActive) {
@@ -45,9 +49,13 @@ export default function ClockworkFloor({
     const discoRotationDuration = (18 - (normalizedSpeed / 100) * 16.5).toFixed(2);
     const discoOpacity = baseOpacity * (strobeState ? 0.95 : 0.3);
 
+    const isFogActive = isLightEffective && !!activeDice.D20;
+    const steamPressureOpacity = isFogActive ? Math.min(0.85, 0.35 + (bpm / 200) * 0.5) : 0;
+    const swirlDuration = (25 - (bpm / 180) * 18).toFixed(2);
+
     return (
         <div 
-            className="clockwork-floor-stage">
+            className={`clockwork-floor-stage ${isReversed ? 'is-reversed' : ''}`}>
             <svg
                 className="clockwork-floor-svg"
                 viewBox="0 0 600 600"
@@ -74,8 +82,8 @@ export default function ClockworkFloor({
                     </linearGradient>
 
                     <radialGradient id="clockworkPitGrad" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="#181008" />
-                        <stop offset="60%" stopColor="#0a0603" />
+                        <stop offset="0%" stopColor="#000000" />
+                        <stop offset="60%" stopColor="#050302" />
                         <stop offset="100%" stopColor="#020101" />
                     </radialGradient>
 
@@ -91,6 +99,17 @@ export default function ClockworkFloor({
                         <stop offset="70%" stopColor="rgba(180, 140, 70, 0.15)" />
                         <stop offset="100%" stopColor="rgba(40, 25, 10, 0.4)" />
                     </radialGradient>
+
+                    <radialGradient id="underGlassSteamGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
+                        <stop offset="45%" stopColor="#e6f0fa" stopOpacity="0.35" />
+                        <stop offset="75%" stopColor="#b0c4de" stopOpacity="0.15" />
+                        <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+                    </radialGradient>
+
+                    <filter id="steamBlur" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="6" />
+                    </filter>
 
                     <filter id="bronzeEdgeShadow" x="-20%" y="-20%" width="140%" height="140%">
                         <feDropShadow dx="0" dy="8" stdDeviation="8" floodColor="#000000" floodOpacity="0.85" />
@@ -124,7 +143,7 @@ export default function ClockworkFloor({
                     strokeWidth="2"
                     filter="url(#floorShadow)"
                 />
-                
+
                 {/* Layer 6: Deep Pit Void */}
                 <circle 
                     className="clockwork-pit-void"
@@ -132,10 +151,6 @@ export default function ClockworkFloor({
                     cy="300"
                     r="238"
                     fill="url(#clockworkPitGrad)"
-                    style={{
-                        opacity: floorAmbientOpacity,
-                        transition: 'opacity 0.4s ease-in-out'
-                    }}
                 />
 
                 {/* D6 Strobe Disco Ball */}
@@ -146,6 +161,7 @@ export default function ClockworkFloor({
                         style={{
                             transformOrigin: '300px 300px',
                             animation: `discoRotate ${discoRotationDuration}s linear infinite`,
+                            animationDirection: isReversed ? 'reverse' : 'normal',
                             opacity: discoOpacity,
                             transition: 'opacity 0.08s ease-in-out'
                         }}
@@ -154,9 +170,23 @@ export default function ClockworkFloor({
                         <circle 
                             cx="300" cy="300" r="238"
                             fill="url(#discoFlecksPattern)"
-                            filter="url(#lunarGlow)"
                         />
                         
+                    </g>
+                )}
+
+                {isFogActive && (
+                    <g
+                        className="under-glass-steam-layer"
+                        style={{
+                            transformOrigin: '300px 300px',
+                            animation: `underGlassSwirl ${swirlDuration}s linear infinite`,
+                            animationDirection: isReversed ? 'reverse' : 'normal',
+                            opacity: steamPressureOpacity,
+                            transition: 'opacity 0.4s ease-in-out'
+                        }}
+                    >
+                        <circle cx="300" cy="300" r="230" fill="url(#underGlassSteamGrad)" />
                     </g>
                 )}
 
@@ -231,23 +261,26 @@ export default function ClockworkFloor({
                         className="spotlight-orbit-group"
                         style={{
                             transformOrigin: '300px 300px',
-                            animation: `spotlightOrbit ${orbitDuration}s linear infinite`
+                            animation: `spotlightOrbit ${orbitDuration}s linear infinite`,
+                            animationDirection: isReversed ? 'reverse' : 'normal',
+                            opacity: spotlightOpacity,
+                            transition: 'opacity 0.15s ease-in-out'
                         }}
                     >
-                        <circle cx="300" cy="175" r="105" fill="url(#spotlightBeamGrad)" filter="url(#bronzeEdgeShadow)" />
+                        <circle cx="300" cy="100" r="45" fill="url(#spotlightBeamGrad)" filter="url(#bronzeEdgeShadow)" />
                         <circle 
                             cx="300" 
-                            cy="175" 
-                            r="42" 
+                            cy="100" 
+                            r="18" 
                             fill="#ffffff" 
-                            opacity="0.85" 
+                            opacity="0.9" 
                         />
                     </g>
                 )}
 
-                 {/* D8 WildCard Anthem Confetti */}
+                {/* D8 WildCard Anthem Confetti */}
 
-                {lightPower && activeDice.D8 && (
+                {isLightEffective && activeDice.D8 && (
                     <g className="anthem-floor-crescendo">
 
                         <circle 
@@ -282,11 +315,54 @@ export default function ClockworkFloor({
                     </g>
                 )}
 
+                {isFogActive && (
+                    <g
+                        className="outer-steam-edge-assembly"
+                        style={{
+                            opacity: steamPressureOpacity,
+                            transition: 'opacity 0.4s ease-in-out'
+                        }}
+                    >
+
+                        <circle 
+                        
+                            cx="300" cy="300" r="238"
+                            fill="none"
+                            stroke="#ffffff"
+                            strokeWidth="24"
+                            filter="url(#steamBlur)"
+                            opacity="0.6"
+                        />
+                        <circle 
+                            cx="300" cy="300" r="248"
+                            fill="none"
+                            stroke="#e0f0ff"
+                            strokeWidth="18"
+                            filter="url(#steamBlur)"
+                            opacity="0.35"
+                        />
+
+                    </g>
+                )}
+
                 {/* Layer 7: Compact Central Hub Face */}
                 <CentralHubFace 
                     hours={hours} 
                     minutes={minutes} 
                     lightPower={lightPower}
+                    isDepleted={isDepleted}
+                />
+
+                {/* Outer Bezel Frame Rims */}
+                <circle cx="300" cy="300" r="250" fill="none" stroke="url(#agedBronzeEdgeGrad)" strokeWidth="3" />
+                <circle 
+                    className="brass-edge-outer"
+                    cx="300"
+                    cy="300"
+                    r="282"
+                    fill="none"
+                    stroke="url(#agedBronzeEdgeGrad)"
+                    strokeWidth="14"
                 />
 
             </svg>

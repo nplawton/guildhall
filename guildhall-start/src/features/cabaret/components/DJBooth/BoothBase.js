@@ -1,19 +1,41 @@
 import React, { useState } from "react";
 import "../../styles/BoothBase.css";
 
-export default function BoothBase({ energyLevel = 100 }) {
+export default function BoothBase({ 
+    energyLevel = 100,
+    isDepleted = false,
+    onWindUp
+}) {
 
-    const [weightLevel, setWeightLevel] = useState(85);
     const [isCranking, setIsCranking] = useState(false);
+    const clampedEnergy = Math.max(0, Math.min(100, energyLevel))
+    const needleRotation = -60 + (clampedEnergy / 100) * 120;
 
-    const needleRotation = -60 + (energyLevel / 100) * 120;
+    const getWeightPosition = (weightIndex) => {
+        const minEnergy = weightIndex * 33.33;
+        const maxEnergy = (weightIndex + 1) * 33.33;
+
+        if (clampedEnergy <= minEnergy) return 0;
+        if (clampedEnergy >= maxEnergy) return 100;
+
+       return ((clampedEnergy - minEnergy) / (maxEnergy - minEnergy)) * 100;
+    };
+
+    const posW1 = getWeightPosition(0); //Left Weight
+    const posW2 = getWeightPosition(1); //Center Weight
+    const posW3 = getWeightPosition(2); //Right Weight
+    const dropMultiplier = 54;
 
     const handleCrank = (e) => {
         e.stopPropagation();
         if (isCranking) return;
         setIsCranking(true);
-        setWeightLevel((prev) => Math.min(100, prev + 15));
-        setTimeout(() => setIsCranking(false), 1000);
+        
+       if (onWindUp) {
+        onWindUp();
+       }
+        
+        setTimeout(() => setIsCranking(false), 800);
     };
 
     return (
@@ -31,7 +53,7 @@ export default function BoothBase({ energyLevel = 100 }) {
                     {/* Left Side: Circular Guage */}
                     <div 
                         className="booth-base-gauge-assembly" 
-                        title={`Cavort Energy: ${Math.round(energyLevel)}%`}
+                        title={`Cavort Energy: ${Math.round(clampedEnergy)}%`}
                     >
                         <div className="gauge-outer-bezel">
                             <div className="gauge-dial-face">
@@ -60,39 +82,65 @@ export default function BoothBase({ energyLevel = 100 }) {
                 </div>
 
                 <div className="cabinet-center-door">
+
                     <div className="glass-door-frame">
+
                         <div className="glass-reflection-shine" />
 
                         {/* Internal Workings */}
                         <div className="weights-chamber">
 
-                            <div 
-                                className="wire-line line-1" 
-                                style={{ height:`${100 - weightLevel * 0.7}%` }} 
-                            />
-                            <div 
-                                className="wire-line line-2" 
-                                style={{ height:`${100 - weightLevel * 0.8}%` }} 
-                            />
-                            <div 
-                                className="wire-line line-3" 
-                                style={{ height:`${100 - weightLevel * 0.65}%` }} 
-                            />
+                            <div className="weight-track">
 
-                            <div className="weights-container" style={{ transform: `translateY(${100 - weightLevel}px)` }}>
-                                <div className="brass-weight cylinder-1">
+                                <div className="wire-line" />
+
+                                <div 
+                                    className="brass-weight"
+                                    style={{
+                                        transform: `translateY(${(100 - posW1) * (dropMultiplier / 100)}px)` 
+                                    }}
+                                >
                                     <div className="weight-cap" />
                                     <div className="weight-body" />
                                 </div>
-                                <div className="brass-weight cylinder-2">
-                                    <div className="weight-cap" />
-                                    <div className="weight-body" />
-                                </div>
-                                <div className="brass-weight cylinder-3">
-                                    <div className="weight-cap" />
-                                    <div className="weight-body" />
-                                </div>
+
+
                             </div>
+
+                            <div className="weight-track">
+
+                                <div className="wire-line" />
+
+                                <div 
+                                    className="brass-weight"
+                                    style={{
+                                        transform: `translateY(${(100 - posW2) * (dropMultiplier / 100)}px)` 
+                                    }}
+                                >
+                                    <div className="weight-cap" />
+                                    <div className="weight-body" />
+                                </div>
+
+
+                            </div>
+
+                            <div className="weight-track">
+
+                                <div className="wire-line" />
+
+                                <div 
+                                    className="brass-weight"
+                                    style={{
+                                        transform: `translateY(${(100 - posW3) * (dropMultiplier / 100)}px)` 
+                                    }}
+                                >
+                                    <div className="weight-cap" />
+                                    <div className="weight-body" />
+                                </div>
+
+
+                            </div>
+
 
                         </div>
 

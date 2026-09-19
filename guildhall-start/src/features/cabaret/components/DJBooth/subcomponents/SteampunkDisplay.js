@@ -2,7 +2,6 @@ import React from "react";
 import './SteampunkDisplay.css';
 
 export default function SteampunkDisplay({
-    modeName = "CLASSIC BRASS",
     colorCode = "I",
     floorOpacity = 100,
     speed = 100,
@@ -11,14 +10,22 @@ export default function SteampunkDisplay({
     soundPower = true,
     volume = 80,
     isMuted = false,
-    treble = 50
+    treble = 50,
+    crtModeText = "DORMANT",
+    isReversed = false,
+    activeDice = {},
+    isDepleted = false
 }) {
+
+    const isLightEffective = lightPower && !isDepleted;
+    const isSoundEffective = soundPower && !isDepleted;
+    const isWildCardActive = isLightEffective && !!activeDice.D8;
 
     return (
         
         <div className="steampunk-display-perspective-wrapper">
 
-            <div className="steampunk-display-housing">
+            <div className={`steampunk-display-housing ${isWildCardActive ? "d8-electrical-surge" : ""}`}>
 
                 <div className="display-bezel-stamped-title">
                     CABARET DJ CONSOLE v3.03
@@ -34,9 +41,9 @@ export default function SteampunkDisplay({
                 <div className="display-visor-hood" />
 
                 {/* Recessed Glowing CRT / Glass Screen */}
-                <div className="steampunk-display-screen">
+                <div className={`steampunk-display-screen ${isReversed ? "is-reversed-crt" : ""}`}>
 
-                    <div className="screen-scanLines" />
+                    <div className="screen-scanlines" />
                     <div className="screen-glass-glare" />
 
                     {/* Screen Readout Content */}
@@ -46,14 +53,14 @@ export default function SteampunkDisplay({
                             <div className="status-badge">
                                 <span className="badge-label">
                                 LGT:</span>
-                                <span className={`badge-value ${lightPower ? "status-green" : "status-red"}`}>
-                                    {lightPower ? "ON" : "OFF"}
+                                <span className={`badge-value ${isLightEffective ? "status-green" : "status-red"}`}>
+                                    {isLightEffective ? "ON" : "OFF"}
                                 </span>
                             </div>
 
                             <div className="status-badge">
                                 <span className="badge-label">VOL:</span>
-                                {!soundPower ? (
+                                {!isSoundEffective ? (
                                     <span className="badge-value status-red">OFF</span>
                                 ) : (isMuted || volume === 0) ? (
                                     <span className="badge-value status-amber">MUTED</span>
@@ -64,8 +71,8 @@ export default function SteampunkDisplay({
 
                             <div className="status-badge">
                                 <span className="badge-label">SND:</span>
-                                <span className={`badge-value ${soundPower ? "status-green" : "status-red"}`}>
-                                    {soundPower ? "ON" : "OFF"}
+                                <span className={`badge-value ${isSoundEffective ? "status-green" : "status-red"}`}>
+                                    {isSoundEffective ? "ON" : "OFF"}
                                 </span>
                             </div>
                         </div>
@@ -73,10 +80,10 @@ export default function SteampunkDisplay({
                         {/* Center Active Mode Title Banner */}
                         <div className="screen-mode-banner">
                             <span className="screen-mode-code">
-                                [{lightPower ? colorCode : " "}]
+                                [{isDepleted ? "!" : (isLightEffective ? colorCode : " ")}]
                             </span>
                             <span className="screen-mode-title">
-                                {lightPower ? modeName : "STANDBY"}
+                                {isDepleted ? "DEPLETED" : (isLightEffective ? crtModeText : "STANDBY")}
                             </span>
                         </div>
 
@@ -86,8 +93,8 @@ export default function SteampunkDisplay({
                                 <span className="telemetry-label">
                                     FLR BRGHT
                                 </span>
-                                <span className={`telemetry-val ${!lightPower ? 'val-off' : ''}`}>
-                                    {lightPower ? floorOpacity : "OFF"}
+                                <span className={`telemetry-val ${!isLightEffective ? 'val-off' : ''}`}>
+                                    {isLightEffective ? floorOpacity : "OFF"}
                                 </span>
                             </div>
 
@@ -95,8 +102,11 @@ export default function SteampunkDisplay({
                                 <span className="telemetry-label">
                                     SPD MULT
                                 </span>
-                                <span className={`telemetry-val ${!lightPower ? "val-off" : ''}`}>
-                                    {lightPower ? `${(speed / 100).toFixed(2)}x` : "OFF"}
+                                <span className={`telemetry-val ${!isLightEffective ? "val-off" : ''}`}>
+                                    {isLightEffective 
+                                        ? `${isReversed ? "<<" : ""}${(speed / 100).toFixed(2)}x${isReversed ? ">>" : ""}` 
+                                        : "OFF"
+                                    }
                                 </span>
                             </div>
 
@@ -104,16 +114,16 @@ export default function SteampunkDisplay({
                                 <span className="telemetry-label">
                                     BASS RESP
                                 </span>
-                                <span className={`telemetry-val ${!soundPower ? 'val-off' : ''}`}>
-                                    {soundPower ? `${bass}%` : "OFF"}
+                                <span className={`telemetry-val ${!isSoundEffective ? 'val-off' : ''}`}>
+                                    {isSoundEffective ? `${bass}%` : "OFF"}
                                 </span>
                             </div>
 
                             <div className="telemetry-cell">
 
                                 <div className="telemetry-label">TREB RESP</div>
-                                <div className={`telemetry-val ${!soundPower ? 'val-off' : ''}`}>
-                                    {!soundPower ? "OFF" : `${treble}%`}
+                                <div className={`telemetry-val ${!isSoundEffective ? 'val-off' : ''}`}>
+                                    {!isSoundEffective ? "OFF" : `${treble}%`}
                                 </div>
 
                             </div>

@@ -1,6 +1,6 @@
 import React from "react";
-import SliderControl from "./subsomponents/SliderControl";
-import SteampunkDisplay from "./subsomponents/SteampunkDisplay";
+import SliderControl from "./subcomponents/SliderControl";
+import SteampunkDisplay from "./subcomponents/SteampunkDisplay";
 import "../../styles/CenterControl.css";
 
 export default function CenterControl({
@@ -13,10 +13,16 @@ export default function CenterControl({
     soundPower = true,
     lightDimmer = 100,
     activeMode = null,
-    activeModeName = "DORMANT",
     volume = 80,
-    treble = 50
+    treble = 50,
+    crtModeText = "DORMANT",
+    isReversed = false,
+    activeDice = {},
+    isDepleted = false
 }) {
+
+    const isLightEffective = lightPower && !isDepleted;
+    const isSoundEffective = soundPower && !isDepleted;
 
     const getLitCount = (val) => Math.round((val / 100) * 6);
     const leftLitCount = getLitCount(lightSpeed);
@@ -33,11 +39,11 @@ export default function CenterControl({
 
     return (
 
-        <div className="center-control-container">
+        <div className={`center-control-container ${isDepleted ? 'is-depleted' : ''}`}>
 
             <div className="center-display-deck">
                 <SteampunkDisplay 
-                    modeName={activeModeName}
+                    crtModeText={crtModeText}
                     colorCode={activeMode}
                     floorOpacity={lightDimmer}
                     speed={lightSpeed}
@@ -46,6 +52,9 @@ export default function CenterControl({
                     soundPower={soundPower}
                     volume={volume}
                     treble={treble}
+                    isReversed={isReversed}
+                    activeDice={activeDice}
+                    isDepleted={isDepleted}
                 />
             </div>
 
@@ -58,9 +67,9 @@ export default function CenterControl({
                         min={0}
                         max={100}
                         value={lightSpeed}
-                        onChange={onChangeLightSpeed}
+                        onChange={(val) => !isDepleted && onChangeLightSpeed && onChangeLightSpeed(val)}
                         height={110}
-                        isPowerOn={lightPower}
+                        isPowerOn={isLightEffective}
                     />
 
                     <div className="flipper-cast-plaque">
@@ -71,7 +80,7 @@ export default function CenterControl({
 
                 </div>
 
-                <div className="deck-column ceneter-meter-col">
+                <div className="deck-column center-meter-col">
 
                     <div className="nixie-meters-frame">
 
@@ -87,7 +96,7 @@ export default function CenterControl({
                             <div className="meter-col">
                                 {Array.from({ length: 6 }).map ((_, i) => {
                                     const level = 6 - i;
-                                    const isLit = lightPower && (leftLitCount >= level);
+                                    const isLit = isLightEffective && (leftLitCount >= level);
                                     const color = METER_COLORS[level - 1];
                                     return(
                                         <div 
@@ -106,7 +115,7 @@ export default function CenterControl({
                             <div className="meter-col">
                                 {Array.from({ length: 6 }).map((_, i) => {
                                     const level = 6 - i;
-                                    const isLit = lightPower && soundPower && (rightLitCount >= level);
+                                    const isLit = isLightEffective && isSoundEffective && (rightLitCount >= level);
                                     const color = METER_COLORS[level - 1];
                                     return (
                                         <div 
@@ -133,9 +142,9 @@ export default function CenterControl({
                         min={60}
                         max={180}
                         value={bpm}
-                        onChange={onChangeBpm}
+                        onChange={(val) => !isDepleted && onChangeBpm && onChangeBpm(val)}
                         height={110}
-                        isPowerOn={true}
+                        isPowerOn={!isDepleted}
                     />
 
                     <div className="flipper-cast-plaque">

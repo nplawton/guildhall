@@ -178,32 +178,34 @@
     height: 100%;
     position: relative;
     display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.weight-track {
+    position: relative;
+    height: 100%;
+    width: 20px;
+    display: flex;
     justify-content: center;
+    align-items: flex-start;
+    padding-top: 6px;
 }
 
 .wire-line {
     position: absolute;
-    top: 0;
-    width: 1px;
+    top: 0px;
+    bottom: 0px;
+    width: 1.5px;
     background: linear-gradient(
         180deg,
         #ffd700 0%,
         #b5873d 100%
     );
     box-shadow: 0 0 2px rgba(255, 215, 0, 0.5);
-}
-
-.wire-line.line-1{ left: 32%; }
-.wire-line.line-2{ left: 50%; }
-.wire-line.line-3 { left: 68%; }
-
-.weights-container {
-    position: absolute;
-    top: 6px;
-    display: flex;
-    gap: 6px;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: 2;
+    z-index: 1;
 }
 
 .brass-weight {
@@ -211,7 +213,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 2;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.9));
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
 }
 
 .weight-cap {
@@ -224,7 +230,7 @@
 
 .weight-body {
     width: 100%;
-    height: 45px;
+    height: 22px;
     background: linear-gradient(
         90deg,
         #6e4f1b 0%,

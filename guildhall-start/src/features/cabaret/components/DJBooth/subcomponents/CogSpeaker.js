@@ -5,11 +5,18 @@ export default function CogSpeaker({
     active = true, 
     side = "left", 
     speed = 120,
-    volume = 80 
+    volume = 80,
+    isReversed = false 
 }) {
 
     const isMoving = active && volume > 0;
     const animDuration = (60 / speed) * 8;
+
+    const baseDirection = side === "left" ? "normal" : "reverse";
+    const finalDirection = isReversed 
+        ? (baseDirection === "normal" ? "reverse" : "normal") 
+        : baseDirection
+    ;
 
     return (
 
@@ -34,7 +41,9 @@ export default function CogSpeaker({
                 {/* Rotating Outer Gear Chassis */}
                 <g
                     className={`cog-outer-ring ${isMoving ? "spinning" : ""}`}
-                    style={{ animationDuration: `${animDuration}s`, animationDirection: side === "left" ? "normal" : "reverse" }}
+                    style={{ 
+                        animationDuration: `${animDuration}s`, animationDirection: finalDirection
+                    }}
                 >
 
                   {Array.from({ length: 8 }).map((_, i) => (

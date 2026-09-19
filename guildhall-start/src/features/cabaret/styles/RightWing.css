@@ -144,7 +144,7 @@
 }
 
 .oval-preset-btn.save-btn {
-    width: 22px; /* Slightly wider for 'REC/SET' label */
+    width: 22px;
     background: linear-gradient(
         180deg,
         #f7d08b 0%,

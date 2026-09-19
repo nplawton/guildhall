@@ -1,9 +1,14 @@
 import React from "react";
 import '../../styles/BalanceSpring.css';
 
-export default function BalanceSpring() {
+export default function BalanceSpring({
+    isReversed =false,
+    isDepleted = false
+}) {
     return(
-        <div className="balance-spring-wrapper">
+        <div 
+            className={`balance-spring-wrapper ${isReversed ? 'is-reveresed' : ''}${isDepleted ? 'is-depleted' : ''}`}
+        >
             <svg
                 className="balance-spring-svg"
                 viewBox="0 0 200 200"

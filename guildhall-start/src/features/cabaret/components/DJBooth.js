@@ -18,8 +18,6 @@ export default function DJBooth({
     minutes = 10,
     onIncrementHours,
     onIncrementMinutes,
-    mode,
-    setMode,
     lightPower,
     setLightPower,
     lightDimmer,
@@ -29,46 +27,48 @@ export default function DJBooth({
     activeDice = {},
     onTriggerDice,
     bpm = 120,
-    setBpm
+    setBpm,
+    activePreset,
+    onSelectPreset,
+    onSavePreset,
+    crtModeText = "DORMANT",
+    activeMode = null,
+    setActiveMode,
+    isScrambling,
+    onModeSelect,
+    isReversed = false,
+    soundPower,
+    setSoundPower,
+    volume = 80,
+    setVolume,
+    isDepleted = false,
+    energyLevel = 100,
+    onWindUp
 }) {
     
     const [isCuckooOpen, setIsCuckooOpen] = useState(false);
-    const [activeMode, setActiveMode] = useState(DEFAULT_MODE_CODE);
 
-    
-    const [soundPower, setSoundPower] = useState(true);
-    const [volume, setVolume] = useState(80);
     const [isMuted, setIsMuted] = useState(false);
     const [prevVolume, setPrevVolume] = useState(80);
     const [bass, setBass] = useState(50);
     const [treble, setTreble] = useState(50);
 
-    const [energyLevel, setEnergyLevel] = useState(100);
-
-    const activeModeObj = getModeByCode(activeMode);
-    const activeModeName = activeModeObj ? activeModeObj.name : "DORMANT";
-
-    const handleModeSelect = (targetCode) => {
-        const cabaretCode = (activeMode === targetCode) ? DEFAULT_MODE_CODE : targetCode;
-        const mode = getModeByCode(cabaretCode);
-
-        setActiveMode(mode ? mode.code : null);
-        setBpm(mode ? mode.defaultBpm : 120);
-    };
-
     const handleToggleLightPower = () => {
+        if (isDepleted) return;
         if (setLightPower) {
             setLightPower(prev => !prev);
         }
     };
 
     const handleLightDimmerChange = (val) => {
+        if (isDepleted) return;
         if (setLightDimmer) {
             setLightDimmer(val);
         }
     };
 
     const handleToggleMute = () => {
+        if (isDepleted) return;
         if(isMuted) {
             setVolume(prevVolume > 0 ? prevVolume : 80);
             setIsMuted(false);
@@ -80,6 +80,7 @@ export default function DJBooth({
     };
 
     const handleVolumeChange = (newVal) => {
+        if (isDepleted) return;
         if (isMuted && newVal > 0) {
             setIsMuted(false);
         }
@@ -97,7 +98,10 @@ export default function DJBooth({
                     bpm={bpm}
                     lightPower={lightPower && energyLevel > 0}
                     soundPower={soundPower && energyLevel > 0}
-                    onModeSelect={handleModeSelect}
+                    onModeSelect={onModeSelect}
+                    isScrambling={isScrambling}
+                    activeDice={activeDice}
+                    isDepleted={isDepleted}
                 />
 
                 <MasterCommandBar 
@@ -106,20 +110,20 @@ export default function DJBooth({
                     lightDimmer={lightDimmer}
                     onChangeLightDimmer={handleLightDimmerChange}
                      lightSpeed={lightSpeed}
-                    isCuckooOpen={isCuckooOpen}
+                    isCuckooOpen={isCuckooOpen || isDepleted}
                     onToggleCuckoo={() => setIsCuckooOpen(prev => !prev)}
                     activeMode={activeMode}
-                    activeModeName={activeModeName}
                     soundPower={soundPower}
-                    onToggleSoundPower={() => setSoundPower(prev => !prev)}
+                    onToggleSoundPower={() => !isDepleted &&setSoundPower(prev => !prev)}
                     bass={bass}
-                    onChangeBass={(val) => setBass(val)}
+                    onChangeBass={(val) => !isDepleted && setBass(val)}
                     volume={volume}
                     onChangeVolume={handleVolumeChange}
                     isMuted={isMuted}
                     onToggleMute={handleToggleMute}
                     treble={treble}
-                    onChangeTreble={(val) => setTreble(val)}
+                    onChangeTreble={(val) => isDepleted && setTreble(val)}
+                    isDepleted={isDepleted}
                 />
 
                 <div className="dj-booth-deck-row">
@@ -135,6 +139,8 @@ export default function DJBooth({
                             minutes={minutes}
                             onIncrementHours={onIncrementHours}
                             onIncrementMinutes={onIncrementMinutes}
+                            isRevrsed={isReversed}
+                            isDepleted={isDepleted}
                         />
 
                         <CenterControl 
@@ -144,14 +150,17 @@ export default function DJBooth({
                             onChangeLightSpeed={(val) => setLightSpeed(val)}
                             bass={bass}
                             activeMode={activeMode}
-                            setActiveMode={handleModeSelect}
+                            setActiveMode={onModeSelect}
                             lightPower={lightPower}
                             soundPower={soundPower}
                             lightDimmer={lightDimmer}
-                            activeModeName={activeModeName}
+                            crtModeText={crtModeText}
                             volume={volume}
                             isMuted={isMuted}
                             treble={treble}
+                            isReversed={isReversed}
+                            activeDice={activeDice}
+                            isDepleted={isDepleted}
                         />
 
                         <RightWing 
@@ -161,12 +170,19 @@ export default function DJBooth({
                             onTriggerDice={onTriggerDice}
                             bpm={bpm}
                             volume={volume}
+                            activePreset={activePreset}
+                            onSelectPreset={onSelectPreset}
+                            onSavePreset={onSavePreset}
+                            isReversed={isReversed}
+                            isDepleted={isDepleted}
                         />
 
                 </div>
 
                 <BoothBase 
                     energyLevel={energyLevel}
+                    isDepleted={isDepleted}
+                    onWindUp={onWindUp}
                 />
 
             </div>

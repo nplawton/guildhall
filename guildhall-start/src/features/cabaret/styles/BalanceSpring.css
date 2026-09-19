@@ -8,6 +8,11 @@
     position: relative;
 }
 
+.balance-spring-wrapper.is-depleted .coiled-spring-path,
+.balance-spring-wrapper.is-depleted .central-pin-disc {
+    animation-play-state: paused !important;
+}
+
 .balance-spring-svg {
     width: 100%;
     height: 100%;

@@ -4,21 +4,28 @@ import '../../styles/CentralHubFace.css';
 export default function CentralHubFace({ 
     hours = 10, 
     minutes = 10,
-    lightPower = true 
+    lightPower = true ,
+    isReversed = false,
+    isDepleted = false
 }) {
     
-    const minuteAngle = minutes * 6;
-    const hourAngle = (hours % 12) *30 + minutes * 0.5;
+    const rawMinuteAngle = minutes * 6;
+    const rawHourAngle = (hours % 12) *30 + minutes * 0.5;
+
+    const minuteAngle = isReversed ? (360 - rawMinuteAngle) : rawMinuteAngle;
+    const hourAngle = isReversed ? (360 - rawHourAngle) : rawHourAngle;
 
     const secondaryHours = [30, 60, 120, 150, 210, 240, 300, 330];
 
-    const sunColor = lightPower ? "#ffd700" : "#573e19";
-    const moonColor = lightPower ? "#ffffff" : "#6a7b8c";
-    const handStroke = lightPower ? "#d4af37" : "#6e4f1b";
-    const accentOpacity = lightPower ? 0.95 : 0.35;
+    const effectiveLight = lightPower && !isDepleted;
+
+    const sunColor = effectiveLight ? "#ffd700" : "#573e19";
+    const moonColor = effectiveLight ? "#ffffff" : "#6a7b8c";
+    const handStroke = effectiveLight ? "#d4af37" : "#6e4f1b";
+    const accentOpacity = effectiveLight ? 0.95 : 0.35;
     
     return (
-        <g className="central-hub-face-group">
+        <g className={`central-hub-face-group ${isDepleted ? 'is-depleted' : ''}`}>
 
             <defs>
                 <linearGradient id="agedBronzeEdgeGradHub" x1="0%" y1="0%" x2="100%" y2="100%">
