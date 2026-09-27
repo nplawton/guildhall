@@ -6,18 +6,27 @@ export default function CentralHubFace({
     minutes = 10,
     lightPower = true ,
     isReversed = false,
-    isDepleted = false
+    isDepleted = false,
+    currentModeCode,
+    activeModeObj,
+    isLunarBeat,
+    currentStep
 }) {
     
     const rawMinuteAngle = minutes * 6;
-    const rawHourAngle = (hours % 12) *30 + minutes * 0.5;
+    const rawHourAngle = (hours % 12) * 30 + minutes * 0.5;
 
     const minuteAngle = isReversed ? (360 - rawMinuteAngle) : rawMinuteAngle;
     const hourAngle = isReversed ? (360 - rawHourAngle) : rawHourAngle;
-
     const secondaryHours = [30, 60, 120, 150, 210, 240, 300, 330];
 
     const effectiveLight = lightPower && !isDepleted;
+
+    const modeSecondaryColor = activeModeObj?.secondaryHour || "#b5873d";
+    const modeHalfHourColor = activeModeObj?.halfHour || "#d4af37";
+
+    const tMarkStroke = effectiveLight ? modeSecondaryColor : "#573e19";
+    const tickStroke = effectiveLight ? modeHalfHourColor : "#6e4f1b";
 
     const sunColor = effectiveLight ? "#ffd700" : "#573e19";
     const moonColor = effectiveLight ? "#ffffff" : "#6a7b8c";
@@ -74,7 +83,7 @@ export default function CentralHubFace({
 
             </g>
 
-            <g stroke="#d4af37" strokeWidth="1" opacity={lightPower ? "0.65" : "0.25"}>
+            <g stroke={tickStroke} strokeWidth="1" opacity={lightPower ? "0.65" : "0.25"}>
                 {Array.from({ length: 48 }).map((_, i) => {
                     const deg = i * 7.5;
                     if(deg % 30 === 0) return null;
@@ -90,7 +99,7 @@ export default function CentralHubFace({
             </g>
 
             <g 
-                stroke={sunColor} 
+                stroke={tMarkStroke} 
                 strokeWidth="2.5" 
                 strokeLinecap="round" 
                 fill="none"
@@ -98,8 +107,8 @@ export default function CentralHubFace({
             >
                 {secondaryHours.map(deg => (
                     <g key={`t-mark-${deg}`} transform={`rotate(${deg} 300 300)`}>
-                        <line x1="291" y1="190" x2="309" y2="190" stroke={sunColor} strokeWidth="2" />
-                        <line x1="300" y1="190" x2="300" y2="204" stroke={sunColor} strokeWidth="2.5" />
+                        <line x1="291" y1="190" x2="309" y2="190" stroke={tMarkStroke} strokeWidth="2" />
+                        <line x1="300" y1="190" x2="300" y2="204" stroke={tMarkStroke} strokeWidth="2.5" />
                     </g>
                 ))}
             </g>
@@ -138,15 +147,48 @@ export default function CentralHubFace({
             </g>
 
             <g transform={`rotate(${minuteAngle} 300 300)`}>
-                <line x1="300" y1="300" x2="300" y2="198" stroke={moonColor} strokeWidth="2.5" strokeLinecap="round" opacity={accentOpacity} />
-                <circle cx="300" cy="196" r="3" fill={moonColor} opacity={accentOpacity} />
+
+                {currentModeCode === "G" && (
+                    <polygon 
+                        points="300,300 265,160 300,150"
+                        fill="url(#emeraldBeamGrad)"
+                        style={{
+                            filter: "drop-shadow(0 0 10px #00ff66)"
+                        }}
+                    />
+                )}
+
+                <line 
+                    x1="300" y1="300" x2="300" y2="198" 
+                    stroke={
+                        isLunarBeat 
+                            ? "#c48aff" 
+                            : currentModeCode === "G"
+                            ? "#00ff66"  
+                            : moonColor
+                    } 
+                    strokeWidth="2.5" 
+                    strokeLinecap="round" 
+                    opacity={accentOpacity}
+                    style={{
+                        filter: isLunarBeat
+                            ? "drop-shadow(0 0 10px #9933ff) drop-shadow(0 0 4px #c48ff)"
+                            : "none",
+                        transition: "stroke 0.2s ease, filter 0.2s ease"  
+                    }} 
+                />
+                <circle cx="300" cy="196" r="3" fill={isLunarBeat ? "#c48aff" : moonColor} opacity={accentOpacity} />
                 <g transform="translate(310, 240) rotate(155)">
                     <path 
                         d="M 0,-11 A 11,11 0 1,1 -9,7 A 13,13 0 1,0 0,-11 Z"
-                        fill={moonColor}
+                        fill={isLunarBeat ? "#c48aff" : moonColor}
                         stroke="#1a1a1a"
                         strokeWidth="1.2"
                         opacity={accentOpacity}
+                        style={{
+                            filter: isLunarBeat ? "drop-shadow(0 0 8px #9933ff)" : "none",
+                            transition: "fill 0.2s ease, filter 0.2s ease"
+                        }}  
                     />
                 </g>
             </g>

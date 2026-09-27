@@ -5,6 +5,7 @@ import { MODES } from "../../../../components/Navigation/modeConfig";
 
 export default function TopRack({
     activeMode = "I",
+    activeModeObj,
     bpm = 120,
     lightPower = true,
     soundPower = true,

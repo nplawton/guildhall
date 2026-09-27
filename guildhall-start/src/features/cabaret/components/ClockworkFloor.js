@@ -12,7 +12,12 @@ export default function ClockworkFloor({
     activeDice = {},
     bpm = 120,
     isReversed = false,
-    isDepleted = false
+    isDepleted = false,
+    currentModeCode,
+    activeModeObj,
+    currentStep,
+    sweepPassCount = 1,
+    constellationNodes
 }) {
 
     const secondaryHourAngles = [30, 60, 120, 150, 210, 240, 300, 330];
@@ -30,6 +35,8 @@ export default function ClockworkFloor({
 
     const [strobeState, setStrobeState] = useState(false);
     const isStrobeActive = isLightEffective && !!activeDice.D6;
+
+    const routine = activeModeObj?.routine;
 
     useEffect(() => {
         if (!isStrobeActive) {
@@ -52,6 +59,26 @@ export default function ClockworkFloor({
     const isFogActive = isLightEffective && !!activeDice.D20;
     const steamPressureOpacity = isFogActive ? Math.min(0.85, 0.35 + (bpm / 200) * 0.5) : 0;
     const swirlDuration = (25 - (bpm / 180) * 18).toFixed(2);
+
+    const createWedgePath = (index, totalWedges = 24, rInner = 120, rOuter =238) => {
+        const angleStep = 360 / totalWedges;
+        const startAngle = (index  * angleStep - 90) * (Math.PI / 180);
+        const endAngle = ((index + 1) * angleStep - 90) * (Math.PI / 180);
+
+        const x1Inner = 300 + rInner * Math.cos(startAngle);
+        const y1Inner = 300 + rInner * Math.sin(startAngle);
+        const x2Inner = 300 + rInner * Math.cos(endAngle);
+        const y2Inner = 300 + rInner * Math.sin(endAngle);
+
+        const x1Outer = 300 + rOuter * Math.cos(startAngle);
+        const y1Outer = 300 + rOuter * Math.sin(startAngle);
+        const x2Outer = 300 + rOuter * Math.cos(endAngle);
+        const y2Outer = 300 + rOuter * Math.sin(endAngle);
+
+        return `M ${x1Inner} ${y1Inner} L ${x1Outer} ${y1Outer} A ${rOuter} ${rOuter} 0 0 1 ${x2Outer} ${y2Outer} L ${x2Inner} ${y2Inner} A ${rInner} ${rInner} 0 0 0 ${x1Inner} ${y1Inner} Z`;
+    }
+
+    const isLunarBeat = currentModeCode === "PU" && (currentStep % 4 === 0);
 
     return (
         <div 
@@ -130,6 +157,23 @@ export default function ClockworkFloor({
                         <circle cx="42" cy="40" r="2.5" fill="#ffffff" opacity="0.9" />
                     </pattern>
 
+                    <linearGradient id="emeraldBeamGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="transparent" />
+                        <stop offset="70%" stopColor="#00a341" stopOpacity="0.35" />
+                        <stop offset="100%" stopColor="#00ff66" stopOpacity="0.85" />
+                    </linearGradient>
+
+                    <linearGradient id="radarPhosphorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="rgba(0, 255, 255, 0.6)" />
+                        <stop offset="50%" stopColor="rgba(0, 153, 255, 0.25)" />
+                        <stop offset="100%" stopColor="rgba(0, 20, 50, 0.0)" />
+                    </linearGradient>
+
+                    <filter id="steampunkLensGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+
                 </defs>
 
                 {/* Layer 2: Magogany Threshold */}
@@ -152,6 +196,311 @@ export default function ClockworkFloor({
                     r="238"
                     fill="url(#clockworkPitGrad)"
                 />
+
+                {/* Dynamic Wedges */}
+                <g className="dance-floor-wedges-matrix">
+                    {Array.from({ length: 24 }).map((_, index) => {
+                        let wedgeFill = "transparent";
+                        let wedgeOpacity = baseOpacity;
+
+                        if(isLightEffective && routine && routine.getTileColor) {
+                            wedgeFill = routine.getTileColor(
+                                index, 
+                                currentStep, 
+                                minutes, 
+                                sweepPassCount, 
+                                isReversed
+                            );
+                            wedgeOpacity = baseOpacity * 0.85;
+                        }
+
+                        let wedgeTransition =  "fill 0.3s ease, opacity 0.3s ease";
+
+                        const rawStep = currentStep % 24;
+                        const activeBeamWedge = isReversed ? (24 - rawStep) % 24 : rawStep;
+                        const isBeamHead = index === activeBeamWedge
+
+                        if (currentModeCode === "PI") {
+                            wedgeTransition = "none";
+                        } else if (currentModeCode === "PU") {
+                            wedgeTransition = "fill 0.8s ease-in-out, opacity 0.8s ease-in-out"
+                        } else if (currentModeCode === "G" || currentModeCode === "BU") {
+                            wedgeTransition = "fill 0.15s ease-out, opacity 0.15s ease-out";
+                        } 
+
+                        return (
+                            <path 
+                                key={`floor-wedge-${index}`}
+                                d={createWedgePath(index)}
+                                fill={wedgeFill}
+                                opacity={wedgeOpacity}
+                                stroke="#1a0c02"
+                                strokeWidth="1"
+                                filter={isBeamHead ? "url(#steampunkLensGlow)" : "none"}
+                                style={{
+                                    transition: wedgeTransition
+                                }}
+                            />
+                        );
+                    })}
+                   
+                </g>
+                
+                {/* Beam Sweeping */}
+                {currentModeCode === "BU" && Array.isArray(constellationNodes) && constellationNodes.length > 0 && (
+                    <g className="cog-constellation-layer">
+
+                        {(() => {
+                            const rawStep = currentStep % 24;
+                            const activeBeamWedge = isReversed ? (24 - rawStep) % 24 : rawStep;
+
+                            const renderedNodes = constellationNodes.map((node, i) => {
+                                const angleRad = (node.wedgeIndex * 15 - 90) * (Math.PI / 180);
+                                const x = 300 + Math.cos(angleRad) * node.dist;
+                                const y = 300 + Math.sin(angleRad) * node.dist;
+
+                                const distToBeam = isReversed
+                                    ? (node.wedgeIndex - activeBeamWedge + 24) % 24
+                                    : (activeBeamWedge - node.wedgeIndex + 24) % 24
+                                ;
+
+                                let stage = "INACTIVE";
+                                let strokeColor = "rgba(0, 153, 255, 0.35)";
+                                let fillColor = "rgba(0, 80, 160, 0.2)";
+                                let auraGlow = "rgba(0, 153, 255, 0.08)";
+                                let nodeScale = 1.3;
+
+                                if(distToBeam >= 21 && distToBeam <= 23) {
+                                    stage = "APPROACH";
+                                    strokeColor = "#5cbeff";
+                                    fillColor = "rgba(0, 153, 255, 0.4)"; 
+                                    auraGlow = "rgba(0, 180, 255, 0.35)";
+                                    nodeScale = 1.6;
+                                } else if (distToBeam === 0) {
+                                    stage = "INTERSECT";
+                                    strokeColor = "#ffd700";
+                                    fillColor = "#FF9900";
+                                    auraGlow = "rgba(255, 153, 0, 0.85)";
+                                    nodeScale = 2.2;
+                                } else if (distToBeam >= 1 && distToBeam <= 3) {
+                                    stage = "RECEDE";
+                                    const fade = 1 - (distToBeam * 0.28);
+                                    strokeColor = `rgba(92, 190, 255, ${fade})`;
+                                    fillColor = `rgba(0, 153, 255, ${fade * 0.6})`;
+                                    auraGlow = `rgba(0, 153, 255, ${fade * 0.4})`;
+                                    nodeScale = 1.7;
+                                }
+
+                                return { x, y, id: i, stage, strokeColor, fillColor, auraGlow, nodeScale, type: node.type };
+                            });
+
+                            return (
+                                <g key={`steampunk-constellation-Q${activeBeamWedge}`}>
+                                    
+                                    {renderedNodes.length >= 2 && (
+                                        <line x1={renderedNodes[0].x} y1={renderedNodes[0].y} x2={renderedNodes[1].x} y2={renderedNodes[1].y} stroke="#5cbeff" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.45" />
+                                    )}
+                                    {renderedNodes.length >= 3 && (
+                                        <line x1={renderedNodes[1].x} y1={renderedNodes[1].y} x2={renderedNodes[2].x} y2={renderedNodes[2].y} stroke="#5cbeff" strokeWidth="1.2" strokeDasharray="3 3" opacity="0.45" />
+                                    )}
+
+                                    {renderedNodes.map(node => (
+                                        <g 
+                                            key={`steampunk-node-${node.id}`} 
+                                            transform={`translate(${node.x}, ${node.y}) scale(${node.nodeScale})`}
+                                            style={{ transition: "transform 0.25s ease-out, filter 0.25s ease-out" }}
+                                        >
+                                            
+                                            <circle 
+                                                cx="0" cy="0" r="10" 
+                                                fill={node.auraGlow} 
+                                                style={{ filter: `drop-shadow(0 0 6px ${node.strokeColor})` }} 
+                                            />
+
+                                            <circle 
+                                                cx="0" cy="0" r="10" 
+                                                fill="none" 
+                                                stroke={node.strokeColor} 
+                                                strokeWidth="0.8" 
+                                                strokeDasharray="2 2" 
+                                            />
+
+                                            {node.type === "cog" && (
+                                                <g>
+                                                    <circle cx="0" cy="0" r="4" fill={node.fillCore} stroke={node.strokeColor} strokeWidth="1" />
+                                                    {[0, 60, 120, 180, 240, 300].map(deg => (
+                                                        <line key={`cog-${deg}`} x1="0" y1="-4" x2="0" y2="-7" stroke={node.strokeColor} strokeWidth="1.2" transform={`rotate(${deg})`} />
+                                                    ))}
+                                                </g>
+                                            )}
+
+                                            {node.type === "keyhole" && (
+                                                <g>
+                                                    <circle cx="0" cy="-2" r="2.5" fill={node.fillCore} stroke={node.strokeColor} strokeWidth="0.8" />
+                                                    <polygon points="-1.8,1 1.8,1 2.5,5 -2.5,5" fill={node.fillCore} stroke={node.strokeColor} strokeWidth="0.8" />
+                                                </g>
+                                            )}
+
+                                            {node.type === "gear" && (
+                                                <g>
+                                                    <circle cx="0" cy="0" r="5" fill="none" stroke={node.strokeColor} strokeWidth="1.2" />
+                                                    <circle cx="0" cy="0" r="2" fill={node.fillCore} />
+                                                    {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => (
+                                                        <rect key={`gear-${deg}`} x="-1" y="-7" width="2" height="2" fill={node.strokeColor} transform={`rotate(${deg})`} />
+                                                    ))}
+                                                </g>
+                                            )}
+
+                                            {node.type === "escapement" && (
+                                                <g>
+                                                    <circle cx="0" cy="0" r="3.5" fill="none" stroke={node.strokeColor} strokeWidth="1" />
+                                                    <circle cx="0" cy="0" r="1.5" fill={node.fillCore} />
+                                                    {[0, 72, 144, 216, 288].map(deg => (
+                                                        <path 
+                                                            key={`escapement-${deg}`} 
+                                                            d="M 0 -3.5 L 2 -7 L -1 -6 Z" 
+                                                            fill={node.strokeColor} 
+                                                            transform={`rotate(${deg})`} 
+                                                        />
+                                                    ))}
+                                                </g>
+                                            )}
+                                        </g>
+                                    ))}
+                                </g>
+                            );
+
+                        })()}
+
+                    </g> 
+                )}
+
+                {/* Solar Flare "O" */}
+                {currentModeCode === "O" && !isDepleted && (
+                    <g className="solar-flare-cinematic-layer">
+
+                        {(() => {
+                            const rawStep = currentStep % 24;
+
+                            const cx = 300;
+                            const cy = 300;
+
+                            const sunX = 140;
+                            const sunY = 300;
+
+                            const solarBallRadius = rawStep <= 15 ? 8 + (rawStep * 1.4) : 0;
+
+                            const trajProgress = (rawStep - 16) / 3;
+                            const trajAngleRad = (-Math.PI) + (trajProgress * (Math.PI * 0.82));
+                            const fireX = cx + Math.cos(trajAngleRad) * 160;
+                            const fireY = cy + Math.sin(trajAngleRad) * 110;
+
+                            const runicText = "I CAST FIREBALL!!";
+                            const visibleChars = Math.min(runicText.length, Math.floor((rawStep / 15) * runicText.length));
+                            const currentRunicStr = runicText.substring(0, visibleChars);
+
+                            return (
+                                <g key={`solar-flare-step-${rawStep}`}>
+
+                                    <defs>
+                                        <path id="topRunicArcPath" d="M 180 230 A 130 130 0 0 1 420 230" />
+                                        <radialGradient id="fireballGlow" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stopColor="#ffffff" />
+                                            <stop offset="35%" stopColor="#ffcc00" />
+                                            <stop offset="75%" stopColor="#ff3300" />
+                                            <stop offset="100%" stopColor="rgba(255, 51, 0, 0)" />
+                                        </radialGradient>
+                                    </defs>
+
+                                    {rawStep <= 22 && (
+                                        <text 
+                                            fill="#ff6600" 
+                                            fontSize="25"   fontWeight="bold"   letterSpacing="5"
+                                            style={{
+                                                filter: "drop-shadow(0 0 10px #ff3300)"
+                                            }}
+                                        >
+                                            <textPath href="#topRunicArcPath" startOffset="50%" textAnchor="middle">
+                                                {currentRunicStr}
+                                            </textPath>
+                                        </text>
+                                    )}
+
+                                    {rawStep <= 15 && (
+                                        <g transform={`translate(${sunX}, ${sunY})`}>
+                                            
+                                            <circle 
+                                                cx="0" cy="0"
+                                                r={solarBallRadius + 8}
+                                                fill="rgba(255, 102, 0, 0.4)"
+                                                style={{
+                                                    filter: "drop-shadow(0 0 16px #ff3300)"
+                                                }}
+                                            />
+
+                                            <circle 
+                                                cx="0" cy="0"
+                                                r={solarBallRadius}
+                                                fill="url(#fireballGlow)"
+                                            />
+
+                                        </g>
+                                    )}
+
+                                    {rawStep >= 16 && rawStep <= 19 && (
+                                        <g transform={`translate(${fireX}, ${fireY})`}>
+
+                                            <circle 
+                                                cx="0" cy="0" r="24"
+                                                fill="rgba(255, 51, 0, 0.45)"
+                                                style={{
+                                                    filter: "drop-shadow(0 0 18px #ffcc00)"
+                                                }}
+                                            />
+
+                                            <circle 
+                                                cx="0" cy="0" r="15"
+                                                fill="url(#fireballGlow)"
+                                            />
+
+                                            <line x1="-10" y1="10" x2="-25" y2="22" stroke="#ff9900" strokeWidth="2.5" opacity="0.8" />
+
+                                             <line x1="-12" y1="-5" x2="-28" y2="-14" stroke="#ff3300" strokeWidth="2" opacity="0.7" />
+
+                                        </g>
+                                    )}
+
+                                    {rawStep >= 20 && rawStep <= 23 && (
+                                        <g transform="translate(435, 365)" >
+
+                                            <circle 
+                                                cx="0" cy="0"
+                                                r={rawStep === 20  ? 30 : 65}
+                                                fill="none"
+                                                stroke="#ffcc00"
+                                                strokeWidth="5"
+                                                opacity={rawStep === 20 ? 1.0 : 0.5}
+                                                style={{
+                                                    filter: "drop-shadow(0 0 20px #ff3300)"
+                                                }}
+                                            />
+
+                                            <circle 
+                                                cx="0" cy="0"
+                                                r={rawStep === 20 ? 45 : 85}
+                                                fill="rgba(255, 51, 0, 0.25)"
+                                            />
+
+                                        </g>
+                                    )}
+
+                                </g>
+                            );
+
+                        })()}
+
+                    </g>
+                )}
 
                 {/* D6 Strobe Disco Ball */}
 
@@ -351,6 +700,10 @@ export default function ClockworkFloor({
                     minutes={minutes} 
                     lightPower={lightPower}
                     isDepleted={isDepleted}
+                    currentModeCode={currentModeCode}
+                    activeModeObj={activeModeObj}
+                    isLunarBeat={isLunarBeat}
+                    currentStep={currentStep}
                 />
 
                 {/* Outer Bezel Frame Rims */}

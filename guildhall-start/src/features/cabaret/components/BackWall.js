@@ -13,10 +13,12 @@ export default function BackWall({
     isDepleted = false
 }) {
 
+    const effectiveLight = lightPower && !isDepleted;
+
     const isAnthemActive = lightPower && !isDepleted && !!activeDice.D8;
 
     return (
-        <div className={`back-wall-assembly ${isAnthemActive ? 'anthem-wall-dim' : ''} ${isReversed ? 'is-reversed': ''}`}>
+        <div className={`back-wall-assembly ${isDepleted ? 'is-depleted' : ''} ${!effectiveLight ? 'unpowered' : ''} ${isAnthemActive ? 'anthem-wall-dim' : ''} ${isReversed ? 'is-reversed': ''}`}>
 
 
             <div className="wall-section left-section">
@@ -57,6 +59,7 @@ export default function BackWall({
                     gearSpeed={gearSpeed} 
                     isReversed={isReversed}
                     isDepleted={isDepleted} 
+                    lightPower={effectiveLight}
                 />
                 
             </div>
@@ -69,6 +72,7 @@ export default function BackWall({
                 <LutePendulum 
                     isReversed={isReversed}
                     isDepleted={isDepleted}
+                    lightPower={effectiveLight}
                 />
             </div>
 
@@ -76,6 +80,7 @@ export default function BackWall({
                 <BalanceSpring 
                     isReversed={isReversed}
                     isDepleted={isDepleted}
+                    lightPower={effectiveLight}
                 />
             </div>
         </div>

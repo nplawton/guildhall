@@ -32,6 +32,16 @@
     transition: filter 0.4s ease-in-out;
 }
 
+.back-wall-assembly.is-depleted {
+    filter: brightness(0.4) sepia(0.3);
+    transition: filter 0.8s ease-in-out;
+}
+
+.back-wall-assembly.unpowered {
+    filter: brightness(0.35) contrast(0.9);
+    transition: filter 0.6s ease;
+}
+
 @keyframes gearCurrentSurge {
     0% {
         filter: drop-shadow(0 0 4px #00e5ff) 
@@ -212,9 +222,4 @@
 .is-reversed .clock-hand-sweep,
 .is-reversed .floor-ring-spinner {
     animation-direction: reverse !important;
-}
-
-.back-wall-assembly.is-depleted {
-    filter: brightness(0.4) sepia(0.3);
-    transition: filter 0.8s ease-in-out;
 }

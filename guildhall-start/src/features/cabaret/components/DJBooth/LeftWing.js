@@ -16,7 +16,8 @@ export default function LeftWing({
     onIncrementMinutes,
     volume = 80,
     isReversed = false,
-    isDepleted = false
+    isDepleted = false,
+    activeModeObj
 }) {
 
     const isLightEffective = lightPower && !isDepleted;
@@ -42,6 +43,7 @@ export default function LeftWing({
                     onChangeHours={() => !isDepleted && onIncrementHours && onIncrementHours()}
                     onChangeMinutes={() => !isDepleted && onIncrementMinutes && onIncrementMinutes()}
                     lightPower={isLightEffective}
+                    initialTime={activeModeObj?.initialTime}
                 />
             </div>
 

@@ -33,9 +33,9 @@ export default function DJBooth({
     onSavePreset,
     crtModeText = "DORMANT",
     activeMode = null,
-    setActiveMode,
-    isScrambling,
+    activeModeObj,
     onModeSelect,
+    isScrambling,
     isReversed = false,
     soundPower,
     setSoundPower,
@@ -113,6 +113,7 @@ export default function DJBooth({
                     isCuckooOpen={isCuckooOpen || isDepleted}
                     onToggleCuckoo={() => setIsCuckooOpen(prev => !prev)}
                     activeMode={activeMode}
+                    onSelectMode={onModeSelect}
                     soundPower={soundPower}
                     onToggleSoundPower={() => !isDepleted &&setSoundPower(prev => !prev)}
                     bass={bass}
@@ -141,6 +142,7 @@ export default function DJBooth({
                             onIncrementMinutes={onIncrementMinutes}
                             isRevrsed={isReversed}
                             isDepleted={isDepleted}
+                            activeModeObj={activeModeObj}
                         />
 
                         <CenterControl 
@@ -150,6 +152,7 @@ export default function DJBooth({
                             onChangeLightSpeed={(val) => setLightSpeed(val)}
                             bass={bass}
                             activeMode={activeMode}
+                            activeModeObj={activeModeObj}
                             setActiveMode={onModeSelect}
                             lightPower={lightPower}
                             soundPower={soundPower}

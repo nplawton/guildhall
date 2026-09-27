@@ -4,15 +4,17 @@ import { MODES } from "../../../../../components/Navigation/modeConfig";
 
 export default function DanceMechanism({ 
     activeMode = null, 
-    onSelectMode ,
-    lightPower = true
+    onSelectMode,
+    lightPower = true,
+    isDepleted = false
 }) {
 
+    const isPowered = lightPower && !isDepleted;
     const activeModesList = MODES.filter((m) => m.modeNum > 0);
 
     return (
 
-        <div className="dance-mechanism-master-plate">
+        <div className={`dance-mechanism-master-plate ${!isPowered ? "unpowered" : ""}`}>
 
             <div className="master-screw top-left" />
             <div className="master-screw top-right" />
@@ -21,16 +23,16 @@ export default function DanceMechanism({
 
             <div className="dance-cogs-grid">
                 {activeModesList.map((mode) => {
-                    const isActive = lightPower && (activeMode === mode.code);
+                    const isActive = isPowered && (activeMode === mode.code);
                     const teethCount = mode.modeNum * 2;
 
                     return (
 
                         <div
                             key={mode.code}
-                            className={`cog-socket-plate ${isActive ? "active-locked" : ""}`}
+                            className={`cog-socket-plate ${isActive ? "active-locked" : ""} ${!isPowered ? "disabled" : ""}`}
                             onClick={() => {
-                                if (lightPower && onSelectMode) {
+                                if (isPowered && onSelectMode) {
                                     onSelectMode(mode.code);
                                 }
                             }}

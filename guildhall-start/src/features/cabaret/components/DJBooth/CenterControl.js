@@ -13,6 +13,7 @@ export default function CenterControl({
     soundPower = true,
     lightDimmer = 100,
     activeMode = null,
+    activeModeObj,
     volume = 80,
     treble = 50,
     crtModeText = "DORMANT",
@@ -45,6 +46,7 @@ export default function CenterControl({
                 <SteampunkDisplay 
                     crtModeText={crtModeText}
                     colorCode={activeMode}
+                    activeModeObj={activeModeObj}
                     floorOpacity={lightDimmer}
                     speed={lightSpeed}
                     bass={bass}

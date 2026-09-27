@@ -19,6 +19,25 @@
     user-select: none;
 }
 
+.dance-mechanism-master-plate.unpowered {
+    filter: brightness(0.65) grayscale(0.3);
+}
+
+.dance-mechanism-master-plate.unpowered .cog-socket-plate {
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.dance-mechanism-master-plate.unpowered .cog-socket-plate:hover {
+    filter: none;
+    transform: none;
+}
+
+.dance-mechanism-master-plate.unpowered .cog-button-body.depressed-rotating {
+    animation: none !important;
+    transform: scale(0.95);
+}
+
 .master-screw {
     position: absolute;
     width: 5px;

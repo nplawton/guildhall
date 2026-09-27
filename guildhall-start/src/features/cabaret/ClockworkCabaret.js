@@ -38,12 +38,14 @@ export default function ClockworkCabaret() {
     const [crtModeText, setCrtModeText] = useState('DORMANT');
     const [crtMessageOverride, setCrtMessageOvverride] = useState(null);
 
-    const effectiveLightPower = lightPower && lightDimmer > 0;
+    const effectiveLightPower = lightPower && !isDepleted && lightDimmer > 0;
     const isSpotlightActive = effectiveLightPower && !isDepleted && !!activeDice.D4;
 
     const [isScrambling, setIsScrambling] = useState(false);
     const [scrambleBpm, setScrambleBPM] = useState(120);
     const [scrambleModeCode, SetScrambleModeCode] = useState(null);
+
+    const activeModeObj = getModeByCode(currentModeCode);
 
     const overrideTimerRef = useRef(null);
     const prePresetSnapshotRef = useRef(null);
@@ -54,28 +56,28 @@ export default function ClockworkCabaret() {
 
         if (isDepleted) return 0;
 
-        let totalBurn = 0.05;
+        let totalBurn = 0.005;
 
         const activeModeObj = getModeByCode(currentModeCode);
         if (activeModeObj && activeModeObj.burnRate) {
-            totalBurn += activeModeObj.burnRate * (bpm / 120);
+            totalBurn += (activeModeObj.burnRate / 10) * (bpm / 120);
         }
 
         if(lightPower) {
-            totalBurn += (lightDimmer / 100) * 0.08;
-            totalBurn += (lightSpeed / 100) * 0.05;
+            totalBurn += (lightDimmer / 100) * 0.008;
+            totalBurn += (lightSpeed / 100) * 0.005;
         }
 
         if (soundPower) {
-            totalBurn += (volume / 100) * 0.10;
+            totalBurn += (volume / 100) * 0.010;
         }
 
-        if (activeDice.D4) totalBurn += 0.12;
-        if (activeDice.D6) totalBurn += 0.15;
-        if (activeDice.D8) totalBurn += 0.20;
-        if (activeDice.D12) totalBurn += 0.22;
-        if (activeDice.D20) totalBurn += 0.25;
-        if(isScrambling) totalBurn += 0.35;
+        if (activeDice.D4) totalBurn += 0.012;
+        if (activeDice.D6) totalBurn += 0.015;
+        if (activeDice.D8) totalBurn += 0.020;
+        if (activeDice.D12) totalBurn += 0.022;
+        if (activeDice.D20) totalBurn += 0.025;
+        if(isScrambling) totalBurn += 0.035;
 
         return totalBurn;
     };
@@ -259,7 +261,8 @@ export default function ClockworkCabaret() {
             lightSpeed,
             lightDimmer,
             activeDice: { ...activeDice },
-            isReversed
+            isReversed,
+            activeMode
         };
 
         setPresets(prev => ({ ...prev, [presetNum]: newSnapshot }));
@@ -283,16 +286,152 @@ export default function ClockworkCabaret() {
         if (modeObj) {
             setBpm(modeObj.defaultBpm);
             setCrtModeText(modeObj.name.toUpperCase());
+
+            if(modeObj.initialTime) {
+                setHours(modeObj.initialTime.hours);
+                setMinutes(modeObj.initialTime.minutes);
+            }
+
         } else {
+            setBpm(120);
             setCrtModeText("DORMANT");
         }
     };
+
+    useEffect(() => {
+        if(isDepleted || currentModeCode !== "PI") return;
+        const intervalTime = (60 / bpm) * 1000 * 2;
+
+        const glitchInterval = setInterval(() => {
+            setHours(Math.floor(Math.random() * 12) + 1);
+            setMinutes(Math.floor(Math.random() * 60));
+        }, intervalTime);
+
+        return () => clearInterval(glitchInterval);
+    }, [currentModeCode, isDepleted, bpm]);
+
+    const [currentStep, setCurrentStep] = useState(0);
+    const [sweepPassCount, setSweepPassCount] = useState(1);
+
+    useEffect(() => {
+        if (isDepleted) return;
+
+        const intervalMs = (60 / (isScrambling ? scrambleBpm : bpm)) * 1000;
+        const beatInterval = setInterval(() => {
+            setCurrentStep(prev => (prev + 1) % 24);
+        }, intervalMs);
+        return () => clearInterval(beatInterval);
+    }, [bpm, scrambleBpm, isScrambling, isDepleted]);
+
+    useEffect(() => {
+        if(isDepleted || currentModeCode !== "G") return;
+
+        const intervalMs = (60 / (isScrambling ? scrambleBpm : bpm)) * 1000;
+
+        const retraceInterval = setInterval(() => {
+            setMinutes(prevMin => {
+               if(prevMin === 0) {
+                    return 59;
+               }
+
+               if (prevMin === 1) {
+                setHours(prevHr => (prevHr === 1 ? 12 : prevHr - 1));
+               }
+                
+                return prevMin - 1;
+            });
+        }, intervalMs / 2);
+
+        return () => clearInterval(retraceInterval);
+    }, [currentModeCode, isDepleted, bpm, scrambleBpm, isScrambling]);
+
+    useEffect(() => {
+        if (currentModeCode === "G" && minutes === 59) {
+            setSweepPassCount(prev => prev + 1);
+        }
+    }, [minutes, currentModeCode]);
+
+    const [constellationNodes, setConstellationNodes] = useState(null);
+
+    useEffect(() => {
+        if (currentModeCode === "BU") {
+            setConstellationNodes([
+                { wedgeIndex: 4, dist: 140, type: "cog" },
+                { wedgeIndex: 11, dist: 175, type: "keyhole" },
+                { wedgeIndex: 18, dist: 150, type: "gear" },
+                { wedgeIndex: 20, dist: 165, type: "escapement" }
+            ]);
+        } else {
+            setConstellationNodes(null);
+        }
+    }, [currentModeCode]);
+
+    useEffect(() => {
+        if (isDepleted || currentModeCode !== "BU") return;
+
+        const rawStep = currentStep % 24;
+        const currentBeamWedge = isReversed ? (24 - rawStep) % 24 : rawStep;
+
+        const calculatedHour = Math.floor((currentBeamWedge / 24) * 12) || 12;
+        setHours(calculatedHour);
+        setMinutes(0);
+        const nodeTypes = ["cog", "keyhole", "gear", "escapement"];
+
+        if (currentStep > 0 && currentStep % 24 === 0) {
+            if (Math.random() > 0.25) {
+                setConstellationNodes([
+                    { wedgeIndex: (currentBeamWedge + 4) % 24, dist: 135 + Math.random() * 20, type: nodeTypes[Math.floor(Math.random() * 4)] },
+                    { wedgeIndex: (currentBeamWedge + 9) % 24, dist: 160 + Math.random() * 20, type: nodeTypes[Math.floor(Math.random() * 4)] },
+                    { wedgeIndex: (currentBeamWedge + 15) % 24, dist: 140 + Math.random() * 25, type: nodeTypes[Math.floor(Math.random() * 4)] },
+                    { wedgeIndex: (currentBeamWedge + 20) % 24, dist: 170 + Math.random() * 20, type: nodeTypes[Math.floor(Math.random() * 4)] }
+                ]);
+            }
+        }
+    }, [currentStep, currentModeCode, isDepleted, isReversed]);
+
+    const modeEndRef = useRef(false);
+
+    useEffect(() => {
+        if (currentModeCode === "O") {
+            modeEndRef.current = false;
+        }
+    }, [currentModeCode]);
+
+    useEffect(() => {
+        if (isDepleted || currentModeCode !== "O") return;
+
+        const rawStep = currentStep % 24;
+
+        if (rawStep <= 15) {
+            setHours(9);
+            setMinutes(20);
+        }else if (rawStep === 16) {
+            setHours(8);
+        }else if (rawStep >= 17 && rawStep <= 19) {
+            setHours(9);
+        } else if (rawStep >= 20 && rawStep <= 22) {
+            setHours(9);
+            setMinutes(20);
+        } else if (rawStep >= 23) {
+            setHours(9);
+            setMinutes(30);
+
+            if(!modeEndRef.current && currentStep > 0) {
+                modeEndRef.current = true;
+                if (typeof setCurrentModeCode === 'function') {
+                    setCurrentModeCode(null);
+                    setCrtModeText("DORMANT");
+                }
+            }
+        }
+
+    }, [currentStep, currentModeCode, isDepleted, setCurrentModeCode, setCrtModeText]);
 
     const resolvedCrtText = isDepleted ? "DEPLETED" : (crtMessageOverride || crtModeText);
    
     
     return (
-        <div className={`cabaret-room-stage ${isSpotlightActive ? 'spotlight-ambient-dim' : ''}`}>
+        <div className={`cabaret-room-stage ${isDepleted ? 'is-depleted' : ''} ${!effectiveLightPower ? 'unpowered' : ''} ${isSpotlightActive ? 'spotlight-ambient-dim' : ''} ${currentModeCode === "PU" ? 'mode-PU' : ''}`}>
             
             <BackWall  
                 gearSpeed={tempo}
@@ -314,6 +453,11 @@ export default function ClockworkCabaret() {
                 isScrambling={isScrambling}
                 isReversed={isReversed}
                 isDepleted={isDepleted}
+                currentModeCode={currentModeCode}
+                activeModeObj={activeModeObj}
+                currentStep={currentStep}
+                sweepPassCount={sweepPassCount}
+                constellationNodes={constellationNodes}
             />
 
             <DJBooth 
@@ -335,6 +479,7 @@ export default function ClockworkCabaret() {
                 onSelectPreset={handleSelectedPreset}
                 onSavePreset={handleSavePreset}
                 activeMode={isScrambling ? scrambleModeCode : currentModeCode}
+                activeModeObj={activeModeObj}
                 isScrambling={isScrambling}
                 crtModeText={resolvedCrtText}
                 onModeSelect={handleModeSelect}

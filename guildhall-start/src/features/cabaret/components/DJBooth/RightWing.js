@@ -140,8 +140,8 @@ export default function RightWing({
                             type="D12"
                             label="Subterranean Reverse"
                             active={isLightEffective && !!activeDice.D12}
-                            isPowerOn={isLightEffective}
-                            onClick={() => isSoundEffective && onTriggerDice && onTriggerDice("D12")}
+                            isPowerOn={isLightEffective || isSoundEffective}
+                            onClick={() => !isDepleted && (isLightEffective || isSoundEffective) && onTriggerDice && onTriggerDice("D12")}
                         />
 
                         <div className="flipper-cast-plaque">
