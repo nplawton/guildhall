@@ -502,6 +502,211 @@ export default function ClockworkFloor({
                     </g>
                 )}
 
+                {/* Celestial Sky Orbit */}
+                {currentModeCode === "CY" && !isDepleted && (
+                    <g className="days-fly-celestial-layer" style={{ pointerEvents: "none" }}>
+
+                        {(() => {
+
+                            const rawStep = currentStep % 24;
+                            const effectiveStep = isReversed ? (24 - rawStep) % 24 : rawStep;
+
+                            const cx = 300;
+                            const cy = 300;
+
+                            const angleRad = (-Math.PI) + (effectiveStep / 24) * (Math.PI * 2);
+                            const celX = cx + Math.cos(angleRad) * 150;
+                            const celY = cy + Math.sin(angleRad) * 105;
+
+                            const isNight = effectiveStep >= 10 && effectiveStep <= 17;
+
+                            return (
+
+                                <g key={`celestial-step-${effectiveStep}`} transform={`translate(${celX}, ${celY})`}>
+
+                                    {!isNight ? (
+                                        <g>
+
+                                            <circle 
+                                                cx="0" cy="0" r="14"
+                                                fill="#ffcc00"
+                                                style={{
+                                                    filter: "drop-shadow(0 0 12px #ff9900)"
+                                                }}
+                                            />
+
+                                            <circle 
+                                                cx="0" cy="0" r="7"
+                                                fill="#ffffff"
+                                            />
+
+                                        </g>
+                                    ) : (
+                                        <g>
+
+                                            <circle 
+                                                cx="0" cy="0" r="11"
+                                                fill="#e6e6ff"
+                                                style={{
+                                                    filter: "drop-shadow(0 0 12px #99ccff)"
+                                                }}
+                                            />
+
+                                            <circle 
+                                                cx="3" cy="2" r="9"
+                                                fill="#0d001a"
+                                            />
+
+                                        </g>
+                                    )}
+
+                                </g>
+
+                            );
+
+                        })()}
+
+                    </g>
+                )}
+
+                {currentModeCode === "Y" && !isDepleted && (currentStep % 24) === 23 && (
+
+                    <g className="electric-clap-layer" style={{ pointerEvents: "none" }}>
+
+                        <defs>
+                            <radialGradient id="electricBurst" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stopColor="#ffffff" />
+                                <stop offset="40%" stopColor="#e0ffff" />
+                                <stop offset="80%" stopColor="#00ffff" />
+                                <stop offset="100%" stopColor="rgba(0, 255, 255, 0)" />
+                            </radialGradient>
+                        </defs>
+
+                        <g transform="translate(300, 140)">
+
+                            <circle cx="0" cy="0" r="45" fill="url(#electricBurst)" style={{ filter: "drop-shadow(0 0 20px #00ffff" }} />
+
+                            <path d="M 0 0 L -15 -25 L -5 -20 L -20 -40" stroke="#ffffff" strokeWidth="3" fill="none" />
+                            <path d="M 0 0 L 15 -25 L 5 -20 L 20 -40" stroke="#ffffff" strokeWidth="3" fill="none" />
+                            <path d="M 0 0 L -25 10 L -15 15 L -35 25" stroke="#e0ffff" strokeWidth="2.5" fill="none" />
+                            <path d="M 0 0 L 25 10 L 15 15 L 35 25" stroke="#e0ffff" strokeWidth="2.5" fill="none" />
+
+                        </g>
+
+                    </g>
+
+                )}
+
+                {/* Midnight Theatre Strobe & Tick Accents */}
+                {currentModeCode === "R" && !isDepleted && (
+                    <g className="midnight-theater-strobe-layer" style={{ pointerEvents: "none" }}>
+
+                        {(() => {
+                            const rawStep = currentStep % 24;
+
+                            if(rawStep >= 15 && rawStep <= 22) {
+                                const isOddBeat = rawStep % 2 !== 0;
+
+                                return (
+                                    <g key={`strobe-step-${rawStep}`}>
+
+                                        <circle 
+                                            cx="300" cy="300" r="180"
+                                            fill="none"
+                                            stroke={isOddBeat ? "#ff0055" : "#ffffff"}
+                                            strokeWidth={isOddBeat ? "4" : "0"}
+                                            opacity="0.8"
+                                            style={{
+                                                filter: "drop-shadow(0 0 15px #ff0055)"
+                                            }}
+                                        />
+
+                                        <circle 
+                                            cx="300" cy="300" r="220"
+                                            fill="none"
+                                            stroke={isOddBeat ? "#ffffff" : "#ff0055"}
+                                            strokeWidth="3"
+                                            strokeDasharray="8 12"
+                                            opacity="0.9"
+                                        />
+
+                                    </g>
+                                );
+                            }
+
+                            return null;
+                        })()}
+
+                    </g>
+                )}
+
+                {/* BackWall RhineStone Fireworks & Rose Dancers */}
+                {currentModeCode === "RS" && !isDepleted && (
+
+                    <g className="line-dancing-sparkle-layer" style={{ pointerEvents: "none" }}>
+
+                        {(() => {
+
+                            const rawStep = currentStep % 24;
+                            const isClapBeat = [5, 11, 15, 22, 23].includes(rawStep);
+
+                            const dancerWedges = [0, 6, 12, 18];
+
+                            return (
+
+                                <g key={`ld-step-${rawStep}`}>
+
+                                    {dancerWedges.map((wIdx) => {
+
+                                        const angleRad = (-Math.PI / 2) + (wIdx * (Math.PI / 12));
+
+                                        const rX = 300 + Math.cos(angleRad) * 160;
+                                        const rY = 300 + Math.sin(angleRad) * 110;
+
+                                        return (
+
+                                            <g key={`rose-${wIdx}`} transform={`translate(${rX}, ${rY})`}>
+
+                                                <circle cx="0" cy="0" r="16" fill="rgba(255, 0, 85, 0.25)"  style={{ filter: "drop-shadow(0 0 10px #ff0055)" }} />
+
+                                                <circle cx="0" cy="0" r="11" fill="#e60039" stroke="#ffffff" strokeWidth="1.5" />
+                                                <path d="M -6 -2 Q 0 -8 6 -2 Q 8 4 0 8 Q -8 4 -6 -2" fill="#ff3366" />
+                                                <circle cx="0" cy="0" r="5" fill="#ffe135" stroke="#ffffff" strokeWidth="0.8" />
+
+                                                <circle cx="0" cy="0" r="2" fill="#ffffff" style={{ filter: "drop-shadow(0 0 4px #ffffff)" }} />
+
+                                            </g>
+
+                                        );
+
+                                    })}
+
+                                    {isClapBeat && (
+                                        <g className="backwall-fireworks">
+                                            {[ { x: 180, y: 70 }, { x: 300, y: 40 }, { x: 420, y: 70 } ].map((loc, fIdx) => (
+                                                <g key={`fw-burst-${fIdx}`} transform={`translate(${loc.x}, ${loc.y})`}>
+                                                    <circle cx="0" cy="0" r="22" fill="#ffffff" style={{ filter: "drop-shadow(0 0 14px #ffe135)" }} />
+                                                    {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map(deg => (
+                                                        <g key={`fw-ray-${deg}`} transform={`rotate(${deg})`}>
+                                                            <line x1="0" y1="-8" x2="0" y2="-38" stroke="#ffe135" strokeWidth="2" />
+                                                            <circle cx="0" cy="-42" r="2.5" fill="#ffffff" style={{ filter: "drop-shadow(0 0 5px #0099ff)" }} />
+                                                        </g>
+                                                    ))}
+                                                </g>
+                                            ))}
+                                        </g>
+                                    )}
+
+                                </g>
+
+                            );
+
+                        })()}
+
+                    </g>
+
+                )}
+
                 {/* D6 Strobe Disco Ball */}
 
                 {isStrobeActive && (

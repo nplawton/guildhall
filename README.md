@@ -110,6 +110,265 @@ Will you play as the ancient and wise Archmage and test your intelligence at the
   <img src="guildhall-start/src/assets/images/mainhall/archmage_seat.gif" alt="Archmage Seat" />
 </p>
 
+---
+
+# 🎭 THE CLOCKWORK CABARET
+
+Welcome to electrifying **Clockwork Cabaret**! Let me show you around-maybe play you a sound. You look like you're pretty groovy. The Clockwork Cabaret was stylized as if fantasy steampunk created a harmonizing dance with rock-n-roll. The stylized background was built to look like you were inside a true clockwork mechanism. The Bard’s signature lute stands prominent in the hall with his DJ Booth and Clockface Dance floor welcoming you into a night of glitz, glam, and a touch of decadence. 
+
+![Cabaret Stage](./guildhall-start/src/assets/images/cabaret/cabaret_stage.png)
+
+Step up to the enchanting **Clockwork Floor** and dance the hours away.
+
+![ClockworkFloor](./guildhall-start/src/assets/images/cabaret/cabaret_clockwork_floor.png)
+
+Stare off at the Lute Pendulum as it sways away the while the Clockwork Orchestra plays to the rhythm.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_clockwork_orchestra.gif" alt="cabaret_orchestra" />
+</p>
+
+---
+
+## ⚙️ The Dance Mechanism
+
+The **Dance Mechanism** governs the dynamic floor tile lighting, hand choreography, and visual overlays across the 24 floor wedges ($15^\circ$ per step) on the `ClockworkFloor`. Each mode represents a unique visual theme, color palette, and algorithmic routine driven by a 24-step beat sequence.
+
+### 📜 Mode Reference Guide
+
+#### Mode OFF: "DORMANT" (Code: OFF / Base Mode)
+* **Clockwork Floor Color**: Dark Charcoal (`#0a0a0a`)
+* **Mechanism**: Static ambient idle animation.
+* **Hand Choreography**: Free / standard timekeeping hands.
+* **Floor Behavior**: Minimal ambient floor glow across inner/outer rings to indicate standby power.
+
+---
+
+#### Mode I: "CHECKERBOARD GRID" (Code: C)
+* **Theme**: Precision Mechanical Clockwork
+* **Central Hub Color**: Brass Gold (`#d4af37`) / Warm Copper (`#b87333`)
+* **Clockwork Floor Color**: Black (`#0a0a0a`) / Red (`#d32f2f`)
+* **Mechanism**: Static 24-grid wedge showcasing the beginning of a coding journey.
+*	**Hand Choreography**: Hands snap to 2:40 / standard timekeeping.
+*	**Floor Behavior**: Ambient floor glow illuminates as the Central Hub Face comes to life to indicate a dance routine has been engaged.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_checkerboard.gif" alt="cabaret_checkerboard" />
+</p>
+
+---
+
+#### Mode II: "CHAOS GLITCH" (Code: PI)
+*	**Theme**: Randomness & Mechanical Madness
+*	**Central Hub Color**: Hot Pink (`#ff0080`)/ Rose Pink (`#ffb8d8`)
+*	**Clockwork Floor Color**: Dynamically generated via the `ClockworkFloor` random color generator.
+*	**Mechanism**: A wild explosion of colors constantly flashing and regenerating for an energetic dance routine.
+*	**Hand Choreography**: Hands move in a chaotic jittery motion trying to keep up with the floor.
+*	**Floor Behavior**: Chaotic flash of colors across all 24 floor wedges.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_chaos.gif" alt="cabaret_chaos" />
+</p>
+
+---
+
+#### Mode III: "LUNAR ECLIPSE" (Code: PU)
+*	**Theme**: Eerie Autumn Night
+*	**Central Hub Color**: Purple (`#6900d1`)/ Lilac (`#c48aff`)
+*	**Clockwork Floor Color**: Broken down into four wind components: Eye (`#c48aff`), Gust (`#9933ff`), Mist (`#3c1361`), and Void (`#0d0317`).
+*	**Mechanism**: A cool breeze winds around the floor while covering the background in a lunar glow; the Crescent Moon (minute) hand shines brightly every four beats.
+*	**Hand Choreography**: Hands snap to 6:00 / standard timekeeping.
+*	**Floor Behavior**: Smooth, wispy wind effects glide across the wedges with transition timings that give Lunar Eclipse a distinct atmospheric, windswept twilight vibe.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_lunar.gif" alt="cabaret_lunar" />
+</p>
+
+---
+
+#### Mode IV: "COUNTER RETRACE" (Code: G)
+*	**Theme**: Inverted radar sweeps guiding time backwards.
+*	**Central Hub Color**: Emerald Green (`#00a341`) / Light Green (`#5cff9d`)
+*	**Clockwork Floor Color**: Neon Green (`#00ff66`) beam. Even passes switch between Dark Emerald (`#005c25`) and Dark Green (`#001a0a`); odd passes flip between Sage Green (`#33ff88`) and Dark Green.
+*	**Mechanism**: A bright green beam projects from the Crescent Moon (minute) hand to the floor as it sweeps counterclockwise with Directional Reversal support. Completing a rotation toggles floor tile contrast.
+*	**Hand Choreography**: Hands snap to 12:58. Minute hand rotates counterclockwise; Sun hand rotates as minutes tick away.
+*  **Floor Behavior**: Smooth sweep cleanly flips tile contrast on alternating passes. The sync between the clock face beam and the floor wedges adds a magical sway for partners.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_retrace.gif" alt="cabaret_retrace" />
+</p>
+
+---
+
+#### Mode V: "BEAM TRACKING" (Code: BU)
+*	**Theme**: Space-Themed Radar Routine & Resonance Lifecycle
+*	**Central Hub Color**: Celestial Blue (`#0062a3`)/ Cyan (`#5cbeff`)
+*	**Clockwork Floor Color**: Scanning beam Celestial Blue (`#0099ff`) with trailing aura (`rgba(0, 153, 255, 0.35)`).
+*	**Mechanism**: A celestial blue beam projected from the Sun (hour) hand scans clockwise over the cosmos with Directional Reversal. When sensing a constellation node (`cog`, `keyhole`, `gear`, `escapement`), it glows with a silhouette aura, illuminating in radiant gold upon direct intersection.
+*	**Hand Choreography**: Minute Hand: Anchored firmly at 12 o'clock (Wedge 0). Sun Hand: Sweeps continuously across all 24 floor wedges ($15^\circ$ per step) with bidirectional rotation (`isReversed`).
+*	**Floor Behavior**: Continuous Sun-hand sweep with exponential phosphor decay and a 3-stage proximity resonance lifecycle (Approach $\rightarrow$ Intersect $\rightarrow$ Recede) igniting clockwork constellation nodes.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_tracking.gif" alt="cabaret_tracking" />
+</p>
+
+---
+
+#### Mode VI: "SOLAR_FLARE" (Code: O)
+
+*	**Theme**: RPG Spell Casting Narrative ("**I CAST FIREBALL!**")
+*	**Central Hub Color**: Orange (`#d15400`)/ Pale Orange (`#ff9d5c`)
+*	**Clockwork Floor Color**: Lava Orange (`#ff4500`) / Fiery Red (`#ff3300`) / Solar Gold (`#ffcc00`)
+*	**Mechanism**: Single-pass 24-step cinematic spell lifecycle (auto-deactivates to `DORMANT` upon completion):
+	1. **Charge & Countdown (Steps 0–15)**: Hour hand locked at 9 o'clock; minute hand targets 4 o'clock (20min). Solar ball swells on the 9 o'clock hub; lava countdown arc extinguishes step-by-step along bottom wedges (16 down to 10); "I CAST FIREBALL!!" runic text burns in letter-by-letter along top arc (wedges 20 through 4).
+	2. **Catapult Launch (Steps 16–19)**: Sun hand recoils backward to 8 o'clock then snaps back to 9 o'clock. Fireball detaches and arcs across the top ring.
+	3. **Impact & Detonation (Steps 20–22)**: Fireball impacts the 4 o'clock target (minute hand), triggering a supernova blast across wedges 5–8.
+  4. **Cooling Ember & Hand Drop (Step 23)**: Minute hand drops limply to 6 o'clock (30min) from blast impact. Floor cools to ember ash (`rgba(80, 20, 0, 0.4)`), auto-resetting cleanly to `DORMANT`.
+*	**Hand Choreography**: Reacts dynamically to the spellcaster's invocation.
+*	**Floor Behavior**: The floor illuminates as the spell takes shape, erupting into a shockwave upon impact and leaving scorched ember marks in its wake.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_fireball.gif" alt="cabaret_fireball" />
+</p>
+
+---
+
+#### Mode VII: "DAYS FLY BY" (Code: CY)
+*	**Theme**: 24-Hour Diurnal Sky Pass & Celestial Orbit
+*	**Central Hub Color**: Dark Cyan (`#00a3a3`)/ Cyan (`#5cffff`)
+*	**Clockwork Floor Color**: Incandescent Cyan (`#00ffff`) / Sunset Orange (`#ff5500`) / Dawn Pink (`#ff6699`) / Lunar Indigo (`#4b0082`)
+*	**Mechanism**: Continuous diurnal sky cycle with rewind capability (`D12` / Reverse):
+	1. **Sunrise / Dawn (Wedges 18–21)**: Soft pinks (`#ff6699`) and warm purple horizons emerging at 9 o'clock.
+  2. **Midday Cyan (Wedges 22–3)**: High-noon white core with brilliant cyan (`#00ffff`) sky at 12 o'clock.
+	3. **Dusk / Sunset (Wedges 4–9)**: Low warm oranges (`#ff5500`) and twilight blue-violet expanding at 3 o'clock.
+  4. **Midnight Starlight (Wedges 10–17)**: Deep lunar indigo (`#4b0082`) with star tiles sparkling on beat steps.
+*	**Hand Choreography**: Hands fixed as horizon guides at 9:15 (Hour Hand at 9 o'clock sunrise horizon, Minute Hand at 3 o'clock dusk horizon).
+*	**Floor Behavior**: A glowing Sun marker orbits the rim during daytime, transforming into a Silver Crescent Moon during night hours. Toggling `D12 (Reverse)` literally rewinds the sun and sky pass backward across the dial.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_daytime.gif" alt="cabaret_daytime" />
+</p>
+
+---
+
+#### Mode VIII: "LEGACY TRANSITION" (Code: Y)
+*	**Theme**: Origins & Progressions (Evolution of Light & Rhythm)
+*	**Central Hub Color**: Yellow (`#ffd700`)/ Sepia Amber (`#b5873d`)
+*	**Clockwork Floor Color**: Incandescent Bulb Yellow (`#ffe135`) / Electric Gold (`#ffd700`) / Antique Brass (`#d4af37`) / LED Cyan (`#00ffff`)
+*	**Mechanism**: 4-Phase historical progression tracing human mastery over light and sound:
+	1. **Phase 1: Primitive Sparks (Steps 0–5)**: Hands fixed at initial 2:40. Jittery spark bursts ignite outward from the hub toward 2, 5, 8, and 11 o'clock.
+  2. **Phase 2: Lantern Waltz (Steps 6–11)**: 3/4 waltz rhythm in warm oil-lamp amber (`#ffbf00`). Minute hand glides smoothly while the hour hand snaps into place on the 3rd beat (pivoting between 3:15 and 8:40).
+  3. **Phase 3: Dual Spiral Rock Groove (Steps 12–17)**: 1950s rock backbeat. Counter-rotating spirals in Antique Brass (`#d4af37`) and Electric Gold (`#ffd700`) cross paths while the hour hand steps forward ($8 \rightarrow 10$ o'clock) and the minute hand sweeps backward ($8 \rightarrow 6$ o'clock).
+  4. **Phase 4: Electric Avenue Anthem (Steps 18–23)**: Full arena-rock pulse with a $360^\circ$ gradient (Amber bottom $\rightarrow$ Yellow mid-ring $\rightarrow$ High-voltage Cyan top). Hands drop to 6 o'clock, split outward to 9 & 3 o'clock along the strings, sweep up the neck, and clap together at 12:00, firing a 12 o'clock electric lightning burst on Beat 23.
+*	**Hand Choreography**: Hands dance and sway to the rhythm of the light interacting with the floor.
+*	**Floor Behavior**: Sway along as the history of light and sound dances through the floor bouncing between integral epochs of human history.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_legacy.gif" alt="cabaret_legacy" />
+</p>
+
+---
+
+#### Mode IX: "MIDNIGHT THEATRE" (Code: R)
+*	**Theme**: Midnight Theatre Campy Horror
+*	**Central Hub Color**: Starts with Soft Brass Ambient / `isThrustingPhase` pops with electric crimson and white energy
+*	**Clockwork Floor Color**: Step Energy Red (Low: `#ff0055`, Med: `#ff3366`, Med-High: `#ff0044`, High: `#e60039`) / Dim Floor Red (`rgba(50, 0, 15, 0.25)` to `rgba(100, 0, 30, 0.35)`).
+* **Mechanism**: 7-Phase dance instruction on how to perform the classic campy horror dance icon—The Time Warp: 
+	1. **Phase 1: "It's astounding..." (Beats 0–2)**: Start with hands in the air at 1:55 (170 BPM). 2. 
+	2. **Phase 2: "A jump to the left!" (Beats 3–5)**: After the first dull red pulse, JUMP to the left with clock hands pointing at 11:45, illuminating target wedges. 3. 
+	3. **Phase 3: "And then a step to the right!" (Beats 6–8)**: STEP hands to the right (12:50), lighting up new wedges. 4. 
+	4. **Phase 4: "Put your hands on your hips..." (Beats 9–11)**: PUT hands on hips (8:40), illuminating side wedges. 5. 
+	5. **Phase 5: "And bring your knees in tight!" (Beats 12–14)**: BRING knees in tight (5:35), illuminating the bottom floor section. 6. 
+	6.**Phase 6: "But it's the pelvic thrust..." (Beats 15–22)**: THRUST hands outward in opposite directions; Hour hand spins wild clockwise while Minute hand spins wild counterclockwise. Central Hub Face flashes in a fast red/white strobe beat. 
+	7. **Phase 7: System Depleted (Beat 23)**: The massive energy surge drains system reserves into an `isDepleted` power-down state.
+*	**Hand Choreography**: Hands are choreographed to dance along with the lyrics, failing wildly into a wild spin as the routine concludes.
+*	**Floor Behavior**: An electrifying, easy-to-follow dance instruction sequence to "Do the Time Warp Again!"
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_theatre.gif" alt="cabaret_theatre" />
+</p>
+
+---
+
+#### Mode IX: "LINE DANCE SPARKLE" (Code: RS)
+*	**Theme**: Friday Night Country Line Dance Under the Stars 
+*	**Central Hub Color**: Rose (`#ffb6c1`) / Sapphire (`#0099ff`) / Champagne Gold (`#ffbc05`)
+*	**Clockwork Floor Color**: Rhythmic line dance flow between Rhinestone Diamond White (`#ffffff`), Champagne Gold (`#ffe135`), and Deep Sapphire (`#0099ff`).
+*	**Mechanism**: 4-Phase "Boot-Scootin'" Line Dance with Backwall Rhinestone Fireworks:
+	1. **Phase 1: Heel/Toe Steps (Steps 0–5)**: Minute hand kicks back and forth between 8, 9, and 10 o'clock while the Hour hand steps from $9:00 \rightarrow 10:00$.
+  2. **Phase 2: Jazz Box & Quarter Turn (Steps 6–11)**: Minute hand sweeps dynamically as the Hour hand steps to 12:00.
+  3. **Phase 3: Grapevine (Steps 12–17)**: Minute hand glides across the dial while the Hour hand reaches 3:00.
+  4. **Phase 4: Finale Stomp (Steps 18–23)**: Both hands snap together at 5:00 ("Quitting time!"), triggering backwall rhinestone fireworks and internal hub cog energy glows on clap beats!
+*	**Hand Choreography**: Hands step and kick in sync with line dance footwork, clapping on section beats.
+*	**Floor Behavior**: A country night under a twinkling star field, complete with glowing rose dancer icons, backwall fireworks, and a 24-step line dance count.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/cabaret_sparkle.gif" alt="cabaret_sparkle" />
+</p>
+
+---
+
+## 🎛️️ The DJ Booth Controls
+
+Don’t worry—the DJ has plenty more tricks up his sleeve throughout the DJ Booth!
+
+### 🎚️ Master Command Bar
+
+The Command Bar controls all lighting within the Cabaret as well as overall ambient brightness. The DJ also manages master sound power, volume, treble, and bass. Housed here as well is the Dance Mechanism state display and Cuckoo-Bird Housing.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_command.gif" alt="dj_booth_command" />
+</p>
+
+
+### ⏱️ Chrono Deck
+
+Set the time manually using the Sun Dial for hours and Moon Dial for minutes on both the `CentralHubFace` and the digital display. 
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_chrono.gif" alt="dj_booth_chrono" />
+</p>
+
+* **Spotlight (D4)**: Asks the DJ to dim ambient lights and drop a central spotlight for slow dances.
+* **Strobe (D6)**: Engages high-frequency disco strobe lighting.
+* **Wildcard (D8)**: Triggers high-voltage electric arc surges and spotlight beams.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_ldice_row.gif" alt="dj_booth_left_dice_row" />
+</p>
+
+
+### ⚡ Central Control Panel & DJ Console v3.03
+At the heart of the DJ Booth lies the **Cabaret DJ Console v3.03**, serving as the central nervous system connecting the analog steam mechanics to the digital visual arrays.
+* **Cabaret DJ Console v3.03 Readout**: An illuminated central terminal displaying real-time system status, active mode name/code, current BPM, and live power drain metrics.
+* **Turbo Ramp Slider**: A heavy brass linear fader that overclocks the internal engine. Pushing the Turbo Ramp past nominal thresholds accelerates beat timing, ramps up floor light intensity, and drives the gear train into high gear.
+* **Light Speed (L-SPD) Ramp Slider**: Controls the global frequency multiplier for stage lighting, spotlights (D4), and strobes (D6). Ramping up L-SPD tightens beat pulses from slow-motion atmospheric glows into rapid-fire concert strobes.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_central.gif" alt="dj_booth_central" />
+</p>
+
+### 🎛️ Preset Deck
+Save modified settings on the fly by activating the Preset System and selecting a preset slot for instant recall.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_preset.gif" alt="dj_booth_preset" />
+</p>
+
+* **Shuffle (D10)**: Lets the booth pick a random dance routine for you.
+* **Reverse (D12)**: Reverses the direction of active routines and gear mechanics.
+* **Fog (D20)**: Fills the stage void with atmospheric steam and fog overlays.
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_dice_row.gif" alt="dj_booth_right_dice_row" />
+</p>
+
+### 🕰️ Grandfather Clock Stand & Power
+The DJ Booth runs on steam power. The DJ must monitor the Cavort Gauge to keep energy flowing. As energy burns (determined by each mode's `burnRate`), the grandfather clock weights drop. If steam becomes completely `isDepleted`, the Cuckoo-Bird emerges from its housing to alert the DJ. Wind up the booth to restore power and keep the cabaret alive!
+
+<p align="center">
+  <img src="guildhall-start/src/assets/images/cabaret/dj_booth_stand.gif" alt="dj_booth_stand" />
+</p>
 
 ---
 

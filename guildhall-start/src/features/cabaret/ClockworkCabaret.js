@@ -281,6 +281,10 @@ export default function ClockworkCabaret() {
         const nextCode = (currentModeCode === targetCode) ? null : targetCode;
         const modeObj = getModeByCode(nextCode);
 
+        if (typeof setCurrentStep === 'function') {
+            setCurrentStep(0);
+        }
+
         setCurrentModeCode(nextCode);
 
         if (modeObj) {
@@ -427,6 +431,120 @@ export default function ClockworkCabaret() {
 
     }, [currentStep, currentModeCode, isDepleted, setCurrentModeCode, setCrtModeText]);
 
+    useEffect(() => {
+        if (isDepleted || currentModeCode !== "CY") return;
+
+        setHours(9);
+        setMinutes(15);
+    }, [currentModeCode, isDepleted]);
+
+    useEffect(() => {
+        if (isDepleted || currentModeCode !== "Y") return;
+
+        const rawStep = currentStep % 24;
+
+        if (rawStep <= 5) {
+            setHours(2);
+            setMinutes(40);
+        }
+
+        else if (rawStep >= 6 && rawStep <= 7) {
+            setMinutes(15);
+        } else if (rawStep === 8) {
+            setHours(3)
+        } else if (rawStep >= 9 && rawStep <= 10) {
+            setMinutes(40);
+        } else if (rawStep === 11) {
+            setHours(8);
+        }
+
+        else if (rawStep >= 12 && rawStep <= 17) {
+            const progress = (rawStep - 12) / 5;
+            setHours(8 + Math.floor(progress * 2));
+            setMinutes(40 - Math.floor(progress * 10));
+        }
+
+        else if (rawStep >= 18) {
+            if(rawStep === 18) {
+                setHours(6);
+                setMinutes(30);
+            } else if (rawStep === 19 || rawStep === 20) {
+                setHours(9);
+                setMinutes(15);
+            } else if (rawStep === 21 || rawStep === 22) {
+                setHours(11);
+                setMinutes(5);
+            } else if (rawStep >= 23) {
+                setHours(12);
+                setMinutes(0);
+            }
+        }
+
+    }, [currentStep, currentModeCode, isDepleted]);
+
+    useEffect(() => {
+        if (isDepleted || currentModeCode !== "R") return;
+
+        const rawStep = currentStep % 24;
+
+        if (rawStep <= 2) {
+            setHours(1);
+            setMinutes(55);
+        } else if (rawStep >= 3 && rawStep <= 5) {
+            setHours(11);
+            setMinutes(45);
+        } else if (rawStep >= 6 && rawStep <= 8) {
+            setHours(12);
+            setMinutes(50);
+        } else if (rawStep >= 9 && rawStep <= 11) {
+            setHours(4);
+            setMinutes(40);
+        } else if (rawStep >= 12 && rawStep <= 14) {
+            setHours(5);
+            setMinutes(35);
+        } else if (rawStep >= 15 && rawStep <= 22) {
+            const spinOffset = (rawStep - 15) * 3;
+
+            const calcHour =((12 + spinOffset) % 12 || 12);
+            const calcMin = ((6000 - (spinOffset * 25)) % 60);
+
+            setHours(calcHour);
+            setMinutes(calcMin)
+
+        } else if (rawStep === 23) {
+            if (typeof setCurrentModeCode === 'function') {
+                setCurrentModeCode(null);
+                setCrtModeText("DORMANT");
+            }
+
+            if(typeof setEnergyLevel === 'function') {
+                setEnergyLevel(0);
+            }
+        }
+
+    }, [currentStep, currentModeCode, isDepleted, setCurrentModeCode, setCrtModeText, setEnergyLevel]);
+
+    useEffect(() => {
+        if (isDepleted || currentModeCode !== "RS") return;
+        
+        const rawStep = currentStep % 24;
+
+        if (rawStep <= 5) {
+            setHours(9);
+            setMinutes(rawStep % 2 === 0 ? 40 : 50);
+        } else if (rawStep >= 6 && rawStep <= 11) {
+            setHours(12);
+            setMinutes((rawStep * 5) % 60);
+        }else if (rawStep >= 12 && rawStep <= 17) {
+            setHours(3);
+            setMinutes(rawStep % 2 === 0 ? 15 : 45);
+        } else if (rawStep >= 18) {
+            setHours(5);
+            setMinutes(25);
+        }
+
+    }, [currentStep, currentModeCode, isDepleted]);
+
     const resolvedCrtText = isDepleted ? "DEPLETED" : (crtMessageOverride || crtModeText);
    
     
@@ -439,6 +557,8 @@ export default function ClockworkCabaret() {
                 lightPower={effectiveLightPower}
                 isReversed={isReversed}
                 isDepleted={isDepleted}
+                currentModeCode={currentModeCode}
+                currentStep={currentStep}
             />
 
             <ClockworkFloor 
