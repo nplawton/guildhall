@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3c0d750e.css",
+    "main.js": "/static/js/main.214e1c58.js",
+    "static/js/453.35af7e03.chunk.js": "/static/js/453.35af7e03.chunk.js",
+    "static/media/Bear_Silhouette.png": "/static/media/Bear_Silhouette.55e439a15e2a9955e6cb.png",
+    "index.html": "/index.html",
+    "main.3c0d750e.css.map": "/static/css/main.3c0d750e.css.map",
+    "main.214e1c58.js.map": "/static/js/main.214e1c58.js.map",
+    "453.35af7e03.chunk.js.map": "/static/js/453.35af7e03.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c0d750e.css",
+    "static/js/main.214e1c58.js"
+  ]
+}

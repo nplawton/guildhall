@@ -1,0 +1,135 @@
+.nixie-tube-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    user-select: none;
+}
+
+.nixie-tube-container.small { 
+    width: 20px; 
+    height: 38px; 
+}
+
+.nixie-tube-container.medium {
+    width: 28px;
+    height: 52px;
+}
+
+.nixie-tube-container.large {
+    width: 36px;
+    height: 68px;
+}
+
+.nixie-glass-envelope {
+    width: 100%;
+    height: 85%;
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(255, 255, 255, 0.15),
+        rgba(10, 8, 5, 0.85)
+    );
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 20px 20px 6px 6px;
+    position: relative;
+    box-shadow: 
+        inset 0 0 8px rgba(0, 0, 0, 0.9),
+        0 4px 10px rgba(0, 0, 0, 0.5)
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.nixie-tube-container.unpowered .nixie-glass-envelope {
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(100, 100, 100, 0.5),
+        rgba(5, 4, 3, 0.95)
+    );
+    border-color: rgba(100, 80, 40, 0.2);
+    box-shadow: rgba(5, 4, 3, 0.95);
+}
+
+.nixie-mesh-grid {
+    position: absolute;
+    inset: 4px;
+    background-image: radial-gradient(
+        rgba(212, 175, 55, 0.15) 1px,
+        transparent 0
+    );
+    background-size: 3px 3px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.nixie-tube-container.unpowered .nixie-mesh-grid {
+    opacity: 0.1;
+}
+
+
+.nixie-filament-bg, 
+.nixie-filament-active {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    pointer-events: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nixie-tube-container.small .nixie-filament-bg,
+.nixie-tube-container.small .nixie-filament-active {
+    font-size: 0.85rem;
+}
+
+.nixie-tube-container.medium .nixie-filament-bg,
+.nixie-tube-container.medium .nixie-filament-active {
+    font-size: 1.15rem;
+}
+
+.nixie-tube-container.large .nixie-filament-bg,
+.nixie-tube-container.large .nixie-filament-active {
+    font-size: 1.6rem;
+}
+
+.nixie-filament-bg {
+    color: rgba(70, 40, 20, 0.12);
+    z-index: 1;
+}
+
+.nixie-filament-active {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nixie-glass-shine {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 35%;
+    height: 60%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.35) 0%,
+        transparent 60% 
+    );
+    border-radius: 12px 0 0 0;
+    pointer-events: none;
+}
+
+.nixie-brass-base {
+    width: 110%;
+    height: 15%;
+    background: linear-gradient(
+        180deg,
+        #f7d08b 0%,
+        #b5873d 50%,
+        #302005 100%
+    );
+    border: 1px solid #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}

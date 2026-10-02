@@ -1,0 +1,1906 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=UnifrakturMaguntia&display=swap');
+
+/* =====================================================================
+     0. Root Color Variables
+   ===================================================================== */
+
+:root{
+    /* Metallic & Wood Tones */
+    --brass-dark: #5c4323;
+    --brass-primary: #b8860b;
+    --brass-light: #ffd700;
+    --copper-glow: #d97724;
+    --mahogany-bg: #1a0f0a;
+
+    /* Paper & Text Tones */
+    --parchment-bg: #f4e4bc;
+    --parchment-dark: #e2c992;
+    --ink-text: #2b1e10;
+
+    /* Mechanical Accents */
+    --crystal-blue: #00d2ff;
+    --gear-shadow: rgba(0, 0, 0, 0.75);
+
+}
+
+/* =====================================================================
+     1. Room Layout & Stage Grid
+   ===================================================================== */
+
+/* Loading State */
+.library-loading {
+    background-color: var(--mahogany-bg);
+    color: var(--brass-light);
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-shadow: 0 0 10px var(--copper-glow);
+}
+
+
+.library-room-container {
+    background-color: var(--mahogany-bg);
+    background-image: 
+        radial-gradient(circle at 50% 20%, rgba(127, 119, 36, 0.15), transparent 70%),
+        linear-gradient(rgba(10, 5, 2, 0.85), rgba(10, 5, 2, 0.85));
+    min-height: 100vh;
+    padding: 2rem;
+    color: var(--parchment-bg);
+    font-family: 'Georgia', 'Palatino', serif;
+    box-sizing: border-box;
+}
+
+.library-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.library-header h1 {
+    color: var(--brass-light);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    border-bottom: 2px solid var(--brass-primary);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.font-archmage {
+    text-shadow: 2px 2px 4px #000, 0 0 12px var(--copper-glow), 0 0 25px rgba(218, 165, 32, 0.4);
+    font-family: 'Cinzel Decorative', serif;
+}
+
+.text-gold-muted {
+    color: #d4af37;
+    letter-spacing: 1.5px;
+    opacity: 0.85;
+    text-shadow: 1px 1px 3px #000;
+    margin-top: 0.25rem;
+}
+
+.library-stage {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: start;
+}
+
+.right-panel-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* =====================================================================
+     2. Steampunk Brass Frame Workshop
+   ===================================================================== */
+
+.steampunk-frame {
+    border: 4px solid var(--brass-primary);
+    background: var(--parchment-bg);
+    color: var(--ink-text);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 4px solid var(--brass-primary);
+    box-shadow: 
+        0 0 0 1px var(--brass-dark)
+        inset 0 0 15px rgba(0, 0, 0, 0.5)
+        0 8px 20px var(--gear-shadow)
+    ;
+}
+
+/* Metallic Rivet Corners */
+.steampunk-frame::before,
+.steampunk-frame::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at 30% 30%, var(--brass-light), var(--brass-dark));
+    border: 1px solid var(--brass-dark);
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+.steampunk-frame::before { top: 6px; left: 6px; }
+.steampunk-frame::after { top: 6px; right: 6px; }
+
+/* =====================================================================
+    3. Inner Main Card Layout
+   ===================================================================== */
+
+.main-monster-card {
+    height: 940px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.card-scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+.card-scrollable-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.card-scrollable-content::-webkit-scrollbar-track {
+    background: #2b1809;
+    border-radius: 3px;
+}
+
+.card-scrollable-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #b8860b 0%, #52391c 100%);
+    border-radius: 3px;
+    border: 1px solid #1a0c03;
+}
+
+.monster-name {
+    font-size: 2rem;
+    margin: 0;
+    color: var(--brass-dark);
+}
+
+.monster-meta {
+    font-style: italic;
+    margin: 0.2rem 0;
+    color: #5a4018;
+}
+
+.card-divider {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brass-primary), transparent);
+    margin: 1rem 0;
+}
+
+.card-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    gap: 1.2rem;
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.4);
+    border-radius: 6px;
+    height: 280px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Ability Score Brass Badges */ 
+.stats-input-row,
+.ability-score-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.stat-field,
+.ability-badge {
+    background: linear-gradient(180deg, #3a2a10, #1a0f0a);
+    border: 1px solid var(--brass-primary);
+    color: var(--brass-light);
+    padding: 0.4rem;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+.ability-badge .stat-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--parchment-dark);
+}
+
+.ability-badge .stat-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.monster-portrait-frame {
+    border: 3px double var(--brass-primary);
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+    overflow: hidden;
+    border-radius: 6px;
+    max-height: 350px;
+}
+
+.monster-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: sepia(0.2) contrast(1.05);
+    transition: transform 0.4s ease;
+}
+
+.monster-portrait-frame:hover .monster-portrait-img {
+    transform: scale(1.03);
+}
+
+/* =====================================================================
+    4. Control Panel & Info Brackets (Dark Brass Lore Boxes)
+   ===================================================================== */
+
+.control-panel-container h2,
+.control-panel-container h3 {
+    color: #2b1e10 !important;
+    text-shadow: none;
+    font-weight: bold;
+    padding-bottom: 0.25rem;
+}
+
+.control-panel-container input[type="text"] {
+    background: #fff;
+    border: 1px solid var(--brass-primary);
+    color: var(--brass-light);
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0.5rem;
+    box-shadow: inset 0 2px 6px #000;
+}
+
+.info-brackets-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.info-bracket {
+    background: linear-gradient(180deg, #2b1e10, #1a0f0a);
+    border: 1px solid var(--brass-primary);
+    border-radius: 4px;
+    padding: 0.6rem;
+    box-shadow: inset 0 0 6px #000;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.bracket-header {
+    border-bottom: 1px solid var(--brass-dark);
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.4rem;
+    flex-shrink: 0;
+}
+
+.bracket-title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--brass-light);
+    letter-spacing: 0.5px;
+}
+
+.bracket-content {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.bracket-content p {
+    font-size: 0.8rem;
+    color: var(--parchment-dark);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.bracket-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.bracket-content::-webkit-scrollbar-track {
+    background: #1a0f0a;
+}
+
+.bracket-content::-webkit-scrollbar-thumb {
+    background: var(--brass-primary);
+    border-radius: 2px;
+}
+
+/* =====================================================================
+   5. Control Panel Felt Drawer
+   ===================================================================== */
+
+.type-drawer {
+    border: 2px solid var(--brass-primary);
+    border-radius: 6px;
+    margin: 1rem 0;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.drawer-handle {
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #4a3618, #2b1e10);
+    color: var(--brass-light);
+    user-select: none;
+    border-bottom: 1px solid var(--brass-dark);
+}
+
+.felt-tray {
+    background-color: #1a0006;
+    border-image: radial-gradient(rgba(80, 20, 15, 0.6) 1px, transparent 0);
+    background-size: 4px 4px;
+    padding: 0.8rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem 0.8rem;
+    border-top: 2px solid var(--brass-primary);
+    box-shadow: inset 0 0 10px #000;
+}
+
+/* Custom Brass Circle Checkbox */
+.type-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    user-select: none; 
+}
+
+.brass-checkbox {
+    display: none;
+}
+
+.brass-knob-radio {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--brass-primary);
+    background: radial-gradient(circle at 30% 30%, #3a2a10, #1a0f0a);
+    box-shadow: inset 0 0 3px #000, 0 1px 2px rgba(0, 0, 0, 0.8);
+    display: inline-block;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.brass-checkbox:checked + .brass-knob-radio {
+    background: radial-gradient(circle at 30% 30%, var(--brass-light), var(--brass-primary));
+    box-shadow: 0 0 6px var(--copper-glow);
+}
+
+.type-text {
+    color: var(--parchment-bg);
+    text-shadow: 1px 1px 2px #000;
+    white-space: nowrap;
+}
+
+/* =====================================================================
+    6. Action Fixtures
+   ===================================================================== */
+
+.action-fixture-group,
+.action-fixtures-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin: 1.2rem 0;
+}
+
+.action-fixture {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.action-fixture:hover {
+    background: rgba(184, 134, 11, 0.15);
+}
+
+.brass-knob-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--brass-light), var(--brass-dark));
+    border: 2px solid var(--brass-primary);
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.5),
+        inset 0 1px 2px rgba(255, 255, 255, 0.7)
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.15rem;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+}
+
+.brass-knob-btn:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    box-shadow: 0 0 12px var(--copper-glow);
+}
+
+.brass-knob-btn:active {
+    transform: scale(0.92);
+}
+
+.fixture-text {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--brass-light);
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.mini-riveted-plaque {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 0.65rem 1.2rem;
+
+    /* Dark Oxidized Iron Base w/ Metallic Bevel */
+    background: linear-gradient(180deg, #2b1e10, #140d07);
+    border: 2px solid var(--brass-primary);
+    border-radius: 6px;
+
+    /* Crisp Beveled Edge Shadow */
+    box-shadow: 
+        inset 0 1px 1px rgba(255, 215, 0, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.9),
+        0 4px 8px rgba(0, 0, 0, 0.4)
+    ;
+
+    transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-fixture .mini-riveted-plaque {
+   cursor: default;
+}
+
+/* Corner Rivet Absolute Positiong Fix */
+.mini-riveted-plaque .rivet {
+    position: absolute !important;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+
+    color: transparent !important;
+    font-size: 0 !important;
+    user-select: none;
+
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ffd700 45%, #b8860b 80%, #3a2a10 100%);
+    border: 1px solid #140d07;
+
+    box-shadow: 
+        0 0 0 1px #0d0704,
+        inset 0 1px 2px rgba(255, 255, 255, 0.9)
+    ;
+
+    pointer-events: none;
+    z-index: 2;
+}    
+
+.mini-riveted-plaque .rivet.top-left     { top: 4px; left: 5px; }
+.mini-riveted-plaque .rivet.top-right    { top: 4px; right: 5px; }
+.mini-riveted-plaque .rivet.bottom-left  { bottom: 4px; left: 5px; }
+.mini-riveted-plaque .rivet.bottom-right { bottom: 4px; right: 5px; }
+
+.mini-riveted-plaque .fixture-text {
+    font-size: 0.78rem;
+    font-weight: bold;
+    color: var(--brass-light);
+    letter-spacing: 0.8px;
+    text-shadow: 1px 1px 3px #000;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* =====================================================================
+    7. Floating Creature Forge Modal
+   ===================================================================== */
+
+.floating-window-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(8, 4, 2, 0.88);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.floating-window-container {
+    width: 92%;
+    max-width: 720px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 2rem;
+
+    background: radial-gradient(circle at 50% 10%, #2e2318 0%, #17110c 70%, #0c0805 100%);
+    border: 4px solid var(--brass-dark);
+    outline: 2px solid #000;
+    border-radius: 8px;
+
+    box-shadow: 
+        0 0 0 2px #000,
+        inset 0 0 15px rgba(0, 0, 0, 0.9),
+        inset 0 0 2px var(--brass-primary),
+        0 10px 30px rgba(0, 0, 0, 0.95),
+        0 0 20px rgba(184, 134, 11, 0.2)
+    ;
+    color: var(--parchment-bg);
+}
+
+.floating-window-container::-webkit-scrollbar-track {
+    background: #140d07;
+    border-radius: 4px;
+    box-shadow: inset 0 0 5px #000;
+}
+
+.floating-window-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--brass-light), var(--brass-dark));
+    border-radius: 4px;
+    border: 1px solid var(--brass-primary);
+}
+
+.floating-window-container::-webkit-scrollbar-thumb:hover {
+    background: var(--brass-light);
+}
+
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--brass-primary);
+    padding: 0.4rem 0.6rem 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, rgba(184, 134, 11, 0.15), transparent);
+    border-radius: 4px 4px 0 0;
+}
+
+.window-header h2 {
+    margin: 0;
+    color: var(--brass-light);
+    font-size: 1.25rem;
+    letter-spacing: 1.5px;
+    text-shadow: 1px 1px 3px #000;
+}
+
+/* =====================================================================
+    8. Floating Forge Modal Action Fixtures (BTNs)
+   ===================================================================== */
+
+/* Ruby Lens Glow Close BTN */
+.ruby-lens-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+
+    background: radial-gradient(circle at 35% 30%, #ff4d4d 0%, #a80000 50%, #4a0000 85%, #200000 100%);
+    border: 2px solid var(--brass-primary);
+   
+    box-shadow: 
+        0 0 8px rgba(255, 26, 26, 0.6), 
+        inset 0 2px 4px rgba(255, 255, 255, 0.7)
+    ;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    padding: 0;
+}
+
+.ruby-lens-btn:hover {
+    transform: scale(1.15) rotate(5deg);
+    background: radial-gradient(circle at 35% 30%, #ff8080 0%, #ff0000 45%, #990000 80%, #400000 100%); 
+    box-shadow: 
+        0 0 12px #ff1a1a, 
+        0 0 25px rgba(255, 0, 0, 0.7)
+    ;
+}
+
+.ruby-lens-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 8px #ff0000, inset 0 0 8px #000;
+} 
+
+/* Fixture Portion */
+.modal-fixtures {
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 2px double var(--brass-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-fixtures .brass-knob-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--brass-light), var(--brass-dark));
+    border: 2px solid var(--brass-primary);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        inset 0 1px 3px rgba(255, 255, 255, 0.7)
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mini-riveted-plaque.glass-plaque {
+    overflow: hidden;
+    background: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #1c150e 0%, #0c0805 100%)
+    ;
+    border-color: var(--brass-light);
+    box-shadow: 
+        inset 0 0 10px #000,
+        inset 0 1px 2px rgba(255, 255, 255, 0.6),
+        0 4px 8px rgba(0, 0, 0, 0.5)
+    ;
+}
+
+.mini-riveted-plaque.glass-plaque::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.mini-riveted-plaque.glass-plaque .fixture-text {
+    color: rgba(217, 179, 106, 0.55);
+    transition: all 0.25s ease;
+    z-index: 2;
+}
+
+/* Danger BTN (Crimson Red Sync) */
+.danger-fixture:hover .skull-btn {
+    transform: scale(1.12) rotate(-8deg);
+    border-color: #ff4d4d;
+    box-shadow: 0 0 14px #ff3333, inset 0 0 4px #ff9999;
+    background: radial-gradient(circle at 30% 30%, #ff6666, #8b0000);
+}
+
+.danger-fixture:hover .mini-riveted-plaque.glass-plaque {
+    border-color: #FF4D4D;
+    box-shadow: 
+        inset 0 0 12PX rgba(255, 77, 77, 0.4),
+        0 0 15px rgba(255, 77, 77, 0.3),
+        inset 0 1px 2px #ffffff
+    ;
+}
+
+.danger-fixture:hover .mini-riveted-plaque.glass-plaque .fixture-text {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 4px #ff3333,
+        0 0 10px #ff3333,
+        0 0 18px #cc0000
+    ;
+}
+
+/* Success BTN (Arc-Cyan Sync) */
+.success-fixture:hover .scroll-btn {
+    transform: scale(1.12) rotate(8deg);
+    border-color: var(--brass-light);
+    box-shadow: 0 0 14px #00e5ff, inset 0 0 4px #80f2ff;
+    background: radial-gradient(circle at 30% 30%, #33ebff, #006680);
+}
+
+.success-fixture:hover .mini-riveted-plaque.glass-plaque {
+    border-color: #00e5ff;
+    box-shadow: 
+        inset 0 0 12px rgba(0, 229, 255, 0.4),
+        0 0 15px rgba(0, 229, 255, 0.3),
+        inset 0 1px 2px #ffffff
+    ;
+}
+
+.success-fixture:hover .mini-riveted-plaque.glass-plaque .fixture-text {
+    color: #ffffff !important;
+    text-shadow: 
+        0 0 4px #00e5ff,
+        0 0 10px #00e5ff,
+        0 0 18px #00b3ca
+    ;
+}
+
+/* =====================================================================
+     9. Floating Forge Modal Ornate Nixie Tube Creature Display
+   ===================================================================== */
+
+/*Layout wrapper to keep plate & nixie aligned */
+.header-title-assembly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.4rem;
+    width: 100%;
+}
+
+/* Static Dark Icon Label Plate */
+.static-label-plaque {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.6rem !important;
+    background: linear-gradient(180deg, #2b1e10, #140d07) !important;
+    border: 2px solid var(--brass-primary) !important;
+    border-radius: 5px !important;
+    box-shadow: 
+        inset 0 0 6px #000,
+        0 2px 4px rgba(0, 0, 0, 0.6) !important
+    ;
+    flex-grow: 0 !important;
+    max-width: 90%;
+}
+
+.static-label-plaque .fixture-text {
+    font-size: 0.75rem !important;
+    letter-spacing: 1px;
+    color: var(--brass-light) !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* Static Plaque Corner Rivets Styling */
+.static-label-plaque .rivet,
+.ornate-nixie-badge .rivet {
+    position: absolute !important;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    
+    /* Hide the emoji text character */
+    font-size: 0 !important;
+    color: transparent !important;
+    user-select: none;
+    
+    /* Pure CSS Metallic Brass Sphere */
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #ffd700 45%, #b8860b 80%, #3a2a10 100%) !important;
+    border: 1px solid #140d07;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Corner Rivets */
+.ornate-nixie-badge .rivet.top-left     { top: 5px; left: 6px; }
+.ornate-nixie-badge .rivet.top-right    { top: 5px; right: 6px; }
+.ornate-nixie-badge .rivet.bottom-left  { bottom: 5px; left: 6px; }
+.ornate-nixie-badge .rivet.bottom-right { bottom: 5px; right: 6px; }
+
+.static-label-plaque .rivet.top-left     { top: 4px; left: 5px; }
+.static-label-plaque .rivet.top-right    { top: 4px; right: 5px; }
+.static-label-plaque .rivet.bottom-left  { bottom: 4px; left: 5px; }
+.static-label-plaque .rivet.bottom-right { bottom: 4px; right: 5px; }
+
+/* Victorian Bract-Bazel Display Badge */
+.ornate-nixie-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 2rem;
+
+    /* Amber Illuminated Vacuum Chamber Base */
+    background: 
+        radial-gradient(circle at 50% 30%, rgba(255, 170, 0, 0.35) 0%, rgba(80, 20, 0, 0.85) 70%, #100500 100%),
+        #120802
+    ;
+
+    border: 3px solid var(--brass-light);
+
+    /* Bracketed Victorian Arch Shape */
+    clip-path: polygon(
+        0% 8px, 8px 8px, 8px 0%,
+        calc(100% - 8px) 0%, calc(100% - 8px) 8px, 100% 8px,
+        100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
+        8px 100%, 8px calc(100% - 8px), 0% clac(100% - 8px)
+    );
+
+    box-shadow: 
+        inset 0 0 12px #000,
+        0 0 15px rgba(255, 140, 0, 0.4),
+        0 4px 10px rgba(0, 0, 0, 0.8)
+    ;      
+}
+
+/* Curved Glass Reflection Sheen */
+.ornate-nixie-badge .glass-reflection {
+    position: absolute;
+    top: 2px;
+    left: 10%;
+    width: 80%;
+    height: 35%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Amber Warm Nixie Tube Text Glow */
+.nixie-creature-name {
+    font-family: 'Courier New', monospace;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #ffda66;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    z-index: 2;
+    text-shadow:
+        0 0 4px #ff9900,
+        0 0 10px #ff7700,
+        0 0 18px #ff4400,
+        0 0 30px #cc2200
+    ;
+}
+
+/* Vacuum Tube Phosphor Flicker */
+.ornate-nixie-badge .nixie-flicker {
+    animation: amberNixieFlicker 0.12s infinite alternate;
+}
+
+@keyframes amberNixieFlicker {
+    0% {
+        opacity: 0.88;
+        text-shadow: 0 0 4px #ff9900, 0 0 10px #ff7700;
+    }
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 6px #ffaa00, 0 0 14px #ff7700, 0 0 22px #ff3300;
+    }    
+}
+
+
+/* =====================================================================
+     10. Floating Forge Modal Green Nixie Tube Display Mechanism
+   ===================================================================== */
+
+.nixie-d20-assembly {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    user-select: none;
+    background-color: rgba(10, 5, 2, 0.6);
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid var(--brass-dark);
+    box-shadow: inset 0 0 6px #000;
+}
+
+.nixie-d20-assembly:hover .gear-trigger-btn {
+    transform: rotate(30deg) scale(1.1);
+    border-color: var(--brass-light);
+    box-shadow: 0 0 10px var(--copper-glow);
+    background: radial-gradient(circle at 35% 35%, #3e2d18 0%, #1c140b 70%, #0a0603 100%) !important;
+}
+
+.gear-trigger-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #2b1e10 0%, #150f08 60%, #0a0603 100%) !important;
+    border: 2px solid var(--brass-primary);
+    box-shadow:
+        inset 0 0 6px #000, 
+        0 2px 4px rgba(0, 0, 0, 0.8), 
+        0 0 2px rgba(184, 134, 11, 0.3)
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.gear-spinning {
+    animation: spinGear 0.5s linear infinite !important;
+}
+
+@keyframes spinGear {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.nixie-display-housing {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.nixie-tube {
+    width: 24px;
+    height: 42px;
+    background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15), rgba(15, 25, 15, 0.95));
+    border: 1px solid var(--brass-primary);
+    border-radius: 12px 12px 4px 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 
+        inset 0 0 8px #000,
+        0 2px 4px rgba(0, 0, 0, 0.8)
+    ;
+    overflow: hidden;
+}
+
+.glass-reflection {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    width: 4px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    pointer-events: none;
+}
+
+.nixie-digit {
+    font-family: 'Courier New', monospace;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #33ff77;
+    text-shadow: 
+        0 0 4px #00ff66,
+        0 0 10px #00ff66,
+        0 0 18px #00cc44
+    ;
+    letter-spacing: 0;
+    z-index: 2;
+}
+
+.nixie-flicker {
+    animation: nixieFlicker 0.08s infinite alternate;
+}
+
+@keyframes nixieFlicker {
+    0% {
+        opacity: 0.6;
+        text-shadow: 0 0 2px #00ff66;
+    }
+
+    100% {
+        opacity: 1;
+        text-shadow: 0 0 12px #00ff66, 0 0 20px #33ff99;
+    }
+}
+
+/* =====================================================================
+    11. Floating Forge Modal Attribute & Ability Block Cards
+   ===================================================================== */
+
+.form-subtitle {
+    font-style: italic;
+    color: var(--brass-primary);
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.forge-section {
+    margin-bottom: 1.3rem;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(184, 134, 11, 0.25);
+    border-radius: 6px;
+    padding: 0.8rem;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.section-header-title {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: var(--brass-light);
+    border-bottom: 1px solid var(--brass-dark);
+    padding-bottom: 0.3rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.steampunk-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: #0f0b07 !important;
+    border: 1px solid var(--brass-dark) !important;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.88rem;
+    color: #ffd983 !important;
+    box-shadow: inset 0 2px 6px #000;
+    transition: all 0.25s ease;
+}
+
+.steampunk-input:focus {
+    outline: none;
+    border-color: var(--brass-primary) !important;
+    box-shadow: inset 0 2px 6px #000, 0 0 6px var(--copper-glow);
+}
+
+.steampunk-input.modified {
+    border-color: #ffaa00 !important;
+    background: #181008 !important;
+    box-shadow:
+        inset 0 2px 6px #000,
+        0 0 6px rgba(255, 170, 0, 0.15) !important
+    ;
+    color: #ffe082 !important;
+}
+
+.section-header-with-gauge {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--brass-dark);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.section-header-with-gauge .section-header-title {
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stats-3col-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+.stat-input-card {
+    background: linear-gradient(180deg, #261b11, #120c07);
+    border: 1px solid var(--brass-primary);
+    border-radius: 5px;
+    padding: 0.5rem;
+    box-shadow: inset 0 0 6px #000, 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease;
+}
+
+.stat-input-card.modified-card {
+    border-color: #ffaa00 !important;
+    box-shadow:
+        inset 0 0 8px #000,
+        0 0 10px rgba(255, 170, 0, 0.35) !important
+    ;
+}
+
+.stat-input-card.modified-card .stat-card-title {
+    color: #ffda66 !important;
+    text-shadow: 0 0 6px rgba(255, 170, 0, 0.5);
+}
+
+.stat-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--brass-dark);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.4rem;
+}
+
+.stat-card-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--brass-light);
+    transition: color 0.25s ease;
+}
+
+.dice-tag {
+    font-size: 0.72rem;
+    color: #ffb834;
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+.stat-number-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent !important;
+    border: none !important;
+    color: #ffd983 !important;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: none !important;
+    font-family: 'Courier New', monospace;
+}
+
+.stat-number-input::-webkit-outer-spin-button,
+.stat-number-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.stat-number-input[type=number] {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+@media (max-width: 600px) {
+    .stats-3col-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================================================
+    12. Carousel Wheel Main Components
+   ===================================================================== */
+
+.carousel-workshop-container{
+    position: relative;
+    width: fit-content;
+    height: 420px;
+    margin: 200px auto 40px auto;
+    transform: scale(1.35);
+    transform-origin: bottom center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+    overflow: visible;
+    gap: 0px;
+    z-index: 10;
+}
+
+.carousel-stage-base {
+    position: relative;
+    width: 680px;
+    height: 360px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transform: translateY(-80px);
+    z-index: 5;
+    transition: transform 0.3 ease;
+}
+
+.carousel-gear-base,
+.central-gear-disc {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 480px;
+    height: 480px;
+    margin-top: -240px;
+    margin-left: -240px;
+    transform: rotateX(72deg) scale(1.15);
+}
+
+.engine-pit-housing {
+    position: absolute;
+    width: 380px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, #000000 30%, #150d06 70%, #3a240e 100%);
+    border: 3px solid var(--brass-dark);
+    box-shadow: 
+        inset 0 0 25px #000,
+        0 8px 20px rgba(0, 0, 0, 0.9)
+    ;
+    transform: translateY(60px) rotateX(65deg);
+    z-index: 1;
+}
+
+.gear-3d-assembly {
+    position: absolute;
+    width: 520px;
+    height: 500px;
+    top: 50%;
+    left: 50%;
+    margin-top: -235px;
+    margin-left: -255px;
+    transform: translateY(40px) rotateX(68deg);
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+.steampunk-cog-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.85));
+}
+
+/* Floating Crystal Blue Energy Core Assembly */
+.crystal-orb-assembly {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    transform: translateY(-10px);
+    animation: floatOrb 3.5s ease-in-out infinite alternate;
+}
+
+/* Floating Hover Animation */
+@keyframes floatOrb {
+    0%   { transform: translateY(-5px); }
+    100% { transform: translateY(-18px); }
+}
+
+/* Core Crystal Orb Sphere */
+.crystal-orb-core {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #00e5ff 30%, #0055ff 70%, #001133 100%);
+    box-shadow:
+        0 0 15px #00e5ff,
+        0 0 30px #0066ff,
+        inset 0 0 12px #ffffff
+    ;
+}
+
+/* Arc-Blue Misty Aura Glow */
+.blue-mist-flare {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.45) 0%, rgba(0, 85, 255, 0.15) 55%, transparent 75%);
+    filter: blur(6px);
+    animation: pulseMist 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseMist {
+    0%   { opacity: 0.6; transform: scale(0.92); }
+    100% { opacity: 1; transform: scale(1.12); }
+}
+
+/* Energy Wave Ring */
+.energy-ring-pulse {
+    position: absolute;
+    width: 80px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 229, 255, 0.6);
+    box-shadow: 0 0 10px #00e5ff;
+    transform: rotateX(70deg) translateY(20px);
+    animation: ringExpand 2.8s linear infinite;
+}
+
+@keyframes ringExpand {
+    0%   { opacity: 0.8; transform: rotateX(70deg) scale(0.8); }
+    100% { opacity: 0; transform: rotateX(70deg) scale(1.6); }
+}
+
+/* =====================================================================
+    13. Carousel Wheel Book Orbit & Individual 3D Rotations
+   ===================================================================== */
+
+.book-orbit-ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+    transform-style: preserve-3d;
+    transform: translateY(-10px);
+}
+
+.orbit-tome-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 140px;
+    margin-top: -70px;
+    margin-left: -18px;
+    cursor: pointer;
+    pointer-events: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s ease;
+}
+
+.tome-3d-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.leather-tome-spine {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #1c0e05;
+    border: 1px solid #6e421a;
+    border-radius: 3px;
+    box-shadow: inset 0 0 8px #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 2px;
+    box-sizing: border-box;
+    transform: translateZ(8px);
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    z-index: 3;
+}
+
+.ribbed-spine-band {
+    height: 4px;
+    width: 100%;
+    background: #b8860b;
+    box-shadow: 0 1px 2px #000;
+}
+
+.spine-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 130px;
+    height: 32px;
+    position: absolute;
+    top: 54px;
+    left: -47px;
+    transform: rotate(90deg);
+    transform-origin: center center;
+}
+
+.spine-monster-name {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 0.72rem;
+    color: #ffda66;
+    text-shadow: 0 0 6px rgba(255, 170, 0, 0.8);
+    white-space: nowrap;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+}
+
+.spine-monster-align {
+    font-family: 'Courier New', monospace;
+    font-size: 0.50rem;
+    color: #8c6f4a;
+    opacity: 0.75;
+    white-space: nowrap;
+    max-width: 90px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+}
+
+.tome-pages-block {
+    position: absolute;
+    top: 4px;
+    right: -8px;
+    width: 16px;
+    height: 132px;
+    background: repeating-linear-gradient(90deg, #d2b48c 0px, #f5de2a 1px, #c0a068 2px);
+    border-radius: 1px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.8);
+    transform: rotateY(90deg);
+    z-index: 2;
+}
+
+.tome-back-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #2b1609 0%, #170b04 100%);
+    border: 2px solid #543315;
+    border-radius: 3px;
+    box-shadow: inset 0 0 8px #000;
+    transform: translateZ(-8px);
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    z-index: 1;
+}
+
+/* Front Facing Books */
+.cover-emboss-pattern {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    border: 1px solid #b8860b;
+    border-radius: 2px;
+    box-shadow: inset 0 0 4px #000;
+    pointer-events: none;
+}
+
+.cover-emboss-pattern::before {
+    content: '';
+    position: absolute;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    border: 1px dashed rgba(184, 134, 11, 0.4);
+}
+
+/* 3d Elliptical Slot Postions & Central Gear Base */
+/* Slot 1: Front Left (Previous) - Spine Facing Viewer */
+.slot-pos-1 {
+    transform: translate(-140px, 45px) rotateY(0deg) scale(1);
+    z-index: 9;
+}
+
+/* Slot 2: Mid-Left Front - Slight Turn to Show Joint & Spine */
+.slot-pos-2 {
+    transform: translate(-180px, -15px) rotateY(-20deg) scale(0.9);
+    z-index: 7;
+}
+
+/* Slot 3: Mid-Left Back - Board/Cover Facing Viewer with Slim Page Edge */
+.slot-pos-3 {
+    transform: translate(-155px, -30px) rotateY(60deg) scale(0.8);
+    filter: brightness(0.8);
+    z-index: 5;
+}
+
+.slot-pos-3 .tome-pages-block {
+    display: block !important;
+    left: auto;
+    right: -4px;
+    transform: rotateY(-90deg) translateZ(10px);
+}
+
+/* Slot 4: Back Left Angle - Text Block (Pages) Angled Toward Viewer */
+.slot-pos-4 {
+    transform: translate(-85px, -55px) rotateY(110deg) scale(0.72);
+    filter: brightness(0.65);
+    z-index: 3;
+}
+
+.slot-pos-4 .tome-pages-block {
+    display: block !important;
+    left: auto;
+    right: 2px;
+    transform: rotateY(-80deg) translateZ(12px);
+}
+
+/* Slot 5: Top Apex (Back Center) - Fore-Edge (Pages) Facing Directly Forward */
+.slot-pos-5 {
+    transform: translate(0px, -65px) rotateY(180deg) scale(0.65);
+    filter: brightness(0.5);
+    z-index: 1;
+}
+
+.slot-pos-5 .tome-pages-block {
+    display: block !important;
+    left: 50%;
+    right: auto;
+    margin-left: -8px;
+    transform: rotateY(0deg) translateZ(2px);
+}
+
+/* Slot 6: Back Right Angle - Text Block (Pages) Angled Toward Viewer */
+.slot-pos-6 {
+    transform: translate(85px, -55px) rotateY(-110deg) scale(0.72);
+    filter: brightness(0.65);
+    z-index: 3;
+}
+
+.slot-pos-6 .tome-pages-block {
+    display: block !important;
+    left: 2px;
+    right: auto;
+    transform: rotateY(80deg) translateZ(12px);
+}
+
+/* Slot 7: Mid-Right Back - Board/Cover Facing Viewer with Slim Page Edge */
+.slot-pos-7 {
+    transform: translate(155px, -30px) rotateY(-60deg) scale(0.8);
+    filter: brightness(0.8);
+    z-index: 5;
+}
+
+.slot-pos-7 .tome-pages-block {
+    display: block !important;
+    left: -4px;
+    right: auto;
+    transform: rotateY(90deg) translateZ(10px);
+
+}
+
+/* Slot 8: Mid-Right Front - Slight Turn to Show Joint & Spine */
+.slot-pos-8 {
+    transform: translate(180px, -15px) rotateY(20deg) scale(0.9);
+    z-index: 7;
+}
+
+/* Slot 9: Front Right (Next) - Spine Facing Viewer */
+.slot-pos-9 {
+    transform: translate(140px, 45px) rotateY(0deg) scale(1);
+    z-index: 9;
+}
+
+.slot-pos-3 .leather-tome-spine,
+.slot-pos-4 .leather-tome-spine,
+.slot-pos-5 .leather-tome-spine,
+.slot-pos-6 .leather-tome-spine,
+.slot-pos-7 .leather-tome-spine {
+    display: none !important;
+}
+
+.slot-pos-1 .tome-pages-block,
+.slot-pos-2 .tome-pages-block,
+.slot-pos-8 .tome-pages-block,
+.slot-pos-9 .tome-pages-block {
+    display: none !important;
+}
+
+.slot-pos-3 .tome-back-cover,
+.slot-pos-7 .tome-back-cover {
+    background: radial-gradient(circle, #3d1f0d 10%, #1a0b04 90%);
+    border: 2px solid #7a4b22;
+    box-shadow: inset 0 0 12px #000, 0 0 6px rgba(0, 0, 0, 0.9);
+}
+
+.slot-pos-3 .tome-back-cover::before,
+.slot-pos-7 .tome-back-cover::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border: 3px double #b8860b;
+    border-radius: 2px;
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+.slot-pos-3 .tome-back-cover::after,
+.slot-pos-7 .tome-back-cover::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+    color: #daa520;
+    text-shadow: 0 0 6px rgba(218, 165, 32, 0.7), 0 2px 4px #000;
+    opacity: 0.9;
+}
+
+/* =====================================================================
+    14. Carousel Wheel Active Center Open Tome Display
+   ===================================================================== */
+
+.portrait-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #241409 0%, #0d0603 100%);
+    color: #8c6f4a;
+    font-family: 'Courier New', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.open-tome-stage {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.72) translateY(-105px);
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.open-tome-container {
+    position: relative;
+    width: 270px;
+    height: 190px;
+    background: linear-gradient(90deg, 
+        #120904 0%, 
+        #2a1609 45%, 
+        #0a0402 50%, 
+        #2a1609 55%, 
+        #120904 100%
+    );
+    border: 2px solid #3d2314;
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.95), inset 0 0 10px #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px;
+    box-sizing: border-box;
+}
+
+/* Parachment Pages */
+.parchment-page {
+    position: relative;
+    width: 124px;
+    height: 100%;
+    background: radial-gradient(circle, #e8d3a7 0%, #c8b07d 80%, #9e8352 100%);
+    box-shadow: inset 0 0 8px rgba(61, 35, 20, 0.6);
+    padding: 8px 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    margin: 0 !important;
+}
+
+.left-page {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    margin-right: -10px;
+}
+
+.right-page {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    margin-left: -10px;
+}
+
+/* Joint Indents along Page Hinges */
+.page-joint-indent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    pointer-events: none;
+}
+
+.left-page .page-joint-indent { 
+    right: 0; 
+    background: linear-gradient(-90deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%); 
+}
+
+.right-page .page-joint-indent { 
+    left: 0;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%); 
+}
+
+/* Five Brass Center Hinges */
+.hinge-spine-column {
+    position: absolute;
+    left: calc(50% + 3px);
+    top: 3px;
+    bottom: 3px;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 12;
+}
+
+.brass-hinge-joint {
+    position: relative;
+    width: 14px;
+    height: 26px;
+    background: linear-gradient(135deg, #f3e08c 0%, #b8860b 50%, #523a0d 100%);
+    border: 1px solid #1a0d05;
+    border-radius: 3px;
+    box-shadow: 0 3px 6px #000;
+}
+
+.brass-hinge-joint::before,
+.brass-hinge-joint::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #110a05;
+    border-radius: 50%;
+    box-shadow: inset 0 0 1px #000, 0 0 1px rgba(255, 215, 0, 0.4);
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.brass-hinge-joint::before { left: 2px; }  
+.brass-hinge-joint::after  { right: 2px; }
+
+.hinge-pin {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 22px;
+    background: linear-gradient(180deg, #ffe082 0%, #9e730f 100%);
+    border-radius: 2px;
+}
+
+/* Ornate Brass Corner */
+.brass-corner-hardware {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    z-index: 15;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #d4af37 0%, #8a6214 100%);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+.top-left {
+    top: -2px;
+    left: -2px;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 35% 35%, 35% 100%, 0 100%);
+}
+
+.top-right {
+    top: -2px;
+    right: -2px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 65% 100%, 65% 35%, 0 35%);
+}
+
+.bottom-left {
+    bottom: -2px;
+    left: -2px;
+    clip-path: polygon(0 0, 35% 0, 35% 65%, 100% 65%, 100% 100%, 0 100%);
+}
+
+.bottom-right {
+    bottom: -2px;
+    right: -2px;
+    clip-path: polygon(65% 0, 100% 0, 100% 100%, 0 100%, 0 65%, 65% 65%);
+}
+
+.side-runner {
+    position: absolute;
+    top: 16px;
+    bottom: 16px;
+    width: 6px;
+    background: repeating-linear-gradient(180deg, #b8860b 0px, #b8860b 8px, #3a2208 8px, #3a2208 12px);
+    border: 1px solid #1a0d05;
+    z-index: 11;
+}
+
+.left-runner { left: -7px; }
+.right-runner { right: -7px; }
+
+/* Typography & Mist Glow Styling */
+.monster-info-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.monster-name-mist {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: #055f73;
+    margin: 0 0 12px 0;
+    padding: 0;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    text-shadow: 
+        0 0 4px rgba(0, 242, 255, 0.8),
+        0 0 12px rgba(0, 200, 255, 0.5),
+        1px 1px 2px rgba(0, 0, 0, 0.4)
+    ;
+    letter-spacing: 1px;
+    line-height: 1.2;
+}
+
+.stat-line {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.45rem;
+    font-weight: bold;
+    color: #6e4e2e;
+    letter-spacing: 1px;
+}
+
+.arcane-text {
+    font-family: 'UnifrakturMaguntia', 'MedievalSharp', cursive, serif;
+    font-size: 0.7rem;
+    color: #231206;
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+    margin-top: 1px;
+}
+
+/* Monster Portrait Frame */
+.monster-illustration-frame {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #7a5a32;
+    box-shadow: inset 0 0 6px #000;
+    overflow: hidden;
+    background: #120904;
+}
+
+.monster-portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+/* =====================================================================
+    15. Canister Postions
+   ===================================================================== */
+
+.canister-left {
+    position: absolute;
+    top: 85px;
+    left: 80px;
+    transition: left 0.3s ease;
+}
+
+.canister-right {
+    position: absolute;
+    top: 85px;
+    right: 80px;
+    transition: right 0.3s ease;
+}

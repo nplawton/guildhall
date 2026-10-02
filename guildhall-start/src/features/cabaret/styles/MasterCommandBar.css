@@ -1,0 +1,440 @@
+/* ==========================================
+   MASTER COMMAND BAR
+   ========================================== */
+
+.master-command-bar-container {
+    width: 480px;
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 6px;
+    box-sizing: border-box;
+    background: linear-gradient(
+        180deg, 
+        #6e4f1b 0%,
+        #b5873d 50%,
+        #302005 100%
+    );
+    border: 2px solid #1a0c02;
+    border-radius: 6px 6px 0 0;
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.9),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.8)
+    ;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+}
+
+.bar-rivet{
+    position: absolute;
+    font-size: 0.38rem;
+    color: #f7d08b;
+    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.85);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.bar-rivet.top-left { 
+    top: 2px; 
+    left: 3px; 
+}
+
+.bar-rivet.top-right { 
+    top: 2px; 
+    right: 3px; 
+}
+
+.bar-rivet.bottom-left { 
+    bottom: 2px; 
+    left: 3px; 
+}
+
+.bar-rivet.bottom-right { 
+    bottom: 2px; 
+    right: 3px; 
+}
+
+.command-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.switch-stamped-label,
+.quad-stamped-label {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.45rem;
+    color: #100501;
+    text-shadow: 0 1px 0 rgba(255, 235, 170, 0.85);
+    letter-spacing: 0.4px;
+    line-height: 1;
+}
+
+/* ==========================================
+   Far-Left Lighting PWR & Dimmer
+   ========================================== */
+
+.far-left-lighting {
+    display: flex;
+    gap: 8px;
+    padding-left: 6px;
+}
+
+.flipper-switch-unit, 
+.dimmer-knob-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+    cursor: pointer;
+}
+
+.flipper-switch-unit.unpowered-dull .flipper-toggle-lever {
+    background: linear-gradient(
+        180deg, 
+        #5c3d13 0%,
+        #2b1a0a 100%
+    );
+    border-color: #100501;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.flipper-toggle-housing {
+    width: 14px;
+    height: 28px;
+    background: #0d0a05;
+    border: 1px solid #1a0c02;
+    border-radius: 3px;
+    padding: 2px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: inset 0 2px 4px #000;
+    transition: align-items 0.15s ease;
+}
+
+.flipper-toggle-housing.engaged {
+    align-items: flex-end;
+}
+
+.flipper-toggle-lever {
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(
+        180deg, 
+        #ffe082 0%, 
+        #b5873d 100%
+    );
+    border: 1px solid #1a0c02;
+    border-radius: 1.5px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.dimmer-knob-unit.unpowered-dim {
+    opacity: 0.65;
+}
+
+.dimmer-knob-unit.unpowered-dim:hover,
+.dimmer-knob-unit.unpowered-dim * {
+    box-shadow: none;
+    filter: none;
+}
+
+/* ==========================================
+   Left-Center Cuckoo Housing Vault
+   ========================================== */
+
+.left-center-cuckoo {
+    width: 60px;
+}
+
+.cuckoo-vault-housing {
+    width: 54px;
+    height: 38px;
+    background: radial-gradient(
+        circle at 50% 50%, 
+        #171007 0%, 
+        #080502 100%
+    );
+    border: 1.5px solid #1a0c02;
+    border-radius: 4px;
+    padding: 2px;
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 
+        inset 0 2px 6px #000, 
+        0 2px 4px rgba(0, 0, 0, 0.8)
+    ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 400px;
+    position: relative;
+    overflow: visible;
+}
+
+.cuckoo-double-doors {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    perspective: 400px;
+}
+
+.cuckoo-door {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #3a2810 0%,
+        #1c1006 100%
+    );
+    border: 1px solid #000;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cuckoo-door.left-door {
+    border-radius: 2px 0 0 2px;
+    transform-origin: left center;
+    transform: rotateY(-115deg);
+}
+
+.cuckoo-door.right-door {
+    border-radius: 0 2px 2px 0;
+    transform-origin: right center;
+    transform: rotateY(115deg);
+}
+
+.cuckoo-double-doors.open .left-door {
+    transform: rotateY(-110deg);
+}
+
+.cuckoo-double-doors.open .right-door {
+    transform: rotateY(110deg);
+}
+
+.door-emboss-ring {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid #f7d08b;
+    opacity: 0.6;
+}
+
+.cuckoo-hinge-pin {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #d4af37;
+    border-radius: 50%;
+    border: 1px solid #000;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cuckoo-hinge-pin.top { top: 1px; }
+.cuckoo-hinge-pin.bottom { bottom: 1px; }
+
+.cuckoo-bird-popout {
+    position: absolute;
+    width: 28px;
+    height: 22px;
+    background: radial-gradient(
+        circle at 40% 30%, 
+        #ffd700 0%, 
+        #b5873d 70%, 
+        #573e19 100%
+    );
+    border: 1px solid #1a0c02;
+    border-radius: 5px 12px 4px 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    transform: translateZ(-30px) scale(0.2);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.cuckoo-vault-housing.doors-open .cuckoo-bird-popout {
+    transform: translateZ(10px) scale(1.35);
+    opacity: 1;
+    animation: cuckooSquawkChrip 0.5s infinite alternate ease-in-out;
+}
+
+.cuckoo-beak {
+    position: absolute;
+    left: -8px;
+    top: 7px;
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-right: 9px solid #ff4500;
+}
+
+.cuckoo-eye {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 4px;
+    height: 4px;
+    background: #000000;
+    border-radius: 50%;
+    box-shadow: 0 0 2px #ffffff;
+}
+
+.cuckoo-wing {
+    position: absolute;
+    right: 4px;
+    top: 6px;
+    width: 10px;
+    height: 9px;
+    background: #8a6d1b;
+    border: 0.5px solid #1a0c02;
+    border-radius: 2px 7px 2px 2px;
+}
+
+.cuckoo-warning-banner {
+    position: absolute;
+    top: 18px;
+    left: -12px;
+    bottom: auto;
+    background: linear-gradient(
+        180deg, 
+        #800000 0%, 
+        #3a0000 100%
+    );
+    border: 1px solid #ff4500;
+    border-radius: 2px;
+    padding: 2px 5px;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.9),
+        0 0 6px rgba(255, 69, 0, 0.6)
+    ;
+    white-space: nowrap;
+    z-index: 10;
+    transform-origin: top left;
+    transform: scale(0);
+    transition: transform 0.4s 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cuckoo-warning-banner::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 4px;
+    width: 3px;
+    height: 5px;
+    border-left: 1px solid #ffd700;
+    border-top: 1px solid #ffd700;
+}
+
+.cuckoo-warning-banner span {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    font-size: 0.38rem;
+    color: #ffd700;
+    text-shadow: 0 1px 2px #000000;
+    letter-spacing: 0.8px;
+    display: block;
+}
+
+.cuckoo-vault-housing.doors-open .cuckoo-warning-banner {
+    transform: scale(0.85);
+}
+
+@keyframes cuckooSquawkChirp {
+    from { transform: translateZ(10px) scale(1) rotate(0deg); }
+    to { transform: translateZ(12px) scale(1.06) rotate(-4deg); }
+}
+
+/* ==========================================
+   CENTER: Dance Mechanism Mount
+   ========================================== */
+
+.center-dance-deck {
+    width: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================
+   FAR-RIGHT: 4-BOX AUDIO QUAD GRID
+   ========================================== */
+
+.far-right-audio-quad {
+    padding-right: 6px;
+}
+
+.audio-quad-inverted-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 6px 12px;
+    padding: 2px 4px;
+}
+
+.quad-cell.controls-inside {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.quad-cell.controls-inside:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.audio-power-push-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 35% 35%, 
+        #550000 0%, 
+        #1a0000 100%
+    );
+    border: 1px solid #1a0c02;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.audio-power-push-btn.active-glow {
+    background: radial-gradient(
+        circle at 35% 35%, 
+        #ff3366 0%, 
+        #cc0033 70%, 
+        #660011 100%
+    );
+    border-color: #ff99bb;
+    box-shadow: 
+        0 0 6px #ff0055, 
+        inset 0 1px 0 rgba(255, 255, 255, 0.6)
+    ;
+}
+
+.push-inner-ruby {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+}

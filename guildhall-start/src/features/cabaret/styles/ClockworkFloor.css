@@ -1,0 +1,80 @@
+.clockwork-floor-stage {
+    position: absolute;
+    bottom: -5%;
+    left: -10%;
+    width: 84%;
+    max-width: 1200px;
+    height: 82%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: perspective(900px) rotateX(54deg);
+    transform-origin: 50% 85%;
+    z-index: 2;
+}
+
+.clockwork-floor-svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+@keyframes spotlightOrbit {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spotlight-orbit-group {
+    pointer-events: none;
+    will-change: transform;
+}
+
+@keyframes discoRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.disco-ball-layer {
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.clockwork-floor-stage.is-reversed .spotlight-orbit-group,
+.clockwork-floor-stage.is-reversed .disco-ball-layer {
+    animation-direction: reverse !important;
+}
+
+@keyframes shockwaveExpand {
+    0% {
+        transform: scale(0.3);
+        opacity: 1;
+        stroke-width: 8px;
+    }
+    100% {
+        transform: scale(1.25);
+        opacity: 0;
+        stroke-width: 1px;
+    }
+}
+
+.anthem-shockwave-ring {
+    transform-origin: 300px 300px;
+    animation: shockwaveExpand 1.2s ease-out infinite;
+}
+
+@keyframes underGlassSwirl {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

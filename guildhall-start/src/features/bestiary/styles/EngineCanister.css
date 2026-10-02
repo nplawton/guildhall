@@ -1,0 +1,1018 @@
+/* =====================================================================
+    Carousel Wheel Subcomponents for the Button Housing Chamber
+   =====================================================================  
+    15. Metal Canister Chassis & Cardinal Pipes
+   ===================================================================== */
+
+.engine-canister-housing {
+    position: relative;
+    width: 140px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.canister-chassis {
+    position: relative;
+    width: 108px;
+    height: 250px;
+    background: #0d120e;
+    border-radius: 4px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.95),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.12)
+    ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    overflow: visible;
+}
+
+.canister-body-backdrop {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, 
+        #050c07 0%,
+        #0f2416 12%,
+        #1b3a26 28%,
+        #3e7550 40%,
+        #244b32 52%,
+        #0f2416 75%,
+        #040a06 100%)
+    ;
+    border-radius: 2px;
+    z-index: 1;
+}
+
+.canister-top-cap,
+.canister-bottom-cap { 
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    height: 18px;
+    background: linear-gradient(90deg,
+         #3d2906 0%,
+        #8b6508 15%,
+        #edd487 45%,
+        #fff0a8 55%,
+        #8b6508 85%,
+        #3d2906 100%
+    );
+    border-radius: 4px 4px 6px 6px / 4px 4px 8px 8px;
+    border-top: 1px solid #fff2a8;
+    border-bottom: 1.5px solid #140802;
+    box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.9),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        inset 0 -3px 4px rgba(0, 0, 0, 0.85),
+        inset 6px 0 8px rgba(0, 0, 0, 0.4),
+        inset -6px 0 8px rgba(0, 0, 0, 0.4)
+    ;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 6px;
+    z-index: 4;
+}
+
+.canister-top-cap {
+    top: 26.5px;
+}
+
+.canister-bottom-cap {
+    bottom: 76px;
+}
+
+.brass-rivets-ring {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 8px;
+    pointer-events: none;
+}
+
+.rivet {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #ffffff 0%, #d4af37 40%, #52391c 100%);
+    box-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.9),
+        inset -1px -1px 1px rgba(0, 0, 0, 0.8)
+    ;
+    border: 1px solid #3d2906;
+}
+
+.scalloped-base-cover {
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 30px;
+    background: linear-gradient(180deg, 
+        #1c0d04 0%, 
+        #5e3114 8%, 
+        #a65821 20%, 
+        #e08a47 45%, 
+        #fcae68 55%, 
+        #a65821 80%, 
+        #5e3114 92%, 
+        #1c0d04 100%
+    );
+    border-radius: 50% 50% 18px 18px / 6px 6px 18px 18px;
+    border-top: 1.5px solid #fcae68;
+    border-bottom: 2px solid #140802;
+    box-shadow: 
+        0 10px 18px rgba(0, 0, 0, 0.95),
+        inset 0 3px 4px rgba(252, 174, 104, 0.6),
+        inset 5px 0 6px rgba(28, 13, 4, 0.85),
+        inset -5px 0 6px rgba(28, 13, 4, 0.85)
+    ;
+    z-index: 5;
+}
+
+.brass-scrollwork-lip {
+    position: absolute;
+    top: 4px;
+    left: 8px;
+    right: 8px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 240, 168, 0.8), transparent);
+}
+
+/* =====================================================================
+    16. Nixie-Tube Glass Button & Electrical Filament
+   ===================================================================== */
+
+.nixie-glass-chamber {
+    position: absolute;
+    top: 45px;
+    bottom: 87px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 110px;
+    background: radial-gradient(circle at 50% 30%, #083338 0%, #021417 75%, #00080a 100%);
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 
+        inset 0 3px 0 0 #b8860b,
+        inset 0 -3px 0 0 #b8860b,
+        inset 0 10px 14px rgba(0, 0, 0, 0.95),
+        inset 0 -10px 14px rgba(0, 0, 0, 0.95),
+        inset 12px 0 15px rgba(0, 0, 0, 0.85),
+        inset -12px 0 15px rgba(0, 0, 0, 0.85)
+    ;
+    z-index: 2;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.nixie-glass-chamber:hover {
+    box-shadow: 
+        inset 0 3px 0 0 #00f2ff,
+        inset 0 -3px 0 0 #00f2ff,
+        inset 0 0 20px rgba(0, 242, 255, 0.6),
+        inset 0 10px 14px rgba(0, 0, 0, 0.95),
+        inset 0 -10px 14px rgba(0, 0, 0, 0.95),
+        inset 12px 0 15px rgba(0, 0, 0, 0.85),
+        inset -12px 0 15px rgba(0, 0, 0, 0.85),
+        0 0 18px rgba(0, 242, 255, 0.5);
+    ;
+}
+
+.canister-left .glass-reflection-overlay {
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.08) 22%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+.canister-right .glass-reflection-overlay {
+    background: linear-gradient(
+        -125deg,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.08) 22%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+.canister-next .nixie-glass-chamber * {
+    backface-visibility: hidden;
+}
+
+
+.chamber-active,
+.nixie-glass-chamber:active {
+    background: radial-gradient(circle at 50% 50%, #0a4d54 0%, #032226 75%, #001214 100%);
+    box-shadow: 
+        inset 0 0 0 2px #00f2ff,
+        inset 0 0 0 4px #005c66,
+        inset 0 0 30px #00f2ff,
+        0 0 25px #00f2ff
+    ;
+}
+
+.glass-reflection-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 3;
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.24) 0%,
+        rgba(255, 255, 255, 0.08) 22%,
+        rgba(255, 255, 255, 0.0) 45%
+    ),
+    linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.55) 0%,
+        rgba(0, 0, 0, 0.0) 18%,
+        rgba(0, 0, 0, 0.0) 82%,
+        rgba(0, 0, 0, 0.55) 100%
+
+    );
+    transition: background 0.3s ease;
+}
+
+.nixie-glass-chamber:hover .glass-reflection-overlay {
+    background: 
+        linear-gradient(
+            125deg, 
+            rgba(255, 255, 255, 0.38) 0%, 
+            rgba(255, 255, 255, 0.14) 28%, 
+            rgba(255, 255, 255, 0.0) 55%
+        ),
+        linear-gradient(
+            90deg, 
+            rgba(0, 0, 0, 0.55) 0%, 
+            rgba(0, 0, 0, 0.0) 18%, 
+            rgba(0, 0, 0, 0.0) 82%, 
+            rgba(0, 0, 0, 0.55) 100%
+        );
+}
+
+.filament-assembly-direction {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    width: 82%;
+    height: 36px;
+    transition: transform 0.3s ease;
+}
+
+.canister-left .filament-assembly-direction {
+    transform: translate(-50%, -50%) scaleX(1);
+}
+
+.canister-right .filament-assembly-direction {
+    transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.feather, .arrow-shaft, .arrow-head, .spliced-cog {
+    background: linear-gradient(180deg, #fcae68 0%, #a65821 50%, #421e06 100%);
+    border: 1px solid #2b1202;
+    box-shadow: 
+        0 0 4px #00f3ff,
+        0 0 8px rgba(0, 243, 255, 0.6),
+        inset 0 1px 1px rgba(255, 255, 255, 0.8)
+    ;
+}
+
+.arrow-fletching {
+    display: flex;
+    gap: 3px;
+    margin-right: -2px;
+}
+
+.feather {
+    width: 5px;
+    height: 16px;
+    clip-path: polygon(100% 0, 35% 50%, 100% 100%, 0 100%, 0 0);
+}
+
+.arrow-shaft-container {
+    position: relative;
+    flex-grow: 1;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.arrow-shaft {
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.cog-top-rear {
+    position: absolute;
+    left: 18%;
+    top: 1px;
+    width: 24px;
+    height: 12px;
+    border-radius: 24px 24px 0 0;
+    border-bottom: none;
+}
+
+.cog-bottom-front {
+    position: absolute;
+    right: 18%;
+    bottom: 1px;
+    width: 24px;
+    height: 12px;
+    border-radius: 0 0 24px 24px;
+    border-top: none;
+}
+
+.arrow-head {
+    width: 14px;
+    height: 16px;
+    clip-path: polygon(0 0, 100% 50%, 0 100%, 30% 50%);
+    margin-left: -1px;
+}
+
+.arc-spark {
+    position: absolute;
+    width: 2px;
+    height: 50%;
+    background: #00f3ff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.spark-top-1,
+.spark-bottom-1 {
+    left: 30%;
+    box-shadow: 0 0 12px #00f3ff, 0 0 20px #ffffff;
+}
+
+.spark-top-2,
+.spark-bottom-2 {
+    right: 30%;
+    box-shadow: 0 0 12px #00f3ff, 0 0 20px #ffffff;
+}
+
+.spark-top-1,
+.spark-top-2 {
+    top: 0;
+    transform-origin: top center;
+}
+
+.spark-bottom-1,
+.spark-bottom-2 {
+    bottom: 0;
+    transform-origin: bottom center;
+}
+
+.chamber-active .spark-top-1,
+.nixie-glass-chamber:active .spark-top-1 {
+    animation: electrical-arc-top 0.3s ease-out forwards;
+}
+
+.chamber-active .spark-top-2,
+.nixie-glass-chamber:active .spark-top-2 {
+    animation: electrical-arc-top 0.3s ease-out 0.05s forwards;
+}
+
+.chamber-active .spark-bottom-1,
+.nixie-glass-chamber:active .spark-bottom-1 {
+    animation: electrical-arc-bottom 0.3s ease-out forwards;
+}
+
+.chamber-active .spark-bottom-2,
+.nixie-glass-chamber:active .spark-bottom-2 {
+    animation: electrical-arc-bottom 0.3s ease-out 0.05s forwards;
+}
+
+@keyframes electrical-arc-top {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.2) rotate(15deg);
+    }
+    20% {
+        opacity: 1;
+        transform: scaleY(1.1) rotate(-10deg);
+        filter: drop-shadow(0 0 8px #ffffff);
+    }
+    40% {
+        opacity: 0.3;
+        transform: scaleY(0.8) rotate(5deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scaleY(1.05) rotate(-8deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0) rotate(0deg);
+    }
+}
+
+@keyframes electrical-arc-bottom {
+    0% {
+        opacity: 0;
+        transform: scaleY(0.2) rotate(-15deg);
+    }
+    20% {
+        opacity: 1;
+        transform: scaleY(1.1) rotate(10deg);
+        filter: drop-shadow(0 0 8px #ffffff);
+    }
+    40% {
+        opacity: 0.3;
+        transform: scaleY(0.8) rotate(-5deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scaleY(1.05) rotate(8deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scaleY(0) rotate(0deg);
+    }
+}
+
+/* =====================================================================
+    17. Industrial Pressure Gauge & Reactive Needle
+   ===================================================================== */
+
+.temp-gauge-housing {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fce088 0%, #b8860b 40%, #4a3010 100%);
+    padding: 3px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(255, 255, 255, 0.5);
+    z-index: 6;
+}
+
+.gauge-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 40% 40%, #3d2415 0%, #26140a 70%, #140904 100%);
+    border-radius: 50%;
+    border: 1px solid #1a0d05;
+    overflow: hidden;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.gauge-pressure-arc {
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 240deg at 50% 50%,
+        #2e7d32 0deg 60deg,
+        #f57f17 60deg 110deg,
+        #c62828 110deg 160deg,
+        transparent 160deg 360deg
+    );
+    -webkit-mask: radial-gradient(circle, transparent 60%, black 62%);
+    mask: radial-gradient(circle, transparent 60%, black 62%);
+    z-index: 2;
+}
+
+.gauge-foggy-glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: 
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(255, 255, 255, 0.18) 35%,
+            rgba(255, 255, 255, 0.0) 60%
+    ),
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(0, 0, 0, 0.4) 0%,
+            transparent 70%
+    );
+    pointer-events: none;
+    z-index: 5;
+}
+
+.gauge-needle {
+    position: absolute;
+    bottom: 50%;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 17px;
+    background: linear-gradient(to top, #700f0f 0%, #a81d1d 70%, #d93636 100%);;
+    box-shadow: 
+        0 0 3px rgba(168, 29, 29, 0.7),
+        1px 1px 2px rgba(0, 0, 0, 0.85)
+    
+    ;
+    transform-origin: bottom center;
+    transform: rotate(-100deg);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 3;
+}
+
+.engine-canister-housing.canister-venting .gauge-needle {
+    transform: rotate(45deg);
+}
+
+.gauge-needle.needle-spike,
+.engine-canister-housing.canister-overpressured .gauge-needle {
+    transform: rotate(145deg) !important;
+}
+
+.needle-center-cap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: #1c0d04;
+    border: 1px solid #8b6508;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.gauge-needle.needle-spike,
+.engine-canister-housing .gauge-needle.needle-spike {
+    transform: rotate(110deg) !important;
+}
+
+.nixie-glass-chamber.chamber-active ~ .temp-gauge-housing .gauge-needle,
+.nixie-glass-chamber:active ~ .temp-gauge-housing .gauge-needle {
+    transform: rotate(35deg);
+}
+
+.nixie-glass-chamber:hover ~ .temp-gauge-housing .gauge-needle {
+    transform: rotate(-55deg);
+}
+
+/* =====================================================================
+    18. Cardinal Pipes
+   ===================================================================== */
+
+.cardinal-pipe-assembly {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cardinal-pipe {
+    position: absolute;
+    background: linear-gradient(180deg, 
+        #fcae68 0%,  
+        #a65821 45%, 
+        #592809 85%, 
+        #2b1202 100%
+    );
+    z-index: 1;
+    box-shadow: 
+      inset 0 3px 3px rgba(255, 255, 255, 0.4),
+      inset 0 -4px 6px rgba(0, 0, 0, 0.85),
+      0 8px 16px rgba(0, 0, 0, 0.95)
+    ;
+}
+
+.cardinal-pipe::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 8px;
+    background: linear-gradient(180deg, #ffe09e 0%, #b8860b 50%, #422903 100%);
+    border: 1px solid #2b1902;
+    box-shadow: 
+        0 2px 6px rgba(0, 0, 0, 0.8),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6)
+    ;
+    z-index: 2;
+}
+
+.nw-pipe::before,
+.sw-pipe::before {
+    right: -2px;
+    border-radius: 3px 0 0 3px;
+}
+
+.ne-pipe::before,
+.se-pipe::before {
+    left: -2px;
+    border-radius: 0 3px 3px 0;
+}
+
+.cardinal-pipe::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #140801;
+    opacity: 0.85;
+}
+
+.nw-pipe::after,
+.sw-pipe::after { 
+    right: 8px; 
+}
+
+.ne-pipe::after,
+.se-pipe::after { 
+    left: 8px; 
+}
+
+.nw-pipe {
+    top: 32px;
+    width: 26px;
+    left: -22px;
+    height: 52px;
+    border-radius: 12px 0 0 4px;
+}
+
+.ne-pipe {
+    top: 32px;
+    width: 26px;
+    right: -22px;
+    height: 52px;
+    border-radius: 0 12px 0 4px;
+}
+
+.sw-pipe {
+    bottom: 70px;
+    width: 26px;
+    left: -22px;
+    height: 52px;
+    border-radius: 4px 0 0 12px;
+}
+
+.se-pipe {
+    bottom: 70px;
+    width: 26px;
+    right: -22px;
+    height: 52px;
+    border-radius: 0 4px 12px 0;
+}
+
+/* =====================================================================
+    19. Upper Housing Cap, Brass Trim, & Dynamic Steam Vent
+   ===================================================================== */
+
+.upper-bezel-ring {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 104%;
+    height: 8px;
+    background: linear-gradient(180deg, 
+        #ffe09e 0%, 
+        #b8860b 60%, 
+        #3d2403 100%
+    );
+    border-radius: 4px;
+    box-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.8),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6);
+    z-index: 5;
+}
+
+.upper-rivet-band {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    height: 22px;
+    background: linear-gradient(180deg, 
+        #ffe09e 0%, 
+        #fcae68 18%,
+        #b8860b 45%,
+        #5e3224 80%, 
+        #1c0d04 100%
+    );
+    border-radius: 4px 4px 6px 6px / 4px 4px 8px 8px;
+    border-top: 1px solid #fff2a8;
+    border-bottom: 1px solid #140802;
+    box-shadow: 
+        0 6px 12px rgba(0, 0, 0, 0.9),
+        inset 0 2px 3px rgba(255, 255, 255, 0.8),
+        inset 0 -3px 4px rgba(0, 0, 0, 0.85),
+        inset 6px 0 8px rgba(0, 0, 0, 0.4),
+        inset -6px 0 8px rgba(0, 0, 0, 0.4)   
+    ;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 6px;
+    z-index: 4;
+}
+
+.upper-copper-cap {
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98%;
+    height: 34px;
+    background: radial-gradient(
+        ellipse at 50% 20%,
+        #ffe09e 0%,
+        #fcae68 25%,
+        #a65821 65%,
+        #3d1b04 100%
+    );
+    border-radius: 14px 14px 0 0;
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.6),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.9),
+        0 -4px 10px rgba(0, 0, 0, 0.85)
+    ;
+    z-index: 3;
+}
+
+.upper-copper-cap::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 12px;
+    background: radial-gradient(
+        ellipse at 50% 100%,
+        #fcae68 0%,
+        #a65821 55%,
+        #3d1b04 100%
+    );
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    z-index: 3;
+}
+
+.stove-pipe-stack {
+    position: absolute;
+    top: -23px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
+    height: 20px;
+    background: linear-gradient(
+        90deg,
+        #2b1202 0%, 
+        #a65821 20%, 
+        #ffe09e 45%, 
+        #fcae68 55%, 
+        #a65821 80%, 
+        #2b1202 100%
+    );
+    z-index: 4;
+}
+
+.stove-pipe-stack::before {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: -6px;
+    right: -6px;
+    height: 8px;
+    background: radial-gradient(
+        ellipse at 50% 100%,
+        #ffe09e 0%,
+        #a65821 60%,
+        #3d1b04 100%
+    );
+    border-radius: 50% 50% 0 0;
+    box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.5);
+    z-index: 5;
+}
+
+.stove-pipe-dome {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 10px;
+    background: radial-gradient(
+        ellipse at 50% 30%,
+        #fcae68 0%,
+        #fcae68 30%,
+        #a65821 70%,
+        #2b1202 100%
+    );
+    border-radius: 8px 8px 2px 2px;
+    box-shadow: 
+        inset 0 2px 3px rgba(255, 255, 255, 0.7),
+        0 2px 4px rgba(0, 0, 0, 0.7);
+    ;
+    z-index: 6;
+}
+
+.steam-vent-port {
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 5px;
+    background: #100602;
+    border-radius: 3px;
+    border: 1px solid #8b6508;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.95);
+    z-index: 7;
+}
+
+.steam-vent-port::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 40px;
+    filter: blur(4px);
+    border-radius: 50% 50% 20% 20%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.engine-canister-housing.canister-venting .steam-vent-port::after {
+    background: radial-gradient(
+        circle at 50% 80%,
+        rgba(0, 242, 255, 0.8) 0%,
+        rgba(8, 51, 56, 0.4) 50%,
+        transparent 80%
+    );
+    opacity: 0.85;
+    animation: blueMistPuff 0.5s ease-out forwards;
+}
+
+@keyframes blueMistPuff {
+    0% {
+        transform: translateX(-50%) scale(0.6) translateY(0);
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.1) translateY(-12px);
+        opacity: 0;
+        filter: blur(6px);
+    }
+}
+
+.engine-canister-housing.canister-overpressured .steam-vent-port::after {
+    width: 38px;
+    height: 52px;
+    background: radial-gradient(
+        circle at 50% 80%,
+        rgba(255, 0, 127, 0.9) 0%,
+        rgba(0, 242, 255, 0.6) 45%,
+        transparent 80%
+    );
+    opacity: 0.95;
+    animation: overpressureBurst 0.7s infinite alternate ease-in-out;
+}
+
+@keyframes overpressureBurst {
+    0% { 
+        transform: translateX(-50%) scale(0.9) translateY(0); 
+        opacity: 0.75; 
+        filter: blur(3px);
+    }
+    100% { 
+        transform: translateX(-50%) scale(1.6) translateY(-24px); 
+        opacity: 1; 
+        filter: blur(5px); 
+    }
+}
+
+.engine-canister-housing.canister-active .steam-vent-port::after {
+    opacity: 0.95;
+    animation: magicBurst 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes magicBurst {
+    0% { 
+        transform: translateX(-50%) scale(0.9) translateY(0); 
+        opacity: 0.7; 
+    }
+    100% { 
+        transform: translateX(-50%) scale(1.5) translateY(-22px); 
+        opacity: 1; 
+        filter: blur(4px); 
+    }
+}
+
+.emergency-valve-assembly {
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 22px;
+    background: radial-gradient(
+        circle at 35% 35%,
+        #d9a05b 0%,
+        #734211 70%,
+        #2b1301 100%
+    );
+    border: 1px solid #1a0a01;
+    border-radius: 50%;
+    box-shadow: 
+        0 3px 6px rgba(0, 0, 0, 0.85),
+        inset 0 1px 1px rgba(255, 255, 255, 0.6)
+    ;
+    z-index: 6;
+}
+
+.emergency-valve-assembly::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 26px;
+    height: 6px;
+    background: linear-gradient(180deg, #d93636 0%, #801212 100%);
+    border: 1px solid #3b0505;
+    border-radius: 3px;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    transform-origin: center center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 2;
+}
+
+.emergency-valve-assembly::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(
+       circle at 35% 35%,
+       #ffe09e 0%,
+       #b8860b 60%,
+       #422903 100% 
+    );
+    border: 1px solid #2b1902;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    z-index: 3;
+}
+
+.emergency-valve-assembly.spinning::before {
+    animation: rotateValveHandle 0.8s linear infinite;
+}
+
+@keyframes rotateValveHandle {
+    0% {
+        transform: translate(-50%, -50%) rotate(-15deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(345deg);
+    }
+}
+
+.engine-canister-housing.canister-active .emergency-valve-assembly::before,
+.nixie-glass-chamber.chamber-active ~ .upper-copper-cap .emergency-valve-assembly::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.engine-canister-housing.canister-active .steam-vent-port::after,
+.nixie-glass-chamber.chamber-active .steam-vent-port::after,
+.chamber-active .steam-vent-port::after {
+    opacity: 0.95;
+    animation: magicBurst 0.8s infinite alternate ease-in-out;
+}
+
+@keyframes magicBurst {
+    0% { transform: translateX(-50%) scale(0.9) translateY(0); opacity: 0.7; }
+    100% { transform: translateX(-50%) scale(1.5) translateY(-20px); opacity: 1; filter: blur(3px); }
+}
