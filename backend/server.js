@@ -1,17 +1,26 @@
 const express = require('express');
 const app = express();
-
-const knexConfig = require('./knexfile.js');
-const db = require('knex')(knexConfig.development);
-
 const cors = require('cors');
 require('dotenv').config();
+
+const enviroment = process.env.NODE_ENV || 'development';
+const knexConfig = require('./knexfile.js');
+const db = require('knex')(knexConfig[enviroment]);
 
 
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://nplawton.github.io'
+];
+
 //Middleware
-app.use(cors());
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json()); //Parses incoming JSON requests
 
 //Test Route

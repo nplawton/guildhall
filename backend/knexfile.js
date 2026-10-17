@@ -16,5 +16,24 @@ module.exports = {
     seeds: {
       directory: './db/seeds'
     }
+  },
+
+  production: {
+    client: 'pg',
+    connection: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    },
+    pool: {
+      min: 0,
+      max: 10,
+      idelTimeoutMillis: 30000
+    },
+    migration: {
+      directory: './db/migrations'
+    },
+    seeds: {
+      directory: './db/seeds'
+    }
   }
 };
