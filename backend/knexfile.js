@@ -27,9 +27,9 @@ module.exports = {
     pool: {
       min: 0,
       max: 10,
-      idelTimeoutMillis: 30000
+      idleTimeoutMillis: 30000
     },
-    migration: {
+    migrations: {
       directory: './db/migrations'
     },
     seeds: {
