@@ -3,9 +3,9 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 
-const enviroment = process.env.NODE_ENV || 'development';
+const environment = process.env.NODE_ENV || 'development';
 const knexConfig = require('./knexfile.js');
-const db = require('knex')(knexConfig[enviroment]);
+const db = require('knex')(knexConfig[environment] || knexConfig.development);
 
 
 const PORT = process.env.PORT || 5000;
