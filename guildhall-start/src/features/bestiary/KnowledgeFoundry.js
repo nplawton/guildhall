@@ -16,9 +16,14 @@ export default function KnowledgeFoundry() {
     const [loading, setLoading] = useState(true);
     const [selectedTypes, setSelectedTypes] = useState([]);
 
+    const API_BASE_URL = process.env.NODE_ENV === 'development'
+        ? 'http://localhost:5000'
+        : 'https://guildhall-9zmnjsq9e-dybbuk-mimic.vercel.app'
+    ;
+
     //1. Fetch full relational monster dataset mount
     useEffect(() => {
-        fetch('http://localhost:5000/api/monsters/full')
+        fetch(`${API_BASE_URL}/api/monsters/full`)
         .then((res) => res.json())
         .then((data) => {
             setMonsters(data);
