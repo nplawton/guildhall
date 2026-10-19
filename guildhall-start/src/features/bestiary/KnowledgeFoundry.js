@@ -18,7 +18,7 @@ export default function KnowledgeFoundry() {
 
     const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:5000'
-        : 'https://guildhall-five.vercel.app'
+        : 'https://guildhall-production-5bd0.up.railway.app'
     ;
 
     //1. Fetch full relational monster dataset mount
