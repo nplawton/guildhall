@@ -24,6 +24,8 @@ app.use(cors({
 app.use(express.json()); //Parses incoming JSON requests
 
 //Test Route
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 app.get('/', (req, res) => {
     res.json({ message: "Guildhall API Server is live and operational!" });
 });
