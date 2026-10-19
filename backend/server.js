@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const environment = process.env.NODE_ENV || 'development';
-const knexConfig = require('./knexfile.js');
+const knexConfig = require(path.join(__dirname, 'knexfile.js'));
 const db = require('knex')(knexConfig[environment] || knexConfig.development);
 
 

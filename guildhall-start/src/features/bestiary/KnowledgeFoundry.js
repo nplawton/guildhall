@@ -16,7 +16,7 @@ export default function KnowledgeFoundry() {
     const [loading, setLoading] = useState(true);
     const [selectedTypes, setSelectedTypes] = useState([]);
 
-    const API_BASE_URL = process.env.NODE_ENV === 'development'
+    const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
         ? 'http://localhost:5000'
         : 'https://guildhall-git-main-dybbuk-mimic.vercel.app'
     ;
