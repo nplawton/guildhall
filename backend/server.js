@@ -24,6 +24,10 @@ app.use(cors({
 app.use(express.json()); //Parses incoming JSON requests
 
 //Test Route
+app.get('/', (req, res) => {
+    res.json({ message: "Guildhall API Server is live and operational!" });
+});
+
 app.get('/api/health', (req, res) => {
     res.json({ status: "up", message: "Guildhall backend is running smoothly!" });
 });
