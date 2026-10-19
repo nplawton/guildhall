@@ -6,7 +6,23 @@ require('dotenv').config();
 
 const environment = process.env.NODE_ENV || 'development';
 const knexConfig = require(path.join(__dirname, 'knexfile.js'));
-const db = require('knex')(knexConfig[environment] || knexConfig.development);
+const db = require('knex')({
+  client: 'pg',
+  connection: process.env.NODE_ENV === 'production' 
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false }
+      }
+    : process.env.DATABASE_URL || {
+        host: '127.0.0.1',
+        user: 'postgres',
+        password: '@25MaY11!',
+        database: 'guildhall_db'
+      },
+  pool: { min: 0, max: 10 }
+});
+
+//const db = require('knex')(knexConfig[environment] || knexConfig.development);
 
 
 const PORT = process.env.PORT || 5000;
