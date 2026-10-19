@@ -181,7 +181,7 @@ app.get('/api/monsters/full', async (req, res) => {
     }
     catch (error) {
         console.error(error);
-        res.status(500).json({error: `Failed to fetch all details of the monster's data`});''
+        res.status(500).json({error: `Failed to fetch all details of the monster's data`});
     }
     
 });
