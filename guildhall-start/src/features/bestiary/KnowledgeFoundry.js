@@ -18,7 +18,7 @@ export default function KnowledgeFoundry() {
 
     const API_BASE_URL = process.env.NODE_ENV === 'development'
         ? 'http://localhost:5000'
-        : 'https://guildhall-9zmnjsq9e-dybbuk-mimic.vercel.app'
+        : 'https://guildhall-wwh35pqj9-dybbuk-mimic.vercel.app/'
     ;
 
     //1. Fetch full relational monster dataset mount
