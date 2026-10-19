@@ -1,13 +1,10 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const path = require('path');
 require('dotenv').config();
 
 const PORT = process.env.PORT || 5000;
 
-const environment = process.env.NODE_ENV || 'development';
-const knexConfig = require(path.join(__dirname, 'knexfile.js'));
 const db = require('knex')({
   client: 'pg',
   connection: process.env.DATABASE_URL ? {
