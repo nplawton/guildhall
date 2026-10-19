@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/guildhall/static/css/main.3c0d750e.css",
+    "main.js": "/guildhall/static/js/main.e522cb11.js",
+    "static/js/453.35af7e03.chunk.js": "/guildhall/static/js/453.35af7e03.chunk.js",
+    "static/media/Bear_Silhouette.png": "/guildhall/static/media/Bear_Silhouette.55e439a15e2a9955e6cb.png",
+    "index.html": "/guildhall/index.html",
+    "main.3c0d750e.css.map": "/guildhall/static/css/main.3c0d750e.css.map",
+    "main.e522cb11.js.map": "/guildhall/static/js/main.e522cb11.js.map",
+    "453.35af7e03.chunk.js.map": "/guildhall/static/js/453.35af7e03.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3c0d750e.css",
+    "static/js/main.e522cb11.js"
+  ]
+}
