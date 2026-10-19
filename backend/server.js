@@ -189,6 +189,10 @@ app.get('/api/monsters/full', async (req, res) => {
 });
 
 //Start Server
-app.listen(PORT, () => {
-    console.log(`Backend server swallowing data on port ${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Backend server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;
